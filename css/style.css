@@ -1,0 +1,1449 @@
+/* =====================================
+BODA ELIZABETH & CARLOS
+ESTILO PRINCIPAL
+===================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background: #D6E2D1;
+color: #2B352A;
+font-family: 'Cormorant Garamond', serif;
+overflow-x: hidden;
+}
+
+.hidden {
+display: none !important;
+}
+
+/* =====================================
+PALETA
+===================================== */
+
+:root {
+--sage-cover: #EEF4EB;
+--sage-light: #D6E2D1;
+--sage-dark: #B7C9B2;
+--sage-envelope: #A8B9A5;
+--sage-flap: #8FA58B;
+--sage-text: #526653;
+--gold: #C49A45;
+--dark-text: #2B352A;
+--dark-section: #B7C9B2;
+}
+
+/* =====================================
+SOBRE INICIAL
+===================================== */
+
+.cover-envelope {
+width: 100%;
+height: 100vh;
+min-height: 600px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: var(--sage-cover);
+padding: 20px;
+}
+
+/* =====================================
+SOBRE
+===================================== */
+
+.envelope {
+width: 330px;
+height: 230px;
+position: relative;
+background: var(--sage-envelope);
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 25px 50px rgba(60, 80, 65, 0.20);
+}
+
+/* =====================================
+CARTA DENTRO DEL SOBRE
+===================================== */
+
+.letter {
+position: absolute;
+width: 85%;
+height: 85%;
+left: 7.5%;
+top: 15%;
+background: var(--sage-light);
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+border-radius: 5px;
+z-index: 1;
+opacity: 0;
+transform: translateY(80px);
+transition: 1s ease;
+}
+
+.letter h1 {
+font-family: 'Great Vibes', cursive;
+font-size: 48px;
+line-height: 1;
+color: var(--sage-text);
+font-weight: 400;
+}
+
+/* =====================================
+PARTE INFERIOR DEL SOBRE
+===================================== */
+
+.envelope::before {
+content: "";
+position: absolute;
+inset: 0;
+background: var(--sage-envelope);
+clip-path: polygon(
+0 35%,
+50% 75%,
+100% 35%,
+100% 100%,
+0 100%
+);
+z-index: 3;
+}
+
+/* =====================================
+SOLAPA DEL SOBRE
+===================================== */
+
+.flap {
+position: absolute;
+inset: 0;
+background: var(--sage-flap);
+clip-path: polygon(
+0 0,
+100% 0,
+50% 55%
+);
+transform-origin: top;
+transition: transform 1s ease;
+z-index: 4;
+}
+
+/* =====================================
+SELLO
+===================================== */
+
+#openButton {
+position: absolute;
+top: 55%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: #C7A86B;
+border: 3px solid #E7D5A5;
+color: white;
+font-family: 'Cormorant Garamond', serif;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+z-index: 5;
+}
+
+/* =====================================
+ANIMACIÓN DEL SOBRE
+===================================== */
+
+.envelope.open .letter {
+opacity: 1;
+transform: translateY(-120px);
+}
+
+.envelope.open .flap {
+transform: rotateX(180deg);
+}
+
+/* =====================================
+TEXTO DEL SOBRE
+===================================== */
+
+.open-text {
+margin-top: 40px;
+text-align: center;
+}
+
+.open-text h2 {
+font-family: 'Great Vibes', cursive;
+font-size: 45px;
+color: var(--sage-text);
+font-weight: 400;
+}
+
+.open-text p {
+margin-top: 5px;
+color: var(--sage-text);
+font-family: 'Cormorant Garamond', serif;
+font-size: 18px;
+font-weight: 500;
+}
+
+/* =====================================
+INVITACIÓN
+===================================== */
+
+#invitation {
+width: 100%;
+background: var(--sage-light);
+}
+
+/* =====================================
+PORTADA PRINCIPAL
+===================================== */
+
+.hero {
+width: 100%;
+min-height: 100vh;
+background: var(--sage-light);
+display: flex;
+flex-direction: column;
+align-items: center;
+position: relative;
+}
+
+.hero-card {
+width: 100%;
+overflow: visible;
+}
+
+/* =====================================
+FOTO PRINCIPAL
+===================================== */
+
+.hero-image {
+width: 100%;
+height: 55vh;
+min-height: 350px;
+position: relative;
+overflow: visible;
+z-index: 2;
+}
+
+.hero-image img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center top;
+position: relative;
+z-index: 1;
+mask-image: linear-gradient(
+to bottom,
+black 94%,
+transparent 100%
+);
+-webkit-mask-image: linear-gradient(
+to bottom,
+black 94%,
+transparent 100%
+);
+}
+
+/* =====================================
+RASGADURA SUPERIOR DE FOTO
+===================================== */
+
+.hero-image::before {
+content: "";
+position: absolute;
+left: 0;
+top: -34px;
+width: 100%;
+height: 68px;
+background-image: url("../assets/images/rasgadosppal.png");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 100% 68px;
+transform: rotate(180deg);
+z-index: 4;
+pointer-events: none;
+}
+
+/* =====================================
+RASGADURA INFERIOR DE FOTO
+===================================== */
+
+.hero-image::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -34px;
+width: 100%;
+height: 68px;
+background-image: url("../assets/images/rasgadosppal.png");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 100% 68px;
+transform: rotate(0deg);
+z-index: 4;
+pointer-events: none;
+}
+
+/* =====================================
+CONTENIDO PORTADA
+===================================== */
+
+.hero-content {
+width: 100%;
+padding: 65px 25px 65px;
+text-align: center;
+background: var(--sage-light);
+position: relative;
+z-index: 3;
+}
+
+/* =====================================
+NOMBRES
+===================================== */
+
+.hero-content h1 {
+margin-top: 5px;
+font-family: 'Great Vibes', cursive;
+font-size: 75px;
+line-height: 1;
+color: var(--dark-text);
+font-weight: 400;
+white-space: nowrap;
+text-align: center;
+}
+
+.hero-content h1 span {
+display: inline;
+font-size: 60px;
+color: var(--gold);
+margin: 0 4px;
+}
+
+/* =====================================
+ALIANZAS
+===================================== */
+
+.rings {
+position: relative;
+width: 78px;
+height: 45px;
+margin: 27px auto 17px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.rings span {
+position: absolute;
+width: 39px;
+height: 39px;
+border: 3px solid var(--gold);
+border-radius: 50%;
+background: transparent;
+box-shadow: 0 1px 3px rgba(80, 60, 30, 0.15);
+}
+
+.rings span:first-child {
+left: 8px;
+transform: rotate(-15deg);
+}
+
+.rings span:last-child {
+right: 8px;
+transform: rotate(15deg);
+}
+
+/* =====================================
+NOS CASAMOS
+===================================== */
+
+.hero-content .wedding-title {
+margin-top: 7px;
+font-family: 'Great Vibes', cursive;
+font-size: 54px;
+line-height: 1.1;
+font-weight: 400;
+color: var(--gold);
+letter-spacing: 0.5px;
+}
+
+/* =====================================
+FECHA
+===================================== */
+
+.hero-content .date {
+margin-top: 20px;
+color: var(--dark-text);
+font-family: 'Cormorant Garamond', serif;
+font-size: 27px;
+font-weight: 600;
+line-height: 1.5;
+letter-spacing: 0.5px;
+}
+
+/* =====================================
+SECCIONES GENERALES
+===================================== */
+
+.message,
+.event,
+.dress-code,
+.confirmation,
+.itinerary,
+.gift,
+.album,
+.countdown,
+.closing {
+width: 100%;
+min-height: 70vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 110px 40px 90px;
+position: relative;
+margin-top: 0;
+z-index: 2;
+overflow: visible;
+}
+
+/* =====================================
+COLORES
+===================================== */
+
+.message,
+.dress-code,
+.itinerary,
+.album,
+.closing {
+background: #B7C9B2;
+}
+
+.event,
+.confirmation,
+.gift,
+.countdown {
+background: #D6E2D1;
+}
+
+/* =====================================
+RASGADURA
+===================================== */
+
+.message::before,
+.event::before,
+.dress-code::before,
+.confirmation::before,
+.itinerary::before,
+.gift::before,
+.album::before,
+.countdown::before,
+.closing::before {
+content: "";
+position: absolute;
+left: 0;
+top: -45px;
+width: 100%;
+height: 90px;
+background-image: url("../assets/images/rasgados.png");
+background-repeat: no-repeat;
+background-size: 100% 90px;
+background-position: center center;
+z-index: 4;
+pointer-events: none;
+}
+
+.message::before {
+transform: rotate(0deg);
+}
+
+.event::before {
+transform: rotate(180deg);
+}
+
+.dress-code::before {
+transform: rotate(0deg);
+}
+
+.confirmation::before {
+transform: rotate(180deg);
+}
+
+.itinerary::before {
+transform: rotate(0deg);
+}
+
+.gift::before {
+transform: rotate(180deg);
+}
+
+.album::before {
+transform: rotate(0deg);
+}
+
+.countdown::before {
+transform: rotate(180deg);
+}
+
+.closing::before {
+transform: rotate(0deg);
+}
+
+/* =====================================
+CONTENIDO
+===================================== */
+
+.message > *,
+.event > *,
+.dress-code > *,
+.confirmation > *,
+.itinerary > *,
+.gift > *,
+.album > *,
+.countdown > *,
+.closing > * {
+position: relative;
+z-index: 5;
+}
+
+/* =====================================
+TITULOS
+===================================== */
+
+section h2 {
+font-family: 'Great Vibes', cursive;
+color: var(--sage-text);
+font-size: 55px;
+font-weight: 400;
+line-height: 1.1;
+margin-bottom: 25px;
+}
+
+.message h2,
+.dress-code h2,
+.itinerary h2,
+.album h2,
+.closing h2 {
+color: var(--dark-text);
+}
+
+/* =====================================
+MENSAJE
+===================================== */
+
+.message-content {
+width: min(720px, 92%);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+
+.message-content::before {
+content: "“";
+position: absolute;
+top: -65px;
+left: 8px;
+font-family: 'Cormorant Garamond', serif;
+font-size: 125px;
+font-weight: 500;
+line-height: 1;
+color: rgba(43, 53, 42, 0.22);
+z-index: -1;
+pointer-events: none;
+}
+
+.message-content::after {
+content: "”";
+position: absolute;
+bottom: -68px;
+right: 8px;
+font-family: 'Cormorant Garamond', serif;
+font-size: 125px;
+font-weight: 500;
+line-height: 1;
+color: rgba(43, 53, 42, 0.22);
+z-index: -1;
+pointer-events: none;
+}
+
+.message-text {
+width: 100%;
+max-width: 680px;
+margin: 0 auto;
+font-family: 'Cormorant Garamond', serif;
+font-size: 30px;
+font-weight: 400;
+line-height: 1.65;
+letter-spacing: 0.2px;
+color: var(--dark-text);
+text-align: center;
+}
+
+.message-highlight {
+font-family: 'Great Vibes', cursive;
+font-size: 42px;
+font-weight: 400;
+color: var(--dark-text);
+line-height: 1.35;
+}
+
+/* =====================================
+CEREMONIA
+===================================== */
+
+.ceremony-content {
+width: min(600px, 94%);
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.ceremony-place {
+font-family: 'Cormorant Garamond', serif;
+font-size: 20px;
+font-weight: 600;
+color: var(--dark-text);
+margin-bottom: 20px;
+line-height: 1.1;
+}
+
+.ceremony-image {
+width: min(500px, 100%);
+height: 280px;
+overflow: hidden;
+border-radius: 14px;
+border: 3px solid rgba(196, 154, 69, 0.45);
+box-shadow: 0 15px 35px rgba(60, 80, 65, 0.18);
+margin-bottom: 25px;
+}
+
+.ceremony-image img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+object-position: center;
+}
+
+.ceremony-address {
+max-width: 500px;
+font-family: 'Cormorant Garamond', serif;
+font-size: 25px;
+font-weight: 500;
+line-height: 1.4;
+color: var(--dark-text);
+margin-bottom: 25px;
+}
+
+.map-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+padding: 12px 25px;
+border-radius: 50px;
+background: var(--gold);
+color: white;
+text-decoration: none;
+font-family: 'Cormorant Garamond', serif;
+font-size: 20px;
+font-weight: 600;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.map-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(90, 70, 30, 0.20);
+}
+
+.map-icon {
+width: 20px;
+height: 20px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+}
+
+.map-icon svg {
+width: 18px;
+height: 18px;
+fill: none;
+stroke: currentColor;
+stroke-width: 1.8;
+}
+
+/* =====================================
+DRESS CODE
+===================================== */
+
+.dress-code-content {
+width: min(600px, 94%);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.dress-code h2 {
+margin-bottom: 12px;
+}
+
+/* =====================================
+ICONOS DRESS CODE
+===================================== */
+
+.dress-icons {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 30px;
+margin-top: 28px;
+margin-bottom: 6px;
+}
+
+.dress-icon {
+width: 68px;
+height: 68px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+background: rgba(196, 154, 69, 0.12);
+border: 1px solid rgba(196, 154, 69, 0.40);
+box-shadow: 0 5px 14px rgba(80, 60, 30, 0.12);
+}
+
+.dress-icon svg {
+width: 52px;
+height: 52px;
+fill: none;
+stroke: var(--gold);
+stroke-width: 1.8;
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+
+.dress-divider {
+width: 1px;
+height: 38px;
+background: rgba(196, 154, 69, 0.45);
+}
+
+/* =====================================
+FORMAL
+===================================== */
+
+.dress-formal {
+font-family: 'Cormorant Garamond', serif;
+font-size: 38px;
+font-weight: 600;
+color: var(--gold);
+letter-spacing: 2px;
+line-height: 1;
+margin-top: 8px;
+margin-bottom: 0;
+text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+/* =====================================
+FRASE DRESS CODE
+===================================== */
+
+.dress-message {
+font-family: 'Cormorant Garamond', serif;
+font-size: 30px;
+font-weight: 500;
+line-height: 1.3;
+color: var(--dark-text);
+margin-top: 24px;
+margin-bottom: 0;
+letter-spacing: 0.5px;
+}
+
+/* =====================================
+OTRAS SECCIONES
+===================================== */
+
+.dress-code p,
+.confirmation p,
+.gift p,
+.album p,
+.event p {
+font-family: 'Cormorant Garamond', serif;
+font-size: 25px;
+font-weight: 500;
+line-height: 1.5;
+color: var(--dark-text);
+max-width: 650px;
+margin-bottom: 12px;
+}
+
+/* =====================================
+IMPORTANTE:
+NO AGREGAR OTRA REGLA PARA
+.dress-code .dress-message
+===================================== */
+
+/* =====================================
+CONFIRMAR ASISTENCIA
+===================================== */
+
+.confirm-button,
+.album-button {
+margin-top: 25px;
+border: none;
+padding: 14px 30px;
+border-radius: 50px;
+background: var(--gold);
+color: white;
+font-family: 'Cormorant Garamond', serif;
+font-size: 20px;
+font-weight: 600;
+cursor: pointer;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.confirm-button:hover,
+.album-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(90, 70, 30, 0.20);
+}
+
+/* =====================================
+ITINERARIO
+===================================== */
+
+.itinerary-item {
+margin: 20px auto;
+padding: 15px 30px;
+border-left: 2px solid var(--gold);
+max-width: 400px;
+}
+
+.itinerary-item h3 {
+font-family: 'Great Vibes', cursive;
+font-size: 38px;
+font-weight: 400;
+color: var(--gold);
+margin-bottom: 3px;
+}
+
+.itinerary-item p {
+font-family: 'Cormorant Garamond', serif;
+font-size: 24px;
+color: var(--dark-text);
+font-weight: 500;
+}
+
+/* =====================================
+CUENTA REGRESIVA
+===================================== */
+
+.countdown h2 {
+font-size: 60px;
+margin-bottom: 30px;
+}
+
+.timer {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 20px;
+margin-top: 20px;
+}
+
+.timer div {
+background: var(--sage-text);
+color: white;
+padding: 20px 15px;
+border-radius: 10px;
+min-width: 100px;
+font-family: 'Cormorant Garamond', serif;
+font-size: 18px;
+font-weight: 500;
+box-shadow: 0 8px 20px rgba(60, 80, 65, 0.15);
+}
+
+.timer span {
+display: block;
+font-family: 'Cormorant Garamond', serif;
+font-size: 40px;
+font-weight: 600;
+line-height: 1;
+margin-bottom: 8px;
+}
+
+/* =====================================
+CIERRE
+===================================== */
+
+.closing h1 {
+font-family: 'Great Vibes', cursive;
+font-size: 70px;
+font-weight: 400;
+color: var(--gold);
+line-height: 1.1;
+margin-bottom: 20px;
+}
+
+.closing p {
+font-family: 'Cormorant Garamond', serif;
+font-size: 26px;
+font-weight: 500;
+line-height: 1.5;
+color: var(--dark-text);
+max-width: 600px;
+}
+
+/* =====================================
+SEPARADOR PORTADA
+===================================== */
+
+.hero-divider {
+display: none;
+}
+
+/* =====================================
+CELULAR
+===================================== */
+
+@media (max-width: 600px) {
+
+.cover-envelope {
+padding: 20px;
+background: var(--sage-cover);
+}
+
+.envelope {
+width: 82vw;
+height: 56vw;
+max-width: 320px;
+max-height: 220px;
+}
+
+.letter {
+width: 82%;
+height: 82%;
+left: 9%;
+top: 12%;
+}
+
+.letter h1 {
+font-size: 10vw;
+}
+
+#openButton {
+width: 65px;
+height: 65px;
+font-size: 15px;
+}
+
+.open-text {
+margin-top: 30px;
+padding: 0 20px;
+}
+
+.open-text h2 {
+font-size: 36px;
+}
+
+.open-text p {
+font-size: 17px;
+}
+
+.hero-image {
+height: 45vh;
+min-height: 300px;
+}
+
+.hero-image::before {
+top: -30px;
+height: 60px;
+background-size: 100% 60px;
+background-position: center;
+transform: rotate(180deg);
+}
+
+.hero-image::after {
+bottom: -30px;
+height: 60px;
+background-size: 100% 60px;
+background-position: center;
+transform: rotate(0deg);
+}
+
+.hero-content {
+padding: 60px 15px 55px;
+}
+
+.hero-content h1 {
+font-size: 13vw;
+white-space: nowrap;
+}
+
+.hero-content h1 span {
+font-size: 11vw;
+margin: 0 2px;
+}
+
+.rings {
+width: 68px;
+height: 40px;
+margin: 23px auto 15px;
+}
+
+.rings span {
+width: 34px;
+height: 34px;
+border-width: 2.5px;
+}
+
+.rings span:first-child {
+left: 5px;
+}
+
+.rings span:last-child {
+right: 5px;
+}
+
+.hero-content .wedding-title {
+font-size: 45px;
+margin-top: 5px;
+}
+
+.hero-content .date {
+font-size: 23px;
+margin-top: 15px;
+line-height: 1.5;
+}
+
+.message,
+.event,
+.dress-code,
+.confirmation,
+.itinerary,
+.gift,
+.album,
+.countdown,
+.closing {
+min-height: 65vh;
+padding: 80px 20px 65px;
+margin-top: 0;
+}
+
+.message::before,
+.event::before,
+.dress-code::before,
+.confirmation::before,
+.itinerary::before,
+.gift::before,
+.album::before,
+.countdown::before,
+.closing::before {
+top: -38px;
+height: 76px;
+background-size: 100% 76px;
+background-position: center center;
+}
+
+.message-content {
+width: 94%;
+padding: 0 8px;
+}
+
+.message-content::before {
+top: -38px;
+left: -4px;
+font-size: 90px;
+}
+
+.message-content::after {
+bottom: -50px;
+right: -4px;
+font-size: 90px;
+}
+
+.message-text {
+width: 100%;
+max-width: 100%;
+font-size: 22px;
+line-height: 1.7;
+letter-spacing: 0.1px;
+}
+
+.message-highlight {
+font-size: 32px;
+line-height: 1.35;
+}
+
+section h2 {
+font-size: 42px;
+}
+
+/* =================================
+CEREMONIA CELULAR
+================================= */
+
+.ceremony-place {
+font-family: 'Cormorant Garamond', serif;
+font-size: 20px;
+font-weight: 600;
+color: var(--dark-text);
+margin-bottom: 18px;
+}
+
+.ceremony-image {
+width: 100%;
+height: 220px;
+border-radius: 12px;
+margin-bottom: 20px;
+}
+
+.ceremony-address {
+font-size: 22px;
+line-height: 1.4;
+margin-bottom: 20px;
+}
+
+.map-button {
+padding: 11px 22px;
+font-size: 19px;
+}
+
+.map-icon {
+width: 18px;
+height: 18px;
+}
+
+.map-icon svg {
+width: 16px;
+height: 16px;
+}
+
+/* =================================
+DRESS CODE CELULAR
+================================= */
+
+.dress-code-content {
+width: 94%;
+}
+
+.dress-code h2 {
+font-size: 42px;
+margin-bottom: 8px;
+}
+
+.dress-icons {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 18px;
+margin-top: 24px;
+margin-bottom: 4px;
+}
+
+.dress-icon {
+width: 48px;
+height: 48px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+background: rgba(196, 154, 69, 0.12);
+border: 1px solid rgba(196, 154, 69, 0.38);
+box-shadow: 0 4px 10px rgba(80, 60, 30, 0.10);
+}
+
+.dress-icon svg {
+width: 37px;
+height: 37px;
+fill: none;
+stroke: var(--gold);
+stroke-width: 1.7;
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+
+.dress-divider {
+width: 1px;
+height: 28px;
+background: rgba(196, 154, 69, 0.40);
+}
+
+.dress-formal {
+font-family: 'Cormorant Garamond', serif;
+font-size: 30px;
+font-weight: 600;
+color: var(--gold);
+letter-spacing: 1.5px;
+line-height: 1;
+margin-top: 4px;
+margin-bottom: 6px;
+}
+
+.dress-code .dress-message {
+font-family: 'Cormorant Garamond', serif;
+font-size: 24px;
+font-weight: 500;
+line-height: 1.3;
+color: var(--dark-text);
+margin-top: 18px;
+margin-bottom: 0;
+letter-spacing: 0.4px;
+}
+
+/* =================================
+OTRAS SECCIONES
+================================= */
+
+.dress-code p,
+.confirmation p,
+.gift p,
+.album p,
+.event p {
+font-size: 22px;
+line-height: 1.5;
+}
+
+.itinerary-item {
+margin: 15px auto;
+padding: 12px 20px;
+}
+
+.itinerary-item h3 {
+font-size: 34px;
+}
+
+.itinerary-item p {
+font-size: 21px;
+}
+
+.countdown h2 {
+font-size: 48px;
+}
+
+.timer {
+width: 100%;
+padding: 0 5px;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+}
+
+.timer div {
+padding: 15px 5px;
+min-width: 0;
+font-size: 16px;
+}
+
+.timer span {
+font-size: 32px;
+}
+
+.closing h1 {
+font-size: 55px;
+}
+
+.closing p {
+font-size: 22px;
+}
+}
+
+/* =====================================
+COMPUTADORA
+===================================== */
+
+@media (min-width: 601px) {
+
+.envelope {
+width: 280px;
+height: 195px;
+}
+
+.letter h1 {
+font-size: 40px;
+}
+
+.hero-image {
+width: 520px;
+height: 400px;
+margin: 35px auto 0;
+}
+
+.hero-image::before {
+top: -40px;
+height: 80px;
+background-size: 100% 80px;
+background-position: center;
+transform: rotate(180deg);
+}
+
+.hero-image::after {
+bottom: -40px;
+height: 80px;
+background-size: 100% 80px;
+background-position: center;
+transform: rotate(0deg);
+}
+
+.hero-content {
+padding: 70px 20px 65px;
+}
+
+.hero-content h1 {
+font-size: 75px;
+white-space: nowrap;
+}
+
+.rings {
+width: 78px;
+height: 45px;
+}
+
+.rings span {
+width: 39px;
+height: 39px;
+}
+
+.hero-content .wedding-title {
+font-size: 54px;
+}
+
+.hero-content .date {
+font-size: 27px;
+}
+
+.message,
+.event,
+.dress-code,
+.confirmation,
+.itinerary,
+.gift,
+.album,
+.countdown,
+.closing {
+padding-top: 110px;
+padding-bottom: 90px;
+}
+
+/* =================================
+CEREMONIA COMPUTADORA
+================================= */
+
+.ceremony-place {
+font-family: 'Cormorant Garamond', serif;
+font-size: 20px;
+font-weight: 600;
+}
+
+.ceremony-image {
+height: 320px;
+}
+
+.ceremony-address {
+font-size: 27px;
+}
+
+/* =================================
+DRESS CODE COMPUTADORA
+================================= */
+
+.dress-code-content {
+width: 600px;
+}
+
+.dress-code h2 {
+font-size: 55px;
+margin-bottom: 12px;
+}
+
+.dress-icons {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 30px;
+margin-top: 28px;
+margin-bottom: 6px;
+}
+
+.dress-icon {
+width: 68px;
+height: 68px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+background: rgba(196, 154, 69, 0.12);
+border: 1px solid rgba(196, 154, 69, 0.40);
+box-shadow: 0 5px 14px rgba(80, 60, 30, 0.12);
+}
+
+.dress-icon svg {
+width: 52px;
+height: 52px;
+fill: none;
+stroke: var(--gold);
+stroke-width: 1.8;
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+
+.dress-divider {
+width: 1px;
+height: 38px;
+background: rgba(196, 154, 69, 0.45);
+}
+
+.dress-formal {
+font-family: 'Cormorant Garamond', serif;
+font-size: 38px;
+font-weight: 600;
+color: var(--gold);
+letter-spacing: 2px;
+line-height: 1;
+margin-top: 8px;
+margin-bottom: 8px;
+text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+.dress-code .dress-message {
+font-family: 'Cormorant Garamond', serif;
+font-size: 30px;
+font-weight: 500;
+line-height: 1.3;
+color: var(--dark-text);
+margin-top: 24px;
+margin-bottom: 0;
+letter-spacing: 0.5px;
+}
+
+/* =================================
+CUENTA REGRESIVA
+================================= */
+
+.timer div {
+min-width: 115px;
+padding: 22px 18px;
+}
+
+.timer span {
+font-size: 44px;
+}
+}
