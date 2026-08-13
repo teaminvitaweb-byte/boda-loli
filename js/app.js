@@ -234,6 +234,7 @@ function updateCountdown() {
     setCountdownValue(
         "seconds",
         seconds
+
     );
 
 }

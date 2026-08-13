@@ -1,38 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
 
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Elizabeth Zepeda & Carlos Aguilar
+    </title>
 
-<title>Elizabeth Zepeda & Carlos Aguilar</title>
+    <!-- =====================================
+         GOOGLE FONTS
+    ====================================== -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
-    rel="stylesheet"
->
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-<link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet"
+    >
 
-<link rel="stylesheet" href="css/animations.css">
+    <!-- =====================================
+         CSS
+    ====================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/animations.css"
+    >
+
+</head>
+
+
+<body>
 
 
 <!-- =====================================
      MÚSICA
 ====================================== -->
 
-<audio id="music" loop>
+<audio
+    id="music"
+    loop
+    preload="auto"
+>
 
     <source
         src="assets/music/Until.mp3"
@@ -53,6 +80,11 @@
 
     <div class="envelope">
 
+
+        <!-- =================================
+             CARTA INTERIOR
+        ================================== -->
+
         <div class="letter">
 
             <h1>
@@ -61,7 +93,7 @@
 
                 <br>
 
-                &
+                <span>&</span>
 
                 <br>
 
@@ -72,31 +104,60 @@
         </div>
 
 
+        <!-- =================================
+             PARTE INFERIOR DEL SOBRE
+        ================================== -->
+
+        <div class="envelope-front"></div>
+
+
+        <!-- =================================
+             SOLAPA SUPERIOR
+        ================================== -->
+
         <div class="flap"></div>
 
 
-        <button id="openButton">
+        <!-- =================================
+             SELLO DE LACRE
+        ================================== -->
 
-            E & C
+        <button
+            id="openButton"
+            class="wax-seal"
+            aria-label="Abrir invitación"
+        >
+
+            <span class="wax-seal-ring"></span>
+
+            <span class="wax-seal-inner">
+
+                <span class="seal-initials">
+                    E
+                    <small>&</small>
+                    C
+                </span>
+
+            </span>
 
         </button>
+
 
     </div>
 
 
+    <!-- =====================================
+         TEXTO
+    ====================================== -->
+
     <div class="open-text">
 
         <h2>
-
             Una invitación especial
-
         </h2>
 
-
         <p>
-
             Toca el sello para abrir
-
         </p>
 
     </div>
@@ -115,13 +176,13 @@
 
 
     <!-- =====================================
-         PORTADA PRINCIPAL
-         COLOR: CLARO
+         PORTADA
     ====================================== -->
 
     <section class="hero">
 
         <div class="hero-card">
+
 
             <div class="hero-image">
 
@@ -175,7 +236,9 @@
 
                     <br>
 
-                    4:00 pm
+                    <span class="time">
+                        4:00 pm
+                    </span>
 
                 </div>
 
@@ -188,7 +251,6 @@
 
     <!-- =====================================
          MENSAJE
-         COLOR: OSCURO
     ====================================== -->
 
     <section class="message">
@@ -201,10 +263,8 @@
 
                     Después de tantas historias,
                     risas y sueños compartidos,
-
                     hemos decidido escribir juntos
                     el capítulo más hermoso
-
                     y queremos que nos acompañes.
 
                 </span>
@@ -213,20 +273,11 @@
 
         </div>
 
-
-        <!-- =================================
-             RASGADURA INFERIOR EXCLUSIVA
-             DEL MENSAJE
-        ================================== -->
-
-        <div class="message-bottom-tear"></div>
-
     </section>
 
 
     <!-- =====================================
          CEREMONIA
-         COLOR: CLARO
     ====================================== -->
 
     <section class="event">
@@ -234,18 +285,12 @@
         <div class="section-content ceremony-content">
 
             <h2>
-
                 Ceremonia
-
             </h2>
 
-
             <h3 class="ceremony-place">
-
                 Talapo Azul
-
             </h3>
-
 
             <div class="ceremony-image">
 
@@ -256,10 +301,10 @@
 
             </div>
 
-
             <p class="ceremony-address">
 
-                Km. 9 1/2 Carretera a Planes de Renderos
+                Km. 9 1/2 Carretera a
+                Planes de Renderos
 
             </p>
 
@@ -292,11 +337,8 @@
 
                 </span>
 
-
                 <span>
-
                     Ver ubicación
-
                 </span>
 
             </a>
@@ -308,7 +350,6 @@
 
     <!-- =====================================
          DRESS CODE
-         COLOR: OSCURO
     ====================================== -->
 
     <section class="dress-code">
@@ -316,23 +357,15 @@
         <div class="section-content dress-code-content">
 
             <h2>
-
                 Dress Code
-
             </h2>
 
-
             <h3 class="dress-formal">
-
                 Formal
-
             </h3>
 
-
             <p class="dress-message">
-
                 Celebremos al atardecer
-
             </p>
 
 
@@ -349,24 +382,24 @@
 
                         <path
                             d="M25 8
-                               C25 12 23 15 20 18
-                               L13 25
-                               L20 31
-                               L24 27
-                               L18 52
-                               C17 56 20 58 32 58
-                               C44 58 47 56 46 52
-                               L40 27
-                               L44 31
-                               L51 25
-                               L44 18
-                               C41 15 39 12 39 8"
+                            C25 12 23 15 20 18
+                            L13 25
+                            L20 31
+                            L24 27
+                            L18 52
+                            C17 56 20 58 32 58
+                            C44 58 47 56 46 52
+                            L40 27
+                            L44 31
+                            L51 25
+                            L44 18
+                            C41 15 39 12 39 8"
                         />
 
                         <path
                             d="M25 8
-                               C27 11 29 12 32 12
-                               C35 12 37 11 39 8"
+                            C27 11 29 12 32 12
+                            C35 12 37 11 39 8"
                         />
 
                     </svg>
@@ -387,35 +420,35 @@
 
                         <path
                             d="M24 10
-                               L32 17
-                               L40 10
-                               L48 17
-                               L43 55
-                               L21 55
-                               L16 17
-                               Z"
+                            L32 17
+                            L40 10
+                            L48 17
+                            L43 55
+                            L21 55
+                            L16 17
+                            Z"
                         />
 
                         <path
                             d="M24 10
-                               L32 17
-                               L40 10"
+                            L32 17
+                            L40 10"
                         />
 
                         <path
                             d="M32 17
-                               L28 55"
+                            L28 55"
                         />
 
                         <path
                             d="M32 17
-                               L36 55"
+                            L36 55"
                         />
 
                         <path
                             d="M27 22
-                               L32 29
-                               L37 22"
+                            L32 29
+                            L37 22"
                         />
 
                     </svg>
@@ -431,7 +464,6 @@
 
     <!-- =====================================
          CONFIRMAR ASISTENCIA
-         COLOR: CLARO
     ====================================== -->
 
     <section class="confirmation">
@@ -439,23 +471,15 @@
         <div class="section-content">
 
             <h2>
-
                 Confirmar Asistencia
-
             </h2>
 
-
             <p>
-
                 Queremos compartir este momento contigo.
-
             </p>
 
-
             <button class="confirm-button">
-
                 Confirmar asistencia
-
             </button>
 
         </div>
@@ -465,7 +489,6 @@
 
     <!-- =====================================
          ITINERARIO
-         COLOR: OSCURO
     ====================================== -->
 
     <section class="itinerary">
@@ -473,24 +496,18 @@
         <div class="section-content">
 
             <h2>
-
                 Itinerario
-
             </h2>
 
 
             <div class="itinerary-item">
 
                 <h3>
-
                     4:00 PM
-
                 </h3>
 
                 <p>
-
                     Ceremonia
-
                 </p>
 
             </div>
@@ -499,15 +516,11 @@
             <div class="itinerary-item">
 
                 <h3>
-
                     5:00 PM
-
                 </h3>
 
                 <p>
-
                     Recepción
-
                 </p>
 
             </div>
@@ -516,15 +529,11 @@
             <div class="itinerary-item">
 
                 <h3>
-
                     6:00 PM
-
                 </h3>
 
                 <p>
-
                     Celebración
-
                 </p>
 
             </div>
@@ -536,7 +545,6 @@
 
     <!-- =====================================
          REGALO
-         COLOR: CLARO
     ====================================== -->
 
     <section class="gift">
@@ -544,25 +552,17 @@
         <div class="section-content">
 
             <h2>
-
                 Regalo
-
             </h2>
 
-
             <p>
-
                 Lo más importante para nosotros
                 es compartir este día contigo.
-
             </p>
 
-
             <p>
-
                 Si deseas hacernos un regalo,
                 agradeceremos mucho tu detalle.
-
             </p>
 
         </div>
@@ -571,8 +571,7 @@
 
 
     <!-- =====================================
-         ÁLBUM DE FOTOS
-         COLOR: OSCURO
+         ÁLBUM
     ====================================== -->
 
     <section class="album">
@@ -580,24 +579,16 @@
         <div class="section-content">
 
             <h2>
-
                 Álbum de fotos
-
             </h2>
 
-
             <p>
-
                 Comparte con nosotros
                 los recuerdos de este día.
-
             </p>
 
-
             <button class="album-button">
-
                 Ver álbum
-
             </button>
 
         </div>
@@ -607,7 +598,6 @@
 
     <!-- =====================================
          CUENTA REGRESIVA
-         COLOR: CLARO
     ====================================== -->
 
     <section class="countdown">
@@ -615,20 +605,17 @@
         <div class="section-content">
 
             <h2>
-
                 Nos vemos en
-
             </h2>
 
 
             <div class="timer">
 
+
                 <div>
 
                     <span id="days">
-
                         00
-
                     </span>
 
                     Días
@@ -639,9 +626,7 @@
                 <div>
 
                     <span id="hours">
-
                         00
-
                     </span>
 
                     Horas
@@ -652,9 +637,7 @@
                 <div>
 
                     <span id="minutes">
-
                         00
-
                     </span>
 
                     Minutos
@@ -665,14 +648,13 @@
                 <div>
 
                     <span id="seconds">
-
                         00
-
                     </span>
 
                     Segundos
 
                 </div>
+
 
             </div>
 
@@ -683,7 +665,6 @@
 
     <!-- =====================================
          CIERRE
-         COLOR: OSCURO
     ====================================== -->
 
     <section class="closing">
@@ -691,22 +672,19 @@
         <div class="section-content">
 
             <h1>
-
-                Elizabeth Zepeda & Carlos Aguilar
-
+                Elizabeth Zepeda
+                & Carlos Aguilar
             </h1>
 
-
             <p>
-
                 Gracias por acompañarnos
                 en este momento tan especial.
-
             </p>
 
         </div>
 
     </section>
+
 
 </main>
 
@@ -716,7 +694,6 @@
 ====================================== -->
 
 <script src="js/app.js"></script>
-```
 
 </body>
 
