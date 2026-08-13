@@ -23,6 +23,9 @@ const envelope =
 const music =
     document.getElementById("music");
 
+const musicButton =
+    document.getElementById("musicButton");
+
 
 /* =====================================
    ABRIR INVITACIÓN
@@ -52,13 +55,21 @@ if (openButton) {
 
         if (music) {
 
-            music.play().catch(() => {
+            music.play()
+                .then(() => {
 
-                console.log(
-                    "El navegador bloqueó el audio"
-                );
+                    updateMusicButton();
 
-            });
+                })
+                .catch(() => {
+
+                    console.log(
+                        "El navegador bloqueó el audio"
+                    );
+
+                    updateMusicButton();
+
+                });
 
         }
 
@@ -90,6 +101,9 @@ if (openButton) {
             }
 
 
+            updateMusicButton();
+
+
             window.scrollTo({
 
                 top: 0,
@@ -101,6 +115,166 @@ if (openButton) {
         }, 1500);
 
     });
+
+}
+
+
+/* =====================================
+   CONTROL DE MÚSICA
+===================================== */
+
+if (musicButton && music) {
+
+    musicButton.addEventListener(
+        "click",
+        toggleMusic
+    );
+
+
+    music.addEventListener(
+        "play",
+        updateMusicButton
+    );
+
+
+    music.addEventListener(
+        "pause",
+        updateMusicButton
+    );
+
+
+    music.addEventListener(
+        "ended",
+        updateMusicButton
+    );
+
+
+    updateMusicButton();
+
+}
+
+
+/* =====================================
+   ACTIVAR / DESACTIVAR MÚSICA
+===================================== */
+
+function toggleMusic() {
+
+    if (!music) {
+
+        return;
+
+    }
+
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+
+                updateMusicButton();
+
+            })
+            .catch(() => {
+
+                console.log(
+                    "No se pudo reproducir la música"
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        updateMusicButton();
+
+    }
+
+}
+
+
+/* =====================================
+   ACTUALIZAR BOTÓN DE MÚSICA
+===================================== */
+
+function updateMusicButton() {
+
+    if (!musicButton || !music) {
+
+        return;
+
+    }
+
+
+    if (music.paused) {
+
+
+        /* =============================
+           MÚSICA APAGADA
+        ============================= */
+
+        musicButton.classList.remove(
+            "is-playing"
+        );
+
+        musicButton.classList.add(
+            "is-paused"
+        );
+
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Activar música"
+        );
+
+
+        musicButton.setAttribute(
+            "title",
+            "Activar música"
+        );
+
+
+        musicButton.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+
+    } else {
+
+
+        /* =============================
+           MÚSICA ENCENDIDA
+        ============================= */
+
+        musicButton.classList.remove(
+            "is-paused"
+        );
+
+        musicButton.classList.add(
+            "is-playing"
+        );
+
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Silenciar música"
+        );
+
+
+        musicButton.setAttribute(
+            "title",
+            "Silenciar música"
+        );
+
+
+        musicButton.setAttribute(
+            "aria-pressed",
+            "true"
+        );
+
+    }
 
 }
 
@@ -153,6 +327,7 @@ function updateCountdown() {
         );
 
         return;
+
     }
 
 
@@ -174,8 +349,10 @@ function updateCountdown() {
     const hours =
         Math.floor(
 
-            (distance %
-                (1000 * 60 * 60 * 24))
+            (
+                distance %
+                (1000 * 60 * 60 * 24)
+            )
             /
             (1000 * 60 * 60)
 
@@ -189,8 +366,10 @@ function updateCountdown() {
     const minutes =
         Math.floor(
 
-            (distance %
-                (1000 * 60 * 60))
+            (
+                distance %
+                (1000 * 60 * 60)
+            )
             /
             (1000 * 60)
 
@@ -204,8 +383,10 @@ function updateCountdown() {
     const seconds =
         Math.floor(
 
-            (distance %
-                (1000 * 60))
+            (
+                distance %
+                (1000 * 60)
+            )
             /
             1000
 
@@ -234,7 +415,6 @@ function updateCountdown() {
     setCountdownValue(
         "seconds",
         seconds
-
     );
 
 }
