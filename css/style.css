@@ -1835,9 +1835,9 @@ section h2 {
 
     .rings span {
 
-        width: 27px;
+        width: 22px;
 
-        height: 27px;
+        height: 22px;
 
         border-width: 2px;
     }
@@ -1845,13 +1845,13 @@ section h2 {
 
     .rings span:first-child {
 
-        left: 5px;
+        left: 10px;
     }
 
 
     .rings span:last-child {
 
-        right: 5px;
+        right: 10px;
     }
 
 
