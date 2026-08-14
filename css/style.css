@@ -1112,6 +1112,8 @@ section h2 {
 }
 
 
+
+
 /* =====================================
    CEREMONIA
 ===================================== */
@@ -1127,6 +1129,30 @@ section h2 {
     flex-direction: column;
 
     align-items: center;
+}
+
+
+/* =====================================
+   TITULO CEREMONIA
+===================================== */
+
+.event h2 {
+
+    font-family: 'Great Vibes', cursive;
+
+    color: var(--dark-text);
+
+    font-size: 55px;
+
+    font-weight: 400;
+
+    line-height: 1.1;
+
+    margin-top: -35px;
+
+    margin-bottom: 25px;
+
+    transform: none;
 }
 
 
@@ -1362,6 +1388,274 @@ section h2 {
 
     stroke-width: 1.8;
 }
+
+
+/* =====================================
+   CEREMONIA - CELULAR
+===================================== */
+
+@media (max-width: 600px) {
+
+    .event h2 {
+
+        font-family: 'Great Vibes', cursive;
+
+        font-size: 42px;
+
+        font-weight: 400;
+
+        margin-top: -10px;
+
+        margin-bottom: 20px;
+
+        line-height: 1.1;
+    }
+
+    .ceremony-content {
+
+        width: 100%;
+
+        max-width: none;
+
+        align-items: center;
+    }
+
+    .ceremony-place {
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 20px;
+
+        margin-bottom: 18px;
+    }
+
+    .ceremony-image {
+
+        width: 100vw;
+
+        max-width: none;
+
+        height: 220px;
+
+        margin-left: calc(50% - 50vw);
+
+        margin-right: calc(50% - 50vw);
+
+        border-radius: 0;
+
+        border: none;
+
+        box-shadow: none;
+
+        margin-bottom: 60px;
+
+        overflow: visible;
+
+        position: relative;
+    }
+
+    .ceremony-image img {
+
+        display: block;
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+
+        z-index: 1;
+    }
+
+    .ceremony-image::before {
+
+        left: -2px;
+
+        top: -18px;
+
+        width: calc(100% + 4px);
+
+        height: 58px;
+
+        background-size: 100% 58px;
+
+        background-position: center bottom;
+
+        z-index: 5;
+    }
+
+    .ceremony-image::after {
+
+        left: -2px;
+
+        bottom: -18px;
+
+        width: calc(100% + 4px);
+
+        height: 58px;
+
+        background-size: 100% 58px;
+
+        background-position: center top;
+
+        transform: rotate(180deg);
+
+        z-index: 5;
+    }
+
+    .ceremony-address {
+
+        max-width: 95%;
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 22px;
+
+        line-height: 1.4;
+
+        margin-bottom: 20px;
+    }
+
+    .map-button {
+
+        padding: 11px 22px;
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 19px;
+    }
+}
+
+
+/* =====================================
+   CEREMONIA - COMPUTADORA
+===================================== */
+
+@media (min-width: 601px) {
+
+    .event h2 {
+
+        font-family: 'Great Vibes', cursive;
+
+        font-size: 55px;
+
+        font-weight: 400;
+
+        margin-top: -35px;
+
+        margin-bottom: 25px;
+    }
+
+    .ceremony-content {
+
+        width: 100%;
+
+        max-width: none;
+    }
+
+    .ceremony-place {
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 20px;
+    }
+
+    .ceremony-image {
+
+        width: 100vw;
+
+        max-width: none;
+
+        height: 320px;
+
+        margin-left: calc(50% - 50vw);
+
+        margin-right: calc(50% - 50vw);
+
+        border-radius: 0;
+
+        border: none;
+
+        box-shadow: none;
+
+        margin-bottom: 65px;
+
+        overflow: visible;
+    }
+
+    .ceremony-image img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+    .ceremony-image::before {
+
+        left: -2px;
+
+        top: -22px;
+
+        width: calc(100% + 4px);
+
+        height: 62px;
+
+        background-size: 100% 62px;
+
+        background-position: center bottom;
+
+        z-index: 5;
+    }
+
+    .ceremony-image::after {
+
+        left: -2px;
+
+        bottom: -22px;
+
+        width: calc(100% + 4px);
+
+        height: 62px;
+
+        background-size: 100% 62px;
+
+        background-position: center top;
+
+        transform: rotate(180deg);
+
+        z-index: 5;
+    }
+
+    .ceremony-address {
+
+        max-width: 650px;
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 27px;
+
+        font-weight: 500;
+
+        line-height: 1.4;
+
+        color: var(--dark-text);
+    }
+
+}
+
+
 
 
 /* =====================================
