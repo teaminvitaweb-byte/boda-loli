@@ -28,93 +28,296 @@ const musicButton =
 
 
 /* =====================================
+   PREPARAR IMAGEN PRINCIPAL
+===================================== */
+
+function preloadImage(src) {
+
+    return new Promise((resolve) => {
+
+        const image = new Image();
+
+        image.onload = () => {
+
+            resolve();
+
+        };
+
+        image.onerror = () => {
+
+            console.warn(
+                "No se pudo cargar:",
+                src
+            );
+
+            resolve();
+
+        };
+
+        image.src = src;
+
+    });
+
+}
+
+
+/* =====================================
+   PREPARAR FUENTES
+===================================== */
+
+function preloadFonts() {
+
+    if (
+        document.fonts &&
+        document.fonts.ready
+    ) {
+
+        return document.fonts.ready;
+
+    }
+
+    return Promise.resolve();
+
+}
+
+
+/* =====================================
+   PREPARAR PORTADA
+===================================== */
+
+async function prepareInvitation() {
+
+    console.log(
+        "⏳ Preparando portada..."
+    );
+
+
+    /* =============================
+       IMAGEN PRINCIPAL
+    ============================= */
+
+    await preloadImage(
+        "assets/images/Eli-Carlos.jpeg"
+    );
+
+
+    /* =============================
+       IMAGEN CEREMONIA
+    ============================= */
+
+    await preloadImage(
+        "assets/images/talapo-azul.jpg"
+    );
+
+
+    /* =============================
+       IMAGENES DECORATIVAS
+    ============================= */
+
+    await preloadImage(
+        "assets/images/rasgadosppal.png"
+    );
+
+    await preloadImage(
+        "assets/images/rasgadosppal2.png"
+    );
+
+    await preloadImage(
+        "assets/images/rasgados.png"
+    );
+
+    await preloadImage(
+        "assets/images/rasgadostransp.png"
+    );
+
+    await preloadImage(
+        "assets/images/mano.png"
+    );
+
+
+    /* =============================
+       FUENTES
+    ============================= */
+
+    await preloadFonts();
+
+
+    /* =============================
+       FORZAR RECALCULO
+    ============================= */
+
+    if (invitation) {
+
+        invitation.offsetHeight;
+
+    }
+
+
+    console.log(
+        "✓ Portada preparada"
+    );
+
+}
+
+
+/* =====================================
+   MOSTRAR INVITACIÓN
+===================================== */
+
+function showInvitation() {
+
+    if (!invitation) {
+
+        return;
+
+    }
+
+
+    console.log(
+        "💒 Mostrando invitación"
+    );
+
+
+    /* =============================
+       OCULTAR SOBRE
+    ============================= */
+
+    if (envelopeScreen) {
+
+        envelopeScreen.style.display =
+            "none";
+
+    }
+
+
+    /* =============================
+       MOSTRAR INVITACIÓN
+    ============================= */
+
+    invitation.classList.remove(
+        "hidden"
+    );
+
+
+    /*
+       Pequeño reflow antes de mostrar.
+       Esto evita que algunos navegadores
+       móviles intenten pintar la portada
+       mientras aparece.
+    */
+
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            invitation.classList.add(
+                "show"
+            );
+
+
+            /* =============================
+               VOLVER ARRIBA
+            ============================= */
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+
+            console.log(
+                "✓ Invitación visible"
+            );
+
+        });
+
+    });
+
+
+    updateMusicButton();
+
+}
+
+
+/* =====================================
    ABRIR INVITACIÓN
 ===================================== */
 
 if (openButton) {
 
-    openButton.addEventListener("click", () => {
+    openButton.addEventListener(
+        "click",
+        async () => {
 
-        console.log("💌 Abriendo invitación");
-
-
-        /* =============================
-           ABRIR SOBRE
-        ============================= */
-
-        if (envelope) {
-
-            envelope.classList.add("open");
-
-        }
+            console.log(
+                "💌 Abriendo invitación"
+            );
 
 
-        /* =============================
-           MÚSICA
-        ============================= */
+            /* =============================
+               EVITAR DOBLE CLICK
+            ============================= */
 
-        if (music) {
-
-            music.play()
-                .then(() => {
-
-                    updateMusicButton();
-
-                })
-                .catch(() => {
-
-                    console.log(
-                        "El navegador bloqueó el audio"
-                    );
-
-                    updateMusicButton();
-
-                });
-
-        }
+            openButton.disabled = true;
 
 
-        /* =============================
-           MOSTRAR INVITACIÓN
-        ============================= */
+            /* =============================
+               ABRIR SOBRE
+            ============================= */
 
-        setTimeout(() => {
+            if (envelope) {
 
-            if (envelopeScreen) {
-
-                envelopeScreen.style.display =
-                    "none";
-
-            }
-
-
-            if (invitation) {
-
-                invitation.classList.remove(
-                    "hidden"
-                );
-
-                invitation.classList.add(
-                    "show"
+                envelope.classList.add(
+                    "open"
                 );
 
             }
 
 
-            updateMusicButton();
+            /* =============================
+               MÚSICA
+            ============================= */
+
+            if (music) {
+
+                music.play()
+                    .then(() => {
+
+                        updateMusicButton();
+
+                    })
+                    .catch(() => {
+
+                        console.log(
+                            "El navegador bloqueó el audio"
+                        );
+
+                        updateMusicButton();
+
+                    });
+
+            }
 
 
-            window.scrollTo({
+            /* =============================
+               PREPARAR PORTADA
+            ============================= */
 
-                top: 0,
+            await prepareInvitation();
 
-                behavior: "smooth"
 
-            });
+            /* =============================
+               ESPERAR ANIMACIÓN DEL SOBRE
+            ============================= */
 
-        }, 1500);
+            setTimeout(() => {
 
-    });
+                showInvitation();
+
+            }, 1000);
+
+        }
+    );
 
 }
 
@@ -209,11 +412,6 @@ function updateMusicButton() {
 
     if (music.paused) {
 
-
-        /* =============================
-           MÚSICA APAGADA
-        ============================= */
-
         musicButton.classList.remove(
             "is-playing"
         );
@@ -240,13 +438,7 @@ function updateMusicButton() {
             "false"
         );
 
-
     } else {
-
-
-        /* =============================
-           MÚSICA ENCENDIDA
-        ============================= */
 
         musicButton.classList.remove(
             "is-paused"
@@ -348,14 +540,11 @@ function updateCountdown() {
 
     const hours =
         Math.floor(
-
             (
                 distance %
                 (1000 * 60 * 60 * 24)
-            )
-            /
+            ) /
             (1000 * 60 * 60)
-
         );
 
 
@@ -365,14 +554,11 @@ function updateCountdown() {
 
     const minutes =
         Math.floor(
-
             (
                 distance %
                 (1000 * 60 * 60)
-            )
-            /
+            ) /
             (1000 * 60)
-
         );
 
 
@@ -382,14 +568,11 @@ function updateCountdown() {
 
     const seconds =
         Math.floor(
-
             (
                 distance %
                 (1000 * 60)
-            )
-            /
+            ) /
             1000
-
         );
 
 

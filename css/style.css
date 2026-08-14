@@ -20,33 +20,16 @@ body {
     overflow-x: hidden;
 }
 
-.hidden {
-    display: none !important;
-}
-
-
-/* =====================================
-   PALETA
-===================================== */
-
 :root {
 
     --sage-cover: #EEF4EB;
-
     --sage-light: #D6E2D1;
-
     --sage-dark: #B7C9B2;
-
     --sage-envelope: #A8B9A5;
-
     --sage-flap: #8FA58B;
-
     --sage-text: #526653;
-
     --gold: #C49A45;
-
     --dark-text: #2B352A;
-
     --dark-section: #B7C9B2;
 }
 
@@ -283,15 +266,112 @@ body {
 }
 
 
-/* =====================================
+/* ==================================================
    INVITACIÓN
-===================================== */
+   IMPORTANTE:
+   La invitación permanece invisible antes de
+   recibir .show.
+================================================== */
+
+.hidden {
+    display: none !important;
+}
 
 #invitation {
 
     width: 100%;
 
     background: var(--sage-light);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    position: relative;
+
+    isolation: isolate;
+}
+
+
+/*
+   Cuando JavaScript agrega .show,
+   la invitación aparece completa.
+*/
+
+#invitation.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    animation: invitationAppear 0.7s ease-out both;
+}
+
+
+/*
+   Aparición general.
+   No usamos transform para evitar que
+   toda la página se desplace en celular.
+*/
+
+@keyframes invitationAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*
+   Mientras la invitación NO está visible,
+   absolutamente nada de su interior debe
+   tener animaciones.
+*/
+
+#invitation:not(.show),
+#invitation:not(.show) *,
+#invitation:not(.show)::before,
+#invitation:not(.show)::after {
+
+    animation: none !important;
+
+    transition: none !important;
+}
+
+
+/*
+   La imagen permanece visible internamente
+   pero todo el contenedor está oculto.
+*/
+
+#invitation:not(.show) .hero-image,
+#invitation:not(.show) .hero-content,
+#invitation:not(.show) .hero-card {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: none;
+}
+
+#invitation:not(.show) .hero-image img {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transform: none !important;
+
+    transition: none !important;
 }
 
 
@@ -363,6 +443,8 @@ body {
     object-position: center center;
 
     z-index: 1;
+
+    transition: none !important;
 }
 
 
@@ -1030,11 +1112,9 @@ section h2 {
 }
 
 
-/* ==================================================
+/* =====================================
    CEREMONIA
-   FOTO A TODO EL ANCHO
-   RASGADOSTRANSP.PNG
-================================================== */
+===================================== */
 
 .ceremony-content {
 
@@ -1072,7 +1152,6 @@ section h2 {
 
 /* =====================================
    IMAGEN CEREMONIA
-   TODO EL ANCHO
 ===================================== */
 
 .ceremony-image {
@@ -1102,11 +1181,6 @@ section h2 {
     z-index: 3;
 }
 
-
-/* =====================================
-   FOTO CEREMONIA
-===================================== */
-
 .ceremony-image img {
 
     display: block;
@@ -1129,10 +1203,9 @@ section h2 {
 }
 
 
-/* ==================================================
-   RASGADO SUPERIOR CEREMONIA
-   rasgadostransp.png
-================================================== */
+/* =====================================
+   RASGADO SUPERIOR
+===================================== */
 
 .ceremony-image::before {
 
@@ -1163,10 +1236,9 @@ section h2 {
 }
 
 
-/* ==================================================
-   RASGADO INFERIOR CEREMONIA
-   rasgadostransp.png
-================================================== */
+/* =====================================
+   RASGADO INFERIOR
+===================================== */
 
 .ceremony-image::after {
 
@@ -1200,7 +1272,7 @@ section h2 {
 
 
 /* =====================================
-   DIRECCIÓN CEREMONIA
+   DIRECCIÓN
 ===================================== */
 
 .ceremony-address {
@@ -1648,9 +1720,9 @@ section h2 {
 }
 
 
-/* ==================================================
+/* =====================================
    BOTÓN DE MÚSICA
-================================================== */
+===================================== */
 
 .music-button {
 
@@ -2123,11 +2195,9 @@ section h2 {
     }
 
 
-    /* ==================================================
-       CEREMONIA - CELULAR
-       FOTO DE BORDE A BORDE
-       rasgadostransp.png
-    ================================================== */
+    /* =====================================
+       CEREMONIA
+    ===================================== */
 
     .ceremony-content {
 
@@ -2191,19 +2261,7 @@ section h2 {
         z-index: 1;
     }
 
-
-    /* ==================================================
-       RASGADO SUPERIOR CEREMONIA - CELULAR
-
-       Se extiende fuera de la imagen para evitar
-       cualquier borde recto.
-    ================================================== */
-
     .ceremony-image::before {
-
-        content: "";
-
-        position: absolute;
 
         left: -2px;
 
@@ -2213,33 +2271,14 @@ section h2 {
 
         height: 58px;
 
-        background-image:
-            url("../assets/images/rasgadostransp.png");
-
-        background-repeat: no-repeat;
+        background-size: 100% 58px;
 
         background-position: center bottom;
 
-        background-size: 100% 58px;
-
         z-index: 5;
-
-        pointer-events: none;
     }
 
-
-    /* ==================================================
-       RASGADO INFERIOR CEREMONIA - CELULAR
-
-       Se extiende fuera de la imagen para evitar
-       cualquier borde recto.
-    ================================================== */
-
     .ceremony-image::after {
-
-        content: "";
-
-        position: absolute;
 
         left: -2px;
 
@@ -2249,26 +2288,14 @@ section h2 {
 
         height: 58px;
 
-        background-image:
-            url("../assets/images/rasgadostransp.png");
-
-        background-repeat: no-repeat;
+        background-size: 100% 58px;
 
         background-position: center top;
-
-        background-size: 100% 58px;
 
         transform: rotate(180deg);
 
         z-index: 5;
-
-        pointer-events: none;
     }
-
-
-    /* =====================================
-       DIRECCIÓN CEREMONIA
-    ===================================== */
 
     .ceremony-address {
 
@@ -2458,6 +2485,29 @@ section h2 {
 
         height: 23px;
     }
+
+
+    /* =====================================
+       PROTECCIÓN EXTRA PARA CELULAR
+       LA PORTADA NO SE ANIMA AL ENTRAR
+    ===================================== */
+
+    #invitation.show .hero,
+    #invitation.show .hero-card,
+    #invitation.show .hero-image,
+    #invitation.show .hero-content {
+
+        animation: none !important;
+    }
+
+    #invitation.show .hero-image img {
+
+        animation: none !important;
+
+        transition: none !important;
+
+        transform: none !important;
+    }
 }
 
 
@@ -2636,8 +2686,7 @@ section h2 {
 
 
     /* =====================================
-       CEREMONIA - COMPUTADORA
-       rasgadostransp.png
+       CEREMONIA
     ===================================== */
 
     .ceremony-content {
@@ -2686,11 +2735,6 @@ section h2 {
         object-position: center;
     }
 
-
-    /* =====================================
-       RASGADO SUPERIOR
-    ===================================== */
-
     .ceremony-image::before {
 
         left: -2px;
@@ -2707,11 +2751,6 @@ section h2 {
 
         z-index: 5;
     }
-
-
-    /* =====================================
-       RASGADO INFERIOR
-    ===================================== */
 
     .ceremony-image::after {
 
@@ -2798,4 +2837,38 @@ section h2 {
 
         font-size: 44px;
     }
+}
+
+
+/* =====================================
+   PROTECCIÓN FINAL
+   EVITA ANIMACIONES INICIALES
+===================================== */
+
+#invitation:not(.show) .hero-image img,
+#invitation:not(.show) .hero-image::after,
+#invitation:not(.show) .hero-content,
+#invitation:not(.show) .rings,
+#invitation:not(.show) .wedding-title,
+#invitation:not(.show) .date {
+
+    animation: none !important;
+
+    transition: none !important;
+}
+
+
+/*
+   Cuando ya apareció la invitación,
+   tampoco animamos la portada.
+*/
+
+#invitation.show .hero-image img,
+#invitation.show .hero-image::after,
+#invitation.show .hero-content,
+#invitation.show .rings,
+#invitation.show .wedding-title,
+#invitation.show .date {
+
+    animation: none !important;
 }
