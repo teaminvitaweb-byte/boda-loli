@@ -937,27 +937,27 @@ section h2 {
    MENSAJE
 ===================================== */
 
-.message-content::before {
+.message-text::before {
 
     content: "“";
 
     position: absolute;
 
-    top: -65px;
+    left: -38px;
 
-    left: 8px;
+    top: -12px;
 
     font-family: 'Cormorant Garamond', serif;
 
-    font-size: 125px;
+    font-size: 100px;
 
-    font-weight: 500;
+    font-weight: 600;
 
     line-height: 1;
 
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.85);
 
-    z-index: -1;
+    z-index: 2;
 
     pointer-events: none;
 }
@@ -993,19 +993,25 @@ section h2 {
 
     position: absolute;
 
-    bottom: -68px;
+    bottom: -105px;
 
-    right: 8px;
+    right: -18px;
 
     font-family: 'Cormorant Garamond', serif;
 
-    font-size: 125px;
+    font-size: 100px;
 
-    font-weight: 500;
+    font-weight: 600;
 
     line-height: 1;
 
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.95);
+
+    text-shadow:
+        0 2px 5px
+        rgba(60,70,55,0.25);
+
+    z-index: 6;
 
     pointer-events: none;
 }
@@ -1024,13 +1030,17 @@ section h2 {
 }
 
 
-/* =====================================
+/* ==================================================
    CEREMONIA
-===================================== */
+   FOTO A TODO EL ANCHO
+   RASGADOSTRANSP.PNG
+================================================== */
 
 .ceremony-content {
 
-    width: min(600px, 94%);
+    width: 100%;
+
+    max-width: none;
 
     display: flex;
 
@@ -1038,6 +1048,11 @@ section h2 {
 
     align-items: center;
 }
+
+
+/* =====================================
+   LUGAR
+===================================== */
 
 .ceremony-place {
 
@@ -1054,47 +1069,147 @@ section h2 {
     line-height: 1.1;
 }
 
+
+/* =====================================
+   IMAGEN CEREMONIA
+   TODO EL ANCHO
+===================================== */
+
 .ceremony-image {
 
-    width: min(500px, 100%);
+    width: 100vw;
 
-    height: 280px;
+    max-width: none;
 
-    overflow: hidden;
+    height: 320px;
 
-    border-radius: 14px;
+    position: relative;
 
-    border:
-        3px solid
-        rgba(196,154,69,0.45);
+    overflow: visible;
 
-    box-shadow:
-        0 15px 35px
-        rgba(60,80,65,0.18);
+    border-radius: 0;
 
-    margin-bottom: 25px;
+    border: none;
+
+    box-shadow: none;
+
+    margin-left: calc(50% - 50vw);
+
+    margin-right: calc(50% - 50vw);
+
+    margin-bottom: 65px;
+
+    z-index: 3;
 }
 
+
+/* =====================================
+   FOTO CEREMONIA
+===================================== */
+
 .ceremony-image img {
+
+    display: block;
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
 
     width: 100%;
 
     height: 100%;
 
-    display: block;
-
     object-fit: cover;
 
     object-position: center;
+
+    z-index: 1;
 }
+
+
+/* ==================================================
+   RASGADO SUPERIOR CEREMONIA
+   rasgadostransp.png
+================================================== */
+
+.ceremony-image::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+
+    top: -22px;
+
+    width: calc(100% + 2px);
+
+    height: 62px;
+
+    background-image:
+        url("../assets/images/rasgadostransp.png");
+
+    background-repeat: no-repeat;
+
+    background-position: center bottom;
+
+    background-size: 100% 62px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   RASGADO INFERIOR CEREMONIA
+   rasgadostransp.png
+================================================== */
+
+.ceremony-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+
+    bottom: -22px;
+
+    width: calc(100% + 2px);
+
+    height: 62px;
+
+    background-image:
+        url("../assets/images/rasgadostransp.png");
+
+    background-repeat: no-repeat;
+
+    background-position: center top;
+
+    background-size: 100% 62px;
+
+    transform: rotate(180deg);
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* =====================================
+   DIRECCIÓN CEREMONIA
+===================================== */
 
 .ceremony-address {
 
-    max-width: 500px;
+    max-width: 650px;
 
     font-family: 'Cormorant Garamond', serif;
 
-    font-size: 25px;
+    font-size: 27px;
 
     font-weight: 500;
 
@@ -1153,17 +1268,20 @@ section h2 {
 .map-icon {
 
     width: 20px;
+
     height: 20px;
 
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 }
 
 .map-icon svg {
 
     width: 18px;
+
     height: 18px;
 
     fill: none;
@@ -1213,11 +1331,13 @@ section h2 {
 .dress-icon {
 
     width: 68px;
+
     height: 68px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
@@ -1237,6 +1357,7 @@ section h2 {
 .dress-icon svg {
 
     width: 52px;
+
     height: 52px;
 
     fill: none;
@@ -1529,7 +1650,6 @@ section h2 {
 
 /* ==================================================
    BOTÓN DE MÚSICA
-   AQUÍ ESTÁ LA CORRECCIÓN
 ================================================== */
 
 .music-button {
@@ -1581,11 +1701,6 @@ section h2 {
         background 0.25s ease;
 }
 
-
-/* =====================================
-   HOVER
-===================================== */
-
 .music-button:hover {
 
     transform: scale(1.08);
@@ -1594,11 +1709,6 @@ section h2 {
         0 7px 22px
         rgba(196,154,69,0.28);
 }
-
-
-/* =====================================
-   ICONOS SVG
-===================================== */
 
 .music-button .music-icon {
 
@@ -1623,11 +1733,6 @@ section h2 {
         transform 0.25s ease;
 }
 
-
-/* =====================================
-   ICONO ACTIVADO
-===================================== */
-
 .music-button .music-icon-on {
 
     opacity: 1;
@@ -1635,22 +1740,12 @@ section h2 {
     transform: scale(1);
 }
 
-
-/* =====================================
-   ICONO DESACTIVADO
-===================================== */
-
 .music-button .music-icon-off {
 
     opacity: 0;
 
     transform: scale(0.7);
 }
-
-
-/* =====================================
-   MÚSICA PAUSADA
-===================================== */
 
 .music-button.is-paused .music-icon-on {
 
@@ -1666,11 +1761,6 @@ section h2 {
     transform: scale(1);
 }
 
-
-/* =====================================
-   MÚSICA REPRODUCIÉNDOSE
-===================================== */
-
 .music-button.is-playing {
 
     animation:
@@ -1678,11 +1768,6 @@ section h2 {
         ease-in-out
         infinite;
 }
-
-
-/* =====================================
-   ANIMACIÓN
-===================================== */
 
 @keyframes musicPulse {
 
@@ -1716,7 +1801,6 @@ section h2 {
         background: var(--sage-cover);
     }
 
-
     .envelope {
 
         width: 82vw;
@@ -1727,7 +1811,6 @@ section h2 {
 
         max-height: 220px;
     }
-
 
     .letter {
 
@@ -1740,12 +1823,10 @@ section h2 {
         top: 12%;
     }
 
-
     .letter h1 {
 
         font-size: 10vw;
     }
-
 
     #openButton {
 
@@ -1756,7 +1837,6 @@ section h2 {
         font-size: 15px;
     }
 
-
     .open-text {
 
         margin-top: 30px;
@@ -1764,12 +1844,10 @@ section h2 {
         padding: 0 20px;
     }
 
-
     .open-text h2 {
 
         font-size: 36px;
     }
-
 
     .open-text p {
 
@@ -1777,7 +1855,9 @@ section h2 {
     }
 
 
-    /* FOTO */
+    /* =====================================
+       FOTO PORTADA
+    ===================================== */
 
     .hero-image {
 
@@ -1785,7 +1865,6 @@ section h2 {
 
         min-height: 300px;
     }
-
 
     .hero-image img {
 
@@ -1795,13 +1874,14 @@ section h2 {
     }
 
 
-    /* CONTENIDO */
+    /* =====================================
+       CONTENIDO PORTADA
+    ===================================== */
 
     .hero-content {
 
         padding: 60px 15px 55px;
     }
-
 
     .hero-content h1 {
 
@@ -1812,7 +1892,6 @@ section h2 {
         margin-top: -40px;
     }
 
-
     .hero-content h1 span {
 
         font-size: 11vw;
@@ -1821,7 +1900,9 @@ section h2 {
     }
 
 
-    /* ALIANZAS */
+    /* =====================================
+       ALIANZAS
+    ===================================== */
 
     .rings {
 
@@ -1832,7 +1913,6 @@ section h2 {
         margin: 18px auto 10px;
     }
 
-
     .rings span {
 
         width: 22px;
@@ -1842,12 +1922,10 @@ section h2 {
         border-width: 2px;
     }
 
-
     .rings span:first-child {
 
         left: 10px;
     }
-
 
     .rings span:last-child {
 
@@ -1855,7 +1933,9 @@ section h2 {
     }
 
 
-    /* NOS CASAMOS */
+    /* =====================================
+       NOS CASAMOS
+    ===================================== */
 
     .hero-content .wedding-title {
 
@@ -1866,7 +1946,6 @@ section h2 {
         gap: 10px;
     }
 
-
     .hero-content .wedding-title::before,
     .hero-content .wedding-title::after {
 
@@ -1876,7 +1955,9 @@ section h2 {
     }
 
 
-    /* FECHA */
+    /* =====================================
+       FECHA
+    ===================================== */
 
     .hero-content .date {
 
@@ -1886,7 +1967,6 @@ section h2 {
 
         line-height: 1.45;
     }
-
 
     .hero-content .date .time {
 
@@ -1898,7 +1978,9 @@ section h2 {
     }
 
 
-    /* SECCIONES */
+    /* =====================================
+       SECCIONES
+    ===================================== */
 
     .message,
     .event,
@@ -1916,7 +1998,9 @@ section h2 {
     }
 
 
-    /* MENSAJE */
+    /* =====================================
+       MENSAJE
+    ===================================== */
 
     .message::after {
 
@@ -1929,7 +2013,6 @@ section h2 {
         background-size: cover;
     }
 
-
     .message::before {
 
         top: -38px;
@@ -1938,7 +2021,6 @@ section h2 {
 
         background-size: 100% 76px;
     }
-
 
     .message-content::after {
 
@@ -1957,7 +2039,6 @@ section h2 {
         background-size: 100% 76px;
     }
 
-
     .message-content {
 
         width: 94%;
@@ -1967,16 +2048,22 @@ section h2 {
         position: static;
     }
 
-
     .message-content::before {
 
-        top: -38px;
+        top: -40px;
 
-        left: -4px;
+        left: -8px;
 
-        font-size: 90px;
+        font-size: 100px;
+
+        color: rgba(255,255,255,0.95);
+
+        text-shadow:
+            0 2px 5px
+            rgba(60,70,55,0.25);
+
+        z-index: 6;
     }
-
 
     .message-text {
 
@@ -1989,16 +2076,34 @@ section h2 {
         line-height: 1.7;
     }
 
-
     .message-text::after {
 
-        bottom: -50px;
+        content: "”";
 
-        right: -4px;
+        position: absolute;
 
-        font-size: 90px;
+        bottom: -75px;
+
+        right: -28px;
+
+        font-family: 'Cormorant Garamond', serif;
+
+        font-size: 100px;
+
+        font-weight: 600;
+
+        line-height: 1;
+
+        color: rgba(255,255,255,0.95);
+
+        text-shadow:
+            0 2px 5px
+            rgba(60,70,55,0.25);
+
+        z-index: 6;
+
+        pointer-events: none;
     }
-
 
     .message-highlight {
 
@@ -2008,13 +2113,30 @@ section h2 {
     }
 
 
+    /* =====================================
+       TITULOS
+    ===================================== */
+
     section h2 {
 
         font-size: 42px;
     }
 
 
-    /* CEREMONIA */
+    /* ==================================================
+       CEREMONIA - CELULAR
+       FOTO DE BORDE A BORDE
+       rasgadostransp.png
+    ================================================== */
+
+    .ceremony-content {
+
+        width: 100%;
+
+        max-width: none;
+
+        align-items: center;
+    }
 
     .ceremony-place {
 
@@ -2023,20 +2145,134 @@ section h2 {
         margin-bottom: 18px;
     }
 
-
     .ceremony-image {
 
-        width: 100%;
+        width: 100vw;
+
+        max-width: none;
 
         height: 220px;
 
-        border-radius: 12px;
+        margin-left: calc(50% - 50vw);
 
-        margin-bottom: 20px;
+        margin-right: calc(50% - 50vw);
+
+        border-radius: 0;
+
+        border: none;
+
+        box-shadow: none;
+
+        margin-bottom: 60px;
+
+        overflow: visible;
+
+        position: relative;
+    }
+
+    .ceremony-image img {
+
+        display: block;
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center center;
+
+        z-index: 1;
     }
 
 
+    /* ==================================================
+       RASGADO SUPERIOR CEREMONIA - CELULAR
+
+       Se extiende fuera de la imagen para evitar
+       cualquier borde recto.
+    ================================================== */
+
+    .ceremony-image::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: -2px;
+
+        top: -18px;
+
+        width: calc(100% + 4px);
+
+        height: 58px;
+
+        background-image:
+            url("../assets/images/rasgadostransp.png");
+
+        background-repeat: no-repeat;
+
+        background-position: center bottom;
+
+        background-size: 100% 58px;
+
+        z-index: 5;
+
+        pointer-events: none;
+    }
+
+
+    /* ==================================================
+       RASGADO INFERIOR CEREMONIA - CELULAR
+
+       Se extiende fuera de la imagen para evitar
+       cualquier borde recto.
+    ================================================== */
+
+    .ceremony-image::after {
+
+        content: "";
+
+        position: absolute;
+
+        left: -2px;
+
+        bottom: -18px;
+
+        width: calc(100% + 4px);
+
+        height: 58px;
+
+        background-image:
+            url("../assets/images/rasgadostransp.png");
+
+        background-repeat: no-repeat;
+
+        background-position: center top;
+
+        background-size: 100% 58px;
+
+        transform: rotate(180deg);
+
+        z-index: 5;
+
+        pointer-events: none;
+    }
+
+
+    /* =====================================
+       DIRECCIÓN CEREMONIA
+    ===================================== */
+
     .ceremony-address {
+
+        max-width: 95%;
 
         font-size: 22px;
 
@@ -2044,7 +2280,6 @@ section h2 {
 
         margin-bottom: 20px;
     }
-
 
     .map-button {
 
@@ -2054,13 +2289,14 @@ section h2 {
     }
 
 
-    /* DRESS CODE */
+    /* =====================================
+       DRESS CODE
+    ===================================== */
 
     .dress-code-content {
 
         width: 94%;
     }
-
 
     .dress-code h2 {
 
@@ -2069,14 +2305,12 @@ section h2 {
         margin-bottom: 8px;
     }
 
-
     .dress-icons {
 
         gap: 18px;
 
         margin-top: 24px;
     }
-
 
     .dress-icon {
 
@@ -2085,7 +2319,6 @@ section h2 {
         height: 48px;
     }
 
-
     .dress-icon svg {
 
         width: 37px;
@@ -2093,12 +2326,10 @@ section h2 {
         height: 37px;
     }
 
-
     .dress-divider {
 
         height: 28px;
     }
-
 
     .dress-formal {
 
@@ -2106,7 +2337,6 @@ section h2 {
 
         letter-spacing: 1.5px;
     }
-
 
     .dress-code .dress-message {
 
@@ -2116,7 +2346,9 @@ section h2 {
     }
 
 
-    /* OTRAS SECCIONES */
+    /* =====================================
+       OTRAS SECCIONES
+    ===================================== */
 
     .dress-code p,
     .confirmation p,
@@ -2130,6 +2362,10 @@ section h2 {
     }
 
 
+    /* =====================================
+       ITINERARIO
+    ===================================== */
+
     .itinerary-item {
 
         margin: 15px auto;
@@ -2137,12 +2373,10 @@ section h2 {
         padding: 12px 20px;
     }
 
-
     .itinerary-item h3 {
 
         font-size: 34px;
     }
-
 
     .itinerary-item p {
 
@@ -2150,13 +2384,14 @@ section h2 {
     }
 
 
-    /* COUNTDOWN */
+    /* =====================================
+       COUNTDOWN
+    ===================================== */
 
     .countdown h2 {
 
         font-size: 48px;
     }
-
 
     .timer {
 
@@ -2172,7 +2407,6 @@ section h2 {
         gap: 12px;
     }
 
-
     .timer div {
 
         padding: 15px 5px;
@@ -2182,20 +2416,20 @@ section h2 {
         font-size: 16px;
     }
 
-
     .timer span {
 
         font-size: 32px;
     }
 
 
-    /* CIERRE */
+    /* =====================================
+       CIERRE
+    ===================================== */
 
     .closing h1 {
 
         font-size: 55px;
     }
-
 
     .closing p {
 
@@ -2203,7 +2437,9 @@ section h2 {
     }
 
 
-    /* BOTÓN MÚSICA */
+    /* =====================================
+       BOTÓN MÚSICA
+    ===================================== */
 
     .music-button {
 
@@ -2216,14 +2452,12 @@ section h2 {
         height: 46px;
     }
 
-
     .music-button .music-icon {
 
         width: 23px;
 
         height: 23px;
     }
-
 }
 
 
@@ -2240,12 +2474,10 @@ section h2 {
         height: 195px;
     }
 
-
     .letter h1 {
 
         font-size: 40px;
     }
-
 
     .hero-image {
 
@@ -2256,14 +2488,12 @@ section h2 {
         margin: 35px auto 0;
     }
 
-
     .hero-image img {
 
         height: calc(100% + 120px);
 
         top: -60px;
     }
-
 
     .hero-image::after {
 
@@ -2276,12 +2506,10 @@ section h2 {
         transform: rotate(0deg);
     }
 
-
     .hero-content {
 
         padding: 70px 20px 65px;
     }
-
 
     .hero-content h1 {
 
@@ -2292,12 +2520,10 @@ section h2 {
         margin-top: -55px;
     }
 
-
     .hero-content h1 span {
 
         font-size: 60px;
     }
-
 
     .rings {
 
@@ -2308,7 +2534,6 @@ section h2 {
         margin: 20px auto 12px;
     }
 
-
     .rings span {
 
         width: 31px;
@@ -2318,18 +2543,15 @@ section h2 {
         border-width: 2.5px;
     }
 
-
     .rings span:first-child {
 
         left: 7px;
     }
 
-
     .rings span:last-child {
 
         right: 7px;
     }
-
 
     .hero-content .wedding-title {
 
@@ -2340,7 +2562,6 @@ section h2 {
         gap: 18px;
     }
 
-
     .hero-content .wedding-title::before,
     .hero-content .wedding-title::after {
 
@@ -2349,7 +2570,6 @@ section h2 {
         height: 1px;
     }
 
-
     .hero-content .date {
 
         font-size: 32px;
@@ -2357,12 +2577,10 @@ section h2 {
         margin-top: 18px;
     }
 
-
     .hero-content .date .time {
 
         font-size: 35px;
     }
-
 
     .message,
     .event,
@@ -2379,7 +2597,6 @@ section h2 {
         padding-bottom: 90px;
     }
 
-
     .message::after {
 
         top: -45px;
@@ -2388,7 +2605,6 @@ section h2 {
 
         background-size: cover;
     }
-
 
     .message::before {
 
@@ -2400,7 +2616,6 @@ section h2 {
 
         transform: rotate(180deg);
     }
-
 
     .message-content::after {
 
@@ -2420,35 +2635,124 @@ section h2 {
     }
 
 
+    /* =====================================
+       CEREMONIA - COMPUTADORA
+       rasgadostransp.png
+    ===================================== */
+
+    .ceremony-content {
+
+        width: 100%;
+
+        max-width: none;
+    }
+
     .ceremony-place {
 
         font-size: 20px;
     }
 
-
     .ceremony-image {
 
+        width: 100vw;
+
+        max-width: none;
+
         height: 320px;
+
+        margin-left: calc(50% - 50vw);
+
+        margin-right: calc(50% - 50vw);
+
+        border-radius: 0;
+
+        border: none;
+
+        box-shadow: none;
+
+        margin-bottom: 65px;
+
+        overflow: visible;
+    }
+
+    .ceremony-image img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
     }
 
 
+    /* =====================================
+       RASGADO SUPERIOR
+    ===================================== */
+
+    .ceremony-image::before {
+
+        left: -2px;
+
+        top: -22px;
+
+        width: calc(100% + 4px);
+
+        height: 62px;
+
+        background-size: 100% 62px;
+
+        background-position: center bottom;
+
+        z-index: 5;
+    }
+
+
+    /* =====================================
+       RASGADO INFERIOR
+    ===================================== */
+
+    .ceremony-image::after {
+
+        left: -2px;
+
+        bottom: -22px;
+
+        width: calc(100% + 4px);
+
+        height: 62px;
+
+        background-size: 100% 62px;
+
+        background-position: center top;
+
+        transform: rotate(180deg);
+
+        z-index: 5;
+    }
+
     .ceremony-address {
+
+        max-width: 650px;
 
         font-size: 27px;
     }
 
+
+    /* =====================================
+       DRESS CODE
+    ===================================== */
 
     .dress-code-content {
 
         width: 600px;
     }
 
-
     .dress-code h2 {
 
         font-size: 55px;
     }
-
 
     .dress-icons {
 
@@ -2457,14 +2761,12 @@ section h2 {
         margin-top: 28px;
     }
 
-
     .dress-icon {
 
         width: 68px;
 
         height: 68px;
     }
-
 
     .dress-icon svg {
 
@@ -2473,7 +2775,6 @@ section h2 {
         height: 52px;
     }
 
-
     .dress-formal {
 
         font-size: 38px;
@@ -2481,12 +2782,10 @@ section h2 {
         letter-spacing: 2px;
     }
 
-
     .dress-code .dress-message {
 
         font-size: 30px;
     }
-
 
     .timer div {
 
@@ -2495,10 +2794,8 @@ section h2 {
         padding: 22px 18px;
     }
 
-
     .timer span {
 
         font-size: 44px;
     }
-
 }
