@@ -1,199 +1,292 @@
 /* =====================================
-   ANIMACIONES BODA LOLI
+   BODA ELIZABETH & CARLOS
+   ANIMACIONES
 ===================================== */
 
 
+/* =====================================
+   ENTRADA DEL SOBRE
+===================================== */
 
-/* Entrada del sobre */
-
-.envelope{
+.envelope {
 
     animation:
-    envelopeIn 1.5s ease forwards;
+        envelopeIn 1.5s ease forwards;
 
 }
 
 
+@keyframes envelopeIn {
 
-@keyframes envelopeIn{
+    from {
 
-
-    from{
-
-        opacity:0;
+        opacity: 0;
 
         transform:
-        translateY(50px)
-        scale(.8);
+            translateY(50px)
+            scale(.8);
 
     }
 
+    to {
 
-    to{
-
-        opacity:1;
+        opacity: 1;
 
         transform:
-        translateY(0)
-        scale(1);
+            translateY(0)
+            scale(1);
 
     }
 
-
 }
 
 
+/* =====================================
+   ABRIR SOLAPA
+===================================== */
 
+.flap {
 
-/* Abrir sobre */
-
-.envelope.open .flap{
-
-
-    transform:
-
-    rotateX(180deg);
-
-
-}
-
-
-
-.flap{
-
-    transform-origin:top;
+    transform-origin: top center;
 
     transition:
-    transform 1s ease;
+        transform 0.9s cubic-bezier(.22,.61,.36,1);
 
 }
 
 
+.envelope.open .flap {
+
+    transform:
+        rotateX(180deg);
+
+}
 
 
-.envelope.open{
+/* =====================================
+   CARTA QUE SALE DEL SOBRE
+===================================== */
 
+.letter {
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.9s cubic-bezier(.22,.61,.36,1);
+
+}
+
+
+.envelope.open .letter {
+
+    opacity: 1;
+
+    transform:
+        translateY(-115px);
+
+}
+
+
+/* =====================================
+   SELLO
+===================================== */
+
+#openButton {
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+
+}
+
+
+#openButton:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.05);
+
+}
+
+
+.envelope.open #openButton {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================
+   SALIDA DEL SOBRE
+===================================== */
+
+/*
+   IMPORTANTE:
+
+   El sobre NO desaparece inmediatamente.
+
+   Primero se abre.
+   Después se desplaza suavemente
+   para revelar la portada que ya está
+   completamente preparada detrás.
+*/
+
+.envelope.open {
 
     animation:
-
-    envelopeOut 1.5s ease forwards;
-
+        envelopeReveal 1.05s ease forwards;
 
 }
 
 
+@keyframes envelopeReveal {
 
-@keyframes envelopeOut{
+    0% {
 
-
-    0%{
+        opacity: 1;
 
         transform:
-        scale(1);
-
-        opacity:1;
+            scale(1)
+            translateY(0);
 
     }
 
+    65% {
 
-    100%{
+        opacity: 1;
 
         transform:
-        scale(1.3)
-        translateY(-80px);
-
-        opacity:0;
-
+            scale(1.03)
+            translateY(-20px);
 
     }
 
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.08)
+            translateY(-70px);
+
+    }
 
 }
 
 
+/* =====================================
+   TEXTO "UNA INVITACIÓN ESPECIAL"
+===================================== */
 
+.open-text {
 
-/* Aparece la invitación */
-
-
-.show{
-
-    animation:
-
-    showPage 1.5s ease forwards;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
 
 }
 
 
+.cover-envelope.opened .open-text {
 
-@keyframes showPage{
-
-
-from{
-
-    opacity:0;
+    opacity: 0;
 
     transform:
-    translateY(40px);
-
-
-}
-
-
-
-to{
-
-
-    opacity:1;
-
-    transform:
-    translateY(0);
-
+        translateY(-15px);
 
 }
 
 
-}
+/* =====================================
+   PANTALLA DEL SOBRE
+===================================== */
 
+/*
+   NO ocultamos inmediatamente la pantalla.
 
+   Esto evita que aparezca el fondo verde vacío.
+*/
 
-/* Animación portada */
+.cover-envelope.opened {
 
-
-.hero-content{
-
-
-    animation:
-
-    heroEnter 2s ease forwards;
-
-
-}
-
-
-
-@keyframes heroEnter{
-
-
-from{
-
-    opacity:0;
-
-    transform:
-    scale(.9);
-
+    pointer-events: none;
 
 }
 
 
-to{
+/* =====================================
+   INVITACIÓN
+===================================== */
 
-    opacity:1;
+/*
+   La invitación NO tiene animación.
 
-    transform:
-    scale(1);
+   Debe aparecer completamente armada.
+*/
+
+#invitation.show {
+
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    animation: none !important;
 
 }
 
+
+/* =====================================
+   PORTADA
+===================================== */
+
+/*
+   Nada se mueve cuando aparece la portada.
+*/
+
+.hero,
+.hero-card,
+.hero-image,
+.hero-image img,
+.hero-image::after,
+.hero-content {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transform: none !important;
+
+    animation: none !important;
+
+}
+
+
+/* =====================================
+   IMPORTANTE
+===================================== */
+
+/*
+   No animamos:
+
+   - nombres
+   - fotografía
+   - alianzas
+   - "Nos casamos"
+   - fecha
+   - rasgado
+   - secciones
+*/
+
+.hero-content h1,
+.hero-content .rings,
+.hero-content .wedding-title,
+.hero-content .date {
+
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    animation: none !important;
 
 }

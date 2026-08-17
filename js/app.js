@@ -28,7 +28,7 @@ const musicButton =
 
 
 /* =====================================
-   PREPARAR IMAGEN PRINCIPAL
+   PREPARAR IMAGEN
 ===================================== */
 
 function preloadImage(src) {
@@ -111,7 +111,7 @@ async function prepareInvitation() {
 
 
     /* =============================
-       IMAGENES DECORATIVAS
+       IMÁGENES DECORATIVAS
     ============================= */
 
     await preloadImage(
@@ -153,9 +153,44 @@ async function prepareInvitation() {
     }
 
 
+    /*
+       Damos oportunidad al navegador
+       de terminar el render antes de
+       mostrar la portada.
+    */
+
+    await new Promise((resolve) => {
+
+        requestAnimationFrame(() => {
+
+            requestAnimationFrame(resolve);
+
+        });
+
+    });
+
+
     console.log(
         "✓ Portada preparada"
     );
+
+}
+
+
+/* =====================================
+   ESPERA
+===================================== */
+
+function wait(ms) {
+
+    return new Promise((resolve) => {
+
+        setTimeout(
+            resolve,
+            ms
+        );
+
+    });
 
 }
 
@@ -174,38 +209,19 @@ function showInvitation() {
 
 
     console.log(
-        "💒 Mostrando invitación"
-    );
-
-
-    /* =============================
-       OCULTAR SOBRE COMPLETAMENTE
-    ============================= */
-
-    if (envelopeScreen) {
-
-        envelopeScreen.style.display =
-            "none";
-
-    }
-
-
-    /* =============================
-       MOSTRAR INVITACIÓN
-    ============================= */
-
-    invitation.classList.remove(
-        "hidden"
+        "💒 Mostrando portada preparada"
     );
 
 
     /*
-       Mostramos la invitación
-       directamente.
+       IMPORTANTE:
 
-       La portada ya está completa:
-       foto + nombres + alianzas +
-       Nos casamos + fecha + hora.
+       Ya no usamos display:none.
+
+       La portada ya estaba preparada
+       detrás del sobre.
+
+       Aquí solamente la hacemos visible.
     */
 
     invitation.classList.add(
@@ -213,14 +229,27 @@ function showInvitation() {
     );
 
 
-    /* =============================
-       VOLVER ARRIBA
-    ============================= */
+    /*
+       Permitimos que el navegador
+       pinte la portada antes de
+       quitar completamente el sobre.
+    */
 
-    window.scrollTo(
-        0,
-        0
-    );
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            if (envelopeScreen) {
+
+                envelopeScreen.classList.add(
+                    "opened"
+                );
+
+            }
+
+        });
+
+    });
 
 
     console.log(
@@ -261,9 +290,39 @@ if (openButton) {
 
             /* =============================
                PREPARAR PORTADA
+               
+               IMPORTANTE:
+
+               La preparación comienza
+               inmediatamente al tocar
+               el sello.
             ============================= */
 
-            await prepareInvitation();
+            const preparation =
+                prepareInvitation();
+
+
+            /* =============================
+               ABRIR SOBRE
+            ============================= */
+
+            if (envelope) {
+
+                envelope.classList.add(
+                    "open"
+                );
+
+            }
+
+
+            /*
+               NO ocultamos todavía
+               envelopeScreen.
+
+               El usuario podrá ver
+               la carta mientras la
+               portada se prepara.
+            */
 
 
             /* =============================
@@ -292,7 +351,30 @@ if (openButton) {
 
 
             /* =============================
+               TIEMPO MÍNIMO DEL SOBRE
+               
+               La animación de la solapa
+               dura aproximadamente 1 segundo.
+               
+               La carta queda visible
+               mientras termina la preparación.
+            ============================= */
+
+            await Promise.all([
+
+                preparation,
+
+                wait(1000)
+
+            ]);
+
+
+            /* =============================
                MOSTRAR PORTADA
+               
+               Aquí llegamos solamente
+               cuando la portada ya está
+               preparada.
             ============================= */
 
             showInvitation();

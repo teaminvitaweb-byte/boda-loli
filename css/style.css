@@ -74,9 +74,28 @@ a {
 
     background: var(--sage-cover);
 
-    position: relative;
+    position: fixed;
+    inset: 0;
 
     z-index: 100;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0.8s;
+}
+
+
+/* =========================================================
+   ESTADO FINAL DEL SOBRE
+========================================================= */
+
+.cover-envelope.opened {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 
@@ -98,6 +117,8 @@ a {
 
     box-shadow:
         0 25px 50px rgba(60, 80, 65, 0.20);
+
+    perspective: 1000px;
 }
 
 
@@ -131,8 +152,8 @@ a {
     transform: translateY(45px);
 
     transition:
-        opacity 0.8s ease,
-        transform 1s ease;
+        opacity 0.75s ease,
+        transform 1s cubic-bezier(.22,.61,.36,1);
 
     z-index: 2;
 }
@@ -197,9 +218,12 @@ a {
     transform-origin: top center;
 
     transition:
-        transform 1s ease;
+        transform 1s cubic-bezier(.22,.61,.36,1);
 
     z-index: 5;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 
@@ -259,11 +283,14 @@ a {
 
 .envelope.open .letter {
     opacity: 1;
-    transform: translateY(-115px);
+
+    transform:
+        translateY(-115px);
 }
 
 .envelope.open #openButton {
     opacity: 0;
+
     pointer-events: none;
 }
 
@@ -304,6 +331,7 @@ a {
 
 .cover-envelope.opened .open-text {
     opacity: 0;
+
     transform: translateY(-10px);
 }
 
@@ -319,17 +347,27 @@ a {
 
     background: var(--sage-light);
 
-    display: none;
+    /*
+       IMPORTANTE:
+       La invitación NO usa display:none.
+       Se prepara detrás del sobre desde el inicio.
+    */
 
-    opacity: 1;
+    display: block;
+
+    opacity: 0;
+    visibility: hidden;
 
     isolation: isolate;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0.8s;
 }
 
 
 /* =========================================================
-   MOSTRAR INVITACIÓN
-   SIN ANIMACIÓN
+   INVITACIÓN LISTA
 ========================================================= */
 
 #invitation.show {
@@ -337,20 +375,26 @@ a {
 
     opacity: 1;
 
+    visibility: visible;
+
     animation: none;
 
     transform: none;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0s;
 }
 
 
-/*
-   IMPORTANTE:
+/* =========================================================
+   HERO SIEMPRE PREPARADO
+========================================================= */
 
-   No utilizamos ninguna animación de entrada.
-   La invitación aparece directamente ya construida.
-*/
-
-#invitation.show .hero {
+#invitation .hero,
+#invitation .hero-card,
+#invitation .hero-image,
+#invitation .hero-content {
     opacity: 1;
     visibility: visible;
 }
@@ -430,10 +474,6 @@ a {
 
     z-index: 2;
 
-    /*
-       La foto y su rasgado pertenecen a la misma unidad.
-       No hay transición ni animación.
-    */
     opacity: 1;
     visibility: visible;
 
@@ -461,9 +501,6 @@ a {
 
     z-index: 1;
 
-    /*
-       Evita cualquier transición accidental.
-    */
     opacity: 1;
     visibility: visible;
 
@@ -499,10 +536,6 @@ a {
 
     pointer-events: none;
 
-    /*
-       El rasgado está presente desde el primer render.
-       No tiene animación ni transición.
-    */
     opacity: 1;
     visibility: visible;
 
@@ -999,7 +1032,7 @@ section h2 {
 
 
 /* =========================================================
-   COMILLA INICIAL
+   COMILLAS
 ========================================================= */
 
 .message-text::before {
@@ -1018,17 +1051,10 @@ section h2 {
 
     line-height: 1;
 
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255,255,255,0.85);
 
     z-index: 7;
-
-    pointer-events: none;
 }
-
-
-/* =========================================================
-   COMILLA FINAL
-========================================================= */
 
 .message-text::after {
     content: "”";
@@ -1046,15 +1072,12 @@ section h2 {
 
     line-height: 1;
 
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255,255,255,0.95);
 
     text-shadow:
-        0 2px 5px
-        rgba(60, 70, 55, 0.25);
+        0 2px 5px rgba(60,70,55,0.25);
 
     z-index: 7;
-
-    pointer-events: none;
 }
 
 
@@ -1324,7 +1347,6 @@ section h2 {
 ========================================================= */
 
 .dress-icons {
-
     display: flex;
 
     justify-content: center;
@@ -1336,7 +1358,6 @@ section h2 {
 }
 
 .dress-icon {
-
     width: 68px;
     height: 68px;
 
@@ -1356,7 +1377,6 @@ section h2 {
 }
 
 .dress-icon svg {
-
     width: 52px;
     height: 52px;
 
@@ -1388,7 +1408,6 @@ section h2 {
 .gift p,
 .album p,
 .event p {
-
     max-width: 650px;
 
     margin: 0 0 12px;
@@ -1409,7 +1428,6 @@ section h2 {
 
 .confirm-button,
 .album-button {
-
     margin-top: 20px;
 
     padding: 14px 30px;
@@ -1437,7 +1455,6 @@ section h2 {
 
 .confirm-button:hover,
 .album-button:hover {
-
     transform: translateY(-3px);
 
     box-shadow:
@@ -1450,7 +1467,6 @@ section h2 {
 ========================================================= */
 
 .itinerary-item {
-
     width: min(400px, 90%);
 
     margin: 12px auto;
@@ -1461,7 +1477,6 @@ section h2 {
 }
 
 .itinerary-item h3 {
-
     margin-bottom: 3px;
 
     font-family: 'Great Vibes', cursive;
@@ -1474,7 +1489,6 @@ section h2 {
 }
 
 .itinerary-item p {
-
     margin: 0;
 
     font-size: 24px;
@@ -1496,7 +1510,6 @@ section h2 {
 }
 
 .timer {
-
     display: flex;
 
     justify-content: center;
@@ -1511,7 +1524,6 @@ section h2 {
 }
 
 .timer div {
-
     min-width: 115px;
 
     padding: 20px 15px;
@@ -1531,7 +1543,6 @@ section h2 {
 }
 
 .timer span {
-
     display: block;
 
     margin-bottom: 8px;
@@ -1549,7 +1560,6 @@ section h2 {
 ========================================================= */
 
 .closing h1 {
-
     max-width: 900px;
 
     margin-bottom: 20px;
@@ -1566,7 +1576,6 @@ section h2 {
 }
 
 .closing p {
-
     max-width: 600px;
 
     font-size: 26px;
@@ -1584,7 +1593,6 @@ section h2 {
 ========================================================= */
 
 .music-button {
-
     position: fixed;
 
     right: 22px;
@@ -1621,7 +1629,6 @@ section h2 {
 }
 
 .music-button .music-icon {
-
     position: absolute;
 
     width: 25px;
@@ -1692,32 +1699,23 @@ section h2 {
         --tear-height: 58px;
     }
 
-
-    /* SOBRE */
-
     .cover-envelope {
         min-height: 100svh;
-
         padding: 20px;
     }
 
     .envelope {
-
         width: 82vw;
         height: 56vw;
-
         max-width: 320px;
         max-height: 220px;
     }
 
     .letter {
-
         width: 82%;
         height: 82%;
-
         left: 9%;
         top: 10%;
-
         padding: 10px;
     }
 
@@ -1726,16 +1724,13 @@ section h2 {
     }
 
     #openButton {
-
         width: 65px;
         height: 65px;
-
         font-size: 15px;
     }
 
     .open-text {
         margin-top: 30px;
-
         padding: 0 20px;
     }
 
@@ -1751,79 +1746,42 @@ section h2 {
     /* PORTADA */
 
     .hero-image {
-
         height: 420px;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-image img {
-
         top: -35px;
-
         height: calc(100% + 70px);
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-image::after {
-
         bottom: -28px;
-
         height: 56px;
-
         background-size: 100% 56px;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-content {
-
         padding: 65px 12px 55px;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-content h1 {
-
         font-size: clamp(47px, 14vw, 70px);
-
         line-height: 0.96;
     }
 
     .hero-content h1 span {
-
         font-size: 0.75em;
     }
 
-
-    /* ANILLOS */
-
     .rings {
-
         width: 55px;
         height: 32px;
-
         margin: 20px auto 10px;
     }
 
     .rings span {
-
         width: 24px;
         height: 24px;
-
         border-width: 2px;
     }
 
@@ -1835,34 +1793,22 @@ section h2 {
         right: 8px;
     }
 
-
-    /* NOS CASAMOS */
-
     .hero-content .wedding-title {
-
         gap: 9px;
-
         font-size: 35px;
     }
 
     .hero-content .wedding-title::before,
     .hero-content .wedding-title::after {
-
         width: 32px;
     }
 
-
-    /* FECHA */
-
     .hero-content .date {
-
         margin-top: 14px;
-
         font-size: 25px;
     }
 
     .hero-content .date .time {
-
         font-size: 29px;
     }
 
@@ -1878,14 +1824,12 @@ section h2 {
     .album,
     .countdown,
     .closing {
-
         min-height: 600px;
-
         padding: 90px 20px 80px;
     }
 
 
-    /* RASGADOS GENERALES */
+    /* RASGADOS */
 
     .dress-code::before,
     .confirmation::before,
@@ -1894,107 +1838,50 @@ section h2 {
     .album::before,
     .countdown::before,
     .closing::before {
-
         top: -29px;
-
         height: 58px;
-
         background-size: 100% 58px;
-    }
-
-
-    /* RASGADURA INFERIOR DEL MENSAJE */
-
-    .message::after {
-
-        left: 0;
-        bottom: -1px;
-
-        width: 100%;
-
-        height: 58px;
-
-        background-image:
-            url("../assets/images/rasgadostransp.png");
-
-        background-repeat: no-repeat;
-
-        background-position: center bottom;
-
-        background-size: 100% 58px;
-
-        transform: rotate(180deg);
-
-        z-index: 10;
-
-        pointer-events: none;
-    }
-
-
-    /* TÍTULOS */
-
-    section h2 {
-
-        margin: 0 0 20px;
-
-        font-size: 43px;
     }
 
 
     /* MENSAJE */
 
     .message {
-
         min-height: 540px;
-
         padding-top: 90px;
         padding-bottom: 90px;
     }
 
     .message::before {
-
         top: -29px;
-
         height: 58px;
-
         background-size: 100% 58px;
     }
 
     .message-content {
-
         width: 94%;
     }
 
     .message-text {
-
         max-width: 100%;
-
         font-size: 21px;
-
         line-height: 1.65;
     }
 
     .message-highlight {
-
         font-size: 31px;
-
         line-height: 1.38;
     }
 
     .message-text::before {
-
         left: -8px;
         top: -35px;
-
         font-size: 82px;
     }
 
     .message-text::after {
-
         right: -20px;
-
         bottom: -55px;
-
         font-size: 82px;
     }
 
@@ -2002,36 +1889,27 @@ section h2 {
     /* CEREMONIA */
 
     .event {
-
         padding-top: 90px;
     }
 
     .event h2 {
-
         margin-bottom: 15px;
-
         font-size: 43px;
     }
 
     .ceremony-place {
-
         margin-bottom: 20px;
-
         font-size: 19px;
     }
 
     .ceremony-image {
-
         height: 220px;
-
         margin-bottom: 55px;
     }
 
     .ceremony-image::before,
     .ceremony-image::after {
-
         height: 52px;
-
         background-size: 100% 52px;
     }
 
@@ -2044,18 +1922,13 @@ section h2 {
     }
 
     .ceremony-address {
-
         max-width: 94%;
-
         margin-bottom: 20px;
-
         font-size: 21px;
     }
 
     .map-button {
-
         padding: 11px 22px;
-
         font-size: 19px;
     }
 
@@ -2063,61 +1936,46 @@ section h2 {
     /* DRESS */
 
     .dress-code-content {
-
         width: 94%;
     }
 
     .dress-code h2 {
-
         font-size: 43px;
     }
 
     .dress-formal {
-
         font-size: 30px;
-
         letter-spacing: 1.5px;
     }
 
     .dress-message {
-
         margin-top: 17px;
-
         font-size: 23px;
     }
 
     .dress-note {
-
         max-width: 320px;
-
         margin-top: 8px;
-
         font-size: 18px;
-
         line-height: 1.35;
     }
 
     .dress-icons {
-
         gap: 18px;
-
         margin-top: 23px;
     }
 
     .dress-icon {
-
         width: 48px;
         height: 48px;
     }
 
     .dress-icon svg {
-
         width: 37px;
         height: 37px;
     }
 
     .dress-divider {
-
         height: 28px;
     }
 
@@ -2129,9 +1987,7 @@ section h2 {
     .gift p,
     .album p,
     .event p {
-
         font-size: 21px;
-
         line-height: 1.5;
     }
 
@@ -2140,11 +1996,8 @@ section h2 {
 
     .confirm-button,
     .album-button {
-
         margin-top: 20px;
-
         padding: 13px 26px;
-
         font-size: 19px;
     }
 
@@ -2152,21 +2005,16 @@ section h2 {
     /* ITINERARIO */
 
     .itinerary-item {
-
         width: 90%;
-
         margin: 12px auto;
-
         padding: 12px 20px;
     }
 
     .itinerary-item h3 {
-
         font-size: 34px;
     }
 
     .itinerary-item p {
-
         font-size: 21px;
     }
 
@@ -2174,36 +2022,25 @@ section h2 {
     /* COUNTDOWN */
 
     .countdown h2 {
-
         font-size: 47px;
-
         margin-bottom: 20px;
     }
 
     .timer {
-
         width: 100%;
-
         display: grid;
-
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         gap: 12px;
-
         margin-top: 5px;
     }
 
     .timer div {
-
         min-width: 0;
-
         padding: 15px 5px;
-
         font-size: 16px;
     }
 
     .timer span {
-
         font-size: 32px;
     }
 
@@ -2211,18 +2048,13 @@ section h2 {
     /* CIERRE */
 
     .closing h1 {
-
         max-width: 100%;
-
         margin-bottom: 20px;
-
         font-size: 53px;
     }
 
     .closing p {
-
         font-size: 21px;
-
         line-height: 1.5;
     }
 
@@ -2230,16 +2062,13 @@ section h2 {
     /* MÚSICA */
 
     .music-button {
-
         right: 16px;
         bottom: 16px;
-
         width: 46px;
         height: 46px;
     }
 
     .music-button .music-icon {
-
         width: 23px;
         height: 23px;
     }
@@ -2253,65 +2082,33 @@ section h2 {
 @media (min-width: 601px) {
 
     .hero-image {
-
         width: 520px;
-
         height: 485px;
-
         margin: 35px auto 0;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-image img {
-
         top: -45px;
-
         height: calc(100% + 90px);
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-image::after {
-
         bottom: -35px;
-
         height: 70px;
-
         background-size: 100% 70px;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-content {
-
         padding-top: 75px;
-
-        opacity: 1;
-        visibility: visible;
-
-        transform: none;
     }
 
     .hero-content h1 {
-
         font-size: 75px;
     }
 
     .hero-content h1 span {
-
         font-size: 60px;
     }
-
 
     .message,
     .event,
@@ -2322,42 +2119,25 @@ section h2 {
     .album,
     .countdown,
     .closing {
-
         min-height: 650px;
     }
 
-
-    /* RASGADURA INFERIOR DEL MENSAJE */
-
     .message::after {
-
         left: 0;
-
         bottom: -1px;
-
         width: 100%;
-
         height: 90px;
-
         background-image:
             url("../assets/images/rasgadostransp.png");
-
         background-repeat: no-repeat;
-
         background-position: center bottom;
-
         background-size: 100% 90px;
-
         transform: rotate(180deg);
-
         z-index: 10;
-
         pointer-events: none;
     }
 
-
     .ceremony-image {
-
         height: 320px;
     }
 }
