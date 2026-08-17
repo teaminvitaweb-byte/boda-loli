@@ -552,7 +552,7 @@ a {
 
     position: relative;
 
-    padding: 70px 20px 70px;
+    padding: 25px 20px 70px;
 
     text-align: center;
 
@@ -1761,7 +1761,7 @@ section h2 {
     }
 
     .hero-content {
-        padding: 65px 12px 55px;
+        padding: 25px 12px 55px;
     }
 
     .hero-content h1 {
@@ -2099,7 +2099,7 @@ section h2 {
     }
 
     .hero-content {
-        padding-top: 75px;
+        padding-top: 25px;
     }
 
     .hero-content h1 {
