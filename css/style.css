@@ -321,29 +321,38 @@ a {
 
     display: none;
 
-    opacity: 0;
+    opacity: 1;
 
     isolation: isolate;
 }
+
+
+/* =========================================================
+   MOSTRAR INVITACIÓN
+   SIN ANIMACIÓN
+========================================================= */
 
 #invitation.show {
     display: block;
 
     opacity: 1;
 
-    animation:
-        invitationAppear 0.8s ease-out both;
+    animation: none;
+
+    transform: none;
 }
 
-@keyframes invitationAppear {
 
-    from {
-        opacity: 0;
-    }
+/*
+   IMPORTANTE:
 
-    to {
-        opacity: 1;
-    }
+   No utilizamos ninguna animación de entrada.
+   La invitación aparece directamente ya construida.
+*/
+
+#invitation.show .hero {
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -384,7 +393,15 @@ a {
     align-items: center;
 
     background: var(--sage-light);
+
+    opacity: 1;
+    visibility: visible;
 }
+
+
+/* =========================================================
+   TARJETA PORTADA
+========================================================= */
 
 .hero-card {
     width: 100%;
@@ -392,6 +409,9 @@ a {
     position: relative;
 
     overflow: visible;
+
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -409,7 +429,21 @@ a {
     overflow: visible;
 
     z-index: 2;
+
+    /*
+       La foto y su rasgado pertenecen a la misma unidad.
+       No hay transición ni animación.
+    */
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
 }
+
+
+/* =========================================================
+   IMAGEN
+========================================================= */
 
 .hero-image img {
     display: block;
@@ -426,6 +460,14 @@ a {
     object-position: center;
 
     z-index: 1;
+
+    /*
+       Evita cualquier transición accidental.
+    */
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
 }
 
 
@@ -448,12 +490,23 @@ a {
         url("../assets/images/rasgadosppal.png");
 
     background-repeat: no-repeat;
+
     background-position: center;
+
     background-size: 100% 60px;
 
     z-index: 4;
 
     pointer-events: none;
+
+    /*
+       El rasgado está presente desde el primer render.
+       No tiene animación ni transición.
+    */
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
 }
 
 
@@ -473,6 +526,11 @@ a {
     background: var(--sage-light);
 
     z-index: 5;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
 }
 
 
@@ -859,7 +917,6 @@ section h2 {
 
 /* =========================================================
    RASGADURA INFERIOR DEL MENSAJE
-   MENSAJE → CEREMONIA
 ========================================================= */
 
 .message::after {
@@ -1696,6 +1753,11 @@ section h2 {
     .hero-image {
 
         height: 420px;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-image img {
@@ -1703,6 +1765,11 @@ section h2 {
         top: -35px;
 
         height: calc(100% + 70px);
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-image::after {
@@ -1712,11 +1779,21 @@ section h2 {
         height: 56px;
 
         background-size: 100% 56px;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-content {
 
         padding: 65px 12px 55px;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-content h1 {
@@ -1826,11 +1903,7 @@ section h2 {
     }
 
 
-    /* =====================================================
-       RASGADURA INFERIOR DEL MENSAJE
-       MENSAJE → CEREMONIA
-       CELULAR
-    ===================================================== */
+    /* RASGADURA INFERIOR DEL MENSAJE */
 
     .message::after {
 
@@ -2186,6 +2259,11 @@ section h2 {
         height: 485px;
 
         margin: 35px auto 0;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-image img {
@@ -2193,6 +2271,11 @@ section h2 {
         top: -45px;
 
         height: calc(100% + 90px);
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-image::after {
@@ -2202,11 +2285,21 @@ section h2 {
         height: 70px;
 
         background-size: 100% 70px;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-content {
 
         padding-top: 75px;
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: none;
     }
 
     .hero-content h1 {
@@ -2234,11 +2327,7 @@ section h2 {
     }
 
 
-    /* =====================================================
-       RASGADURA INFERIOR DEL MENSAJE
-       MENSAJE → CEREMONIA
-       COMPUTADORA
-    ===================================================== */
+    /* RASGADURA INFERIOR DEL MENSAJE */
 
     .message::after {
 

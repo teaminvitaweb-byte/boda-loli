@@ -179,7 +179,7 @@ function showInvitation() {
 
 
     /* =============================
-       OCULTAR SOBRE
+       OCULTAR SOBRE COMPLETAMENTE
     ============================= */
 
     if (envelopeScreen) {
@@ -200,39 +200,37 @@ function showInvitation() {
 
 
     /*
-       Pequeño reflow antes de mostrar.
-       Esto evita que algunos navegadores
-       móviles intenten pintar la portada
-       mientras aparece.
+       Mostramos la invitación
+       directamente.
+
+       La portada ya está completa:
+       foto + nombres + alianzas +
+       Nos casamos + fecha + hora.
     */
 
-    requestAnimationFrame(() => {
-
-        requestAnimationFrame(() => {
-
-            invitation.classList.add(
-                "show"
-            );
+    invitation.classList.add(
+        "show"
+    );
 
 
-            /* =============================
-               VOLVER ARRIBA
-            ============================= */
+    /* =============================
+       VOLVER ARRIBA
+    ============================= */
 
-            window.scrollTo(
-                0,
-                0
-            );
+    window.scrollTo(
+        0,
+        0
+    );
 
 
-            console.log(
-                "✓ Invitación visible"
-            );
+    console.log(
+        "✓ Portada completa visible"
+    );
 
-        });
 
-    });
-
+    /* =============================
+       ACTUALIZAR MÚSICA
+    ============================= */
 
     updateMusicButton();
 
@@ -262,16 +260,10 @@ if (openButton) {
 
 
             /* =============================
-               ABRIR SOBRE
+               PREPARAR PORTADA
             ============================= */
 
-            if (envelope) {
-
-                envelope.classList.add(
-                    "open"
-                );
-
-            }
+            await prepareInvitation();
 
 
             /* =============================
@@ -300,21 +292,10 @@ if (openButton) {
 
 
             /* =============================
-               PREPARAR PORTADA
+               MOSTRAR PORTADA
             ============================= */
 
-            await prepareInvitation();
-
-
-            /* =============================
-               ESPERAR ANIMACIÓN DEL SOBRE
-            ============================= */
-
-            setTimeout(() => {
-
-                showInvitation();
-
-            }, 1000);
+            showInvitation();
 
         }
     );
