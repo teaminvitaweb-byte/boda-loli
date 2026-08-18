@@ -1,3 +1,4 @@
+
 /* =====================================
    BODA ELIZABETH & CARLOS
    JAVASCRIPT PRINCIPAL
@@ -213,27 +214,10 @@ function showInvitation() {
     );
 
 
-    /*
-       IMPORTANTE:
-
-       Ya no usamos display:none.
-
-       La portada ya estaba preparada
-       detrás del sobre.
-
-       Aquí solamente la hacemos visible.
-    */
-
     invitation.classList.add(
         "show"
     );
 
-
-    /*
-       Permitimos que el navegador
-       pinte la portada antes de
-       quitar completamente el sobre.
-    */
 
     requestAnimationFrame(() => {
 
@@ -256,10 +240,6 @@ function showInvitation() {
         "✓ Portada completa visible"
     );
 
-
-    /* =============================
-       ACTUALIZAR MÚSICA
-    ============================= */
 
     updateMusicButton();
 
@@ -290,12 +270,6 @@ if (openButton) {
 
             /* =============================
                PREPARAR PORTADA
-               
-               IMPORTANTE:
-
-               La preparación comienza
-               inmediatamente al tocar
-               el sello.
             ============================= */
 
             const preparation =
@@ -313,16 +287,6 @@ if (openButton) {
                 );
 
             }
-
-
-            /*
-               NO ocultamos todavía
-               envelopeScreen.
-
-               El usuario podrá ver
-               la carta mientras la
-               portada se prepara.
-            */
 
 
             /* =============================
@@ -352,12 +316,6 @@ if (openButton) {
 
             /* =============================
                TIEMPO MÍNIMO DEL SOBRE
-               
-               La animación de la solapa
-               dura aproximadamente 1 segundo.
-               
-               La carta queda visible
-               mientras termina la preparación.
             ============================= */
 
             await Promise.all([
@@ -371,10 +329,6 @@ if (openButton) {
 
             /* =============================
                MOSTRAR PORTADA
-               
-               Aquí llegamos solamente
-               cuando la portada ya está
-               preparada.
             ============================= */
 
             showInvitation();

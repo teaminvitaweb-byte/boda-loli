@@ -49,9 +49,12 @@ a {
     --sage-text: #526653;
 
     --gold: #C49A45;
+    --gold-soft: #D8BD7A;
+
     --dark-text: #2B352A;
 
     --white: #FFFFFF;
+    --cream: #F6F3EA;
 
     --dress-black: #000000;
 
@@ -66,33 +69,21 @@ a {
 .cover-envelope {
     width: 100%;
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     padding: 20px;
-
     background: var(--sage-cover);
-
     position: fixed;
     inset: 0;
-
     z-index: 100;
-
     opacity: 1;
     visibility: visible;
-
     transition:
         opacity 0.8s ease,
         visibility 0s linear 0.8s;
 }
-
-
-/* =========================================================
-   ESTADO FINAL DEL SOBRE
-========================================================= */
 
 .cover-envelope.opened {
     opacity: 0;
@@ -108,18 +99,12 @@ a {
 .envelope {
     width: 330px;
     height: 230px;
-
     position: relative;
-
     background: var(--sage-envelope);
-
     border-radius: 12px;
-
     overflow: visible;
-
     box-shadow:
         0 25px 50px rgba(60, 80, 65, 0.20);
-
     perspective: 1000px;
 }
 
@@ -130,45 +115,30 @@ a {
 
 .letter {
     position: absolute;
-
     width: 84%;
     height: 82%;
-
     left: 8%;
     top: 10%;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 15px;
-
     text-align: center;
-
     background: #EEF4EB;
-
     border-radius: 5px;
-
     opacity: 0;
-
     transform: translateY(45px);
-
     transition:
         opacity 0.75s ease,
         transform 1s cubic-bezier(.22,.61,.36,1);
-
     z-index: 2;
 }
 
 .letter h1 {
     font-family: 'Great Vibes', cursive;
-
     font-size: 43px;
-
     line-height: 1.05;
-
     color: var(--sage-text);
-
     font-weight: 400;
 }
 
@@ -179,13 +149,9 @@ a {
 
 .envelope::before {
     content: "";
-
     position: absolute;
-
     inset: 0;
-
     background: var(--sage-envelope);
-
     clip-path: polygon(
         0 35%,
         50% 75%,
@@ -193,9 +159,7 @@ a {
         100% 100%,
         0 100%
     );
-
     z-index: 3;
-
     pointer-events: none;
 }
 
@@ -206,24 +170,17 @@ a {
 
 .flap {
     position: absolute;
-
     inset: 0;
-
     background: var(--sage-flap);
-
     clip-path: polygon(
         0 0,
         100% 0,
         50% 55%
     );
-
     transform-origin: top center;
-
     transition:
         transform 1s cubic-bezier(.22,.61,.36,1);
-
     z-index: 5;
-
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -235,32 +192,20 @@ a {
 
 #openButton {
     position: absolute;
-
     top: 55%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
     width: 80px;
     height: 80px;
-
     border-radius: 50%;
-
     border: 3px solid #E7D5A5;
-
     background: #C7A86B;
-
     color: white;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 16px;
     font-weight: 600;
-
     cursor: pointer;
-
     z-index: 10;
-
     transition:
         transform 0.25s ease,
         opacity 0.4s ease;
@@ -285,14 +230,11 @@ a {
 
 .envelope.open .letter {
     opacity: 1;
-
-    transform:
-        translateY(-115px);
+    transform: translateY(-115px);
 }
 
 .envelope.open #openButton {
     opacity: 0;
-
     pointer-events: none;
 }
 
@@ -303,9 +245,7 @@ a {
 
 .open-text {
     margin-top: 40px;
-
     text-align: center;
-
     transition:
         opacity 0.5s ease,
         transform 0.5s ease;
@@ -313,27 +253,20 @@ a {
 
 .open-text h2 {
     font-family: 'Great Vibes', cursive;
-
     font-size: 45px;
-
     color: var(--sage-text);
-
     font-weight: 400;
 }
 
 .open-text p {
     margin-top: 5px;
-
     color: var(--sage-text);
-
     font-size: 18px;
-
     font-weight: 500;
 }
 
 .cover-envelope.opened .open-text {
     opacity: 0;
-
     transform: translateY(-10px);
 }
 
@@ -344,39 +277,23 @@ a {
 
 #invitation {
     width: 100%;
-
     position: relative;
-
     background: var(--sage-light);
-
     display: block;
-
     opacity: 0;
     visibility: hidden;
-
     isolation: isolate;
-
     transition:
         opacity 0.8s ease,
         visibility 0s linear 0.8s;
 }
 
-
-/* =========================================================
-   INVITACIÓN LISTA
-========================================================= */
-
 #invitation.show {
     display: block;
-
     opacity: 1;
-
     visibility: visible;
-
     animation: none;
-
     transform: none;
-
     transition:
         opacity 0.8s ease,
         visibility 0s linear 0s;
@@ -402,17 +319,12 @@ a {
 
 .section-content {
     width: 100%;
-
     max-width: 900px;
-
     position: relative;
-
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
-
     margin: 0 auto;
 }
 
@@ -423,17 +335,12 @@ a {
 
 .hero {
     width: 100%;
-
     min-height: auto;
-
     position: relative;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background: var(--sage-light);
-
     opacity: 1;
     visibility: visible;
 }
@@ -445,11 +352,8 @@ a {
 
 .hero-card {
     width: 100%;
-
     position: relative;
-
     overflow: visible;
-
     opacity: 1;
     visibility: visible;
 }
@@ -461,45 +365,27 @@ a {
 
 .hero-image {
     width: 100%;
-
     height: 520px;
-
     position: relative;
-
     overflow: visible;
-
     z-index: 2;
-
     opacity: 1;
     visibility: visible;
-
     transform: none;
 }
 
-
-/* =========================================================
-   IMAGEN
-========================================================= */
-
 .hero-image img {
     display: block;
-
     position: absolute;
-
     left: 0;
     top: -45px;
-
     width: 100%;
     height: calc(100% + 90px);
-
     object-fit: cover;
     object-position: center;
-
     z-index: 1;
-
     opacity: 1;
     visibility: visible;
-
     transform: none;
 }
 
@@ -510,31 +396,20 @@ a {
 
 .hero-image::after {
     content: "";
-
     position: absolute;
-
     left: 0;
     bottom: -30px;
-
     width: 100%;
     height: 60px;
-
     background-image:
         url("../assets/images/rasgadosppal.png");
-
     background-repeat: no-repeat;
-
     background-position: center;
-
     background-size: 100% 60px;
-
     z-index: 4;
-
     pointer-events: none;
-
     opacity: 1;
     visibility: visible;
-
     transform: none;
 }
 
@@ -545,20 +420,13 @@ a {
 
 .hero-content {
     width: 100%;
-
     position: relative;
-
     padding: 25px 20px 70px;
-
     text-align: center;
-
     background: var(--sage-light);
-
     z-index: 5;
-
     opacity: 1;
     visibility: visible;
-
     transform: none;
 }
 
@@ -569,27 +437,18 @@ a {
 
 .hero-content h1 {
     margin: 0;
-
     font-family: 'Great Vibes', cursive;
-
     font-size: clamp(55px, 8vw, 78px);
-
     line-height: 0.95;
-
     font-weight: 400;
-
     color: var(--dark-text);
-
     text-align: center;
 }
 
 .hero-content h1 span {
     display: inline-block;
-
     margin: 3px 0;
-
     font-size: 0.78em;
-
     color: var(--gold);
 }
 
@@ -600,12 +459,9 @@ a {
 
 .rings {
     position: relative;
-
     width: 62px;
     height: 36px;
-
     margin: 25px auto 12px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -613,14 +469,10 @@ a {
 
 .rings span {
     position: absolute;
-
     width: 31px;
     height: 31px;
-
     border: 2.5px solid var(--gold);
-
     border-radius: 50%;
-
     background: transparent;
 }
 
@@ -641,40 +493,26 @@ a {
 
 .hero-content .wedding-title {
     width: 100%;
-
     margin: 5px 0 0;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     gap: 18px;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 45px;
-
     line-height: 1.1;
-
     font-weight: 600;
-
     letter-spacing: 0.5px;
-
     color: var(--gold);
 }
 
 .hero-content .wedding-title::before,
 .hero-content .wedding-title::after {
     content: "";
-
     width: 70px;
     height: 1px;
-
     flex-shrink: 0;
-
     background: var(--gold);
-
     opacity: 0.75;
 }
 
@@ -685,27 +523,18 @@ a {
 
 .hero-content .date {
     margin-top: 18px;
-
     color: var(--dark-text);
-
     font-size: 32px;
-
     font-weight: 600;
-
     line-height: 1.45;
-
     letter-spacing: 0.8px;
 }
 
 .hero-content .date .time {
     display: block;
-
     margin-top: 0;
-
     font-size: 35px;
-
     font-weight: 700;
-
     color: var(--gold);
 }
 
@@ -723,29 +552,17 @@ a {
 .album,
 .countdown,
 .closing {
-
     width: 100%;
-
     min-height: 650px;
-
     position: relative;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
-
     padding: 100px 25px 90px;
-
     margin: 0;
-
     text-align: center;
-
     overflow: visible;
-
     isolation: isolate;
 }
 
@@ -784,7 +601,6 @@ a {
 .countdown > *,
 .closing > * {
     position: relative;
-
     z-index: 5;
 }
 
@@ -795,15 +611,10 @@ a {
 
 section h2 {
     margin: 0 0 25px;
-
     font-family: 'Great Vibes', cursive;
-
     font-size: 55px;
-
     line-height: 1.1;
-
     font-weight: 400;
-
     color: var(--dark-text);
 }
 
@@ -819,28 +630,18 @@ section h2 {
 .album::before,
 .countdown::before,
 .closing::before {
-
     content: "";
-
     position: absolute;
-
     left: 0;
     top: -35px;
-
     width: 100%;
     height: 70px;
-
     background-image:
         url("../assets/images/rasgados.png");
-
     background-repeat: no-repeat;
-
     background-position: center;
-
     background-size: 100% 70px;
-
     z-index: 10;
-
     pointer-events: none;
 }
 
@@ -879,217 +680,117 @@ section h2 {
 
 .message {
     position: relative;
-
     width: 100%;
     min-height: 70vh;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     padding: 110px 40px 90px;
-
     margin-top: 0;
-
     text-align: center;
-
     overflow: visible;
-
     z-index: 2;
-
     background-image:
         url("../assets/images/mano.png");
-
     background-repeat: no-repeat;
-
     background-position: center center;
-
     background-size: cover;
-
     background-attachment: scroll;
 }
 
-
-/* =========================================================
-   RASGADURA SUPERIOR DEL MENSAJE
-========================================================= */
-
 .message::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: -45px;
-
     width: 100%;
     height: 90px;
-
     background-image:
         url("../assets/images/rasgadosppal.png");
-
     background-repeat: no-repeat;
-
     background-size: 100% 90px;
-
     background-position: center center;
-
     transform: rotate(180deg);
-
     z-index: 10;
-
     pointer-events: none;
 }
-
-
-/* =========================================================
-   RASGADURA INFERIOR DEL MENSAJE
-========================================================= */
 
 .message::after {
     content: "";
-
     position: absolute;
-
     left: 0;
     bottom: -1px;
-
     width: 100%;
     height: 90px;
-
     background-image:
         url("../assets/images/rasgadostransp.png");
-
     background-repeat: no-repeat;
-
     background-position: center bottom;
-
     background-size: 100% 90px;
-
     transform: rotate(180deg);
-
     z-index: 10;
-
     pointer-events: none;
 }
 
-
-/* =========================================================
-   CONTENIDO DEL MENSAJE
-========================================================= */
-
 .message-content {
     width: min(720px, 92%);
-
     position: relative;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     z-index: 5;
 }
-
-
-/* =========================================================
-   TEXTO DEL MENSAJE
-========================================================= */
 
 .message-text {
     width: 100%;
     max-width: 680px;
-
     position: relative;
-
     margin: 0 auto;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 30px;
-
     font-weight: 400;
-
     line-height: 1.65;
-
     letter-spacing: 0.2px;
-
     color: var(--white);
-
     text-align: center;
-
     z-index: 6;
 }
 
-
-/* =========================================================
-   COMILLAS
-========================================================= */
-
 .message-text::before {
     content: "“";
-
     position: absolute;
-
     left: -38px;
     top: -12px;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 100px;
-
     font-weight: 600;
-
     line-height: 1;
-
     color: rgba(255,255,255,0.85);
-
     z-index: 7;
 }
 
 .message-text::after {
     content: "”";
-
     position: absolute;
-
     right: -18px;
     bottom: -105px;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 100px;
-
     font-weight: 600;
-
     line-height: 1;
-
     color: rgba(255,255,255,0.95);
-
     text-shadow:
         0 2px 5px rgba(60,70,55,0.25);
-
     z-index: 7;
 }
 
-
-/* =========================================================
-   TEXTO DESTACADO
-========================================================= */
-
 .message-highlight {
     font-family: 'Great Vibes', cursive;
-
     font-size: 42px;
-
     font-weight: 400;
-
     line-height: 1.35;
-
     color: var(--white);
 }
 
@@ -1106,29 +807,22 @@ section h2 {
 .ceremony-content {
     width: 100%;
     max-width: 900px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     transform: translateY(-35px);
 }
 
 .event h2 {
     margin: 0 0 15px;
-
     font-size: 55px;
 }
 
 .ceremony-place {
     margin: 0 0 25px;
-
     font-size: 21px;
-
     font-weight: 600;
-
     line-height: 1.2;
-
     color: var(--dark-text);
 }
 
@@ -1139,68 +833,46 @@ section h2 {
 
 .ceremony-image {
     width: 100vw;
-
     height: 320px;
-
     position: relative;
-
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-
     margin-bottom: 60px;
-
     overflow: visible;
-
     z-index: 3;
 }
 
 .ceremony-image img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     object-position: center;
 }
 
 .ceremony-image::before,
 .ceremony-image::after {
-
     content: "";
-
     position: absolute;
-
     left: 0;
-
     width: 100%;
-
     height: 55px;
-
     background-image:
         url("../assets/images/rasgadostransp.png");
-
     background-repeat: no-repeat;
-
     background-size: 100% 55px;
-
     z-index: 5;
-
     pointer-events: none;
 }
 
 .ceremony-image::before {
     top: -18px;
-
     background-position: center bottom;
 }
 
 .ceremony-image::after {
     bottom: -18px;
-
     background-position: center top;
-
     transform: rotate(180deg);
 }
 
@@ -1211,15 +883,10 @@ section h2 {
 
 .ceremony-address {
     max-width: 650px;
-
     margin: 0 0 25px;
-
     font-size: 27px;
-
     font-weight: 500;
-
     line-height: 1.4;
-
     color: var(--dark-text);
 }
 
@@ -1230,27 +897,16 @@ section h2 {
 
 .map-button {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 10px;
-
     padding: 12px 25px;
-
     border-radius: 50px;
-
     background: var(--gold);
-
     color: white;
-
     text-decoration: none;
-
     font-size: 20px;
-
     font-weight: 600;
-
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
@@ -1258,7 +914,6 @@ section h2 {
 
 .map-button:hover {
     transform: translateY(-3px);
-
     box-shadow:
         0 8px 20px rgba(90,70,30,0.20);
 }
@@ -1266,9 +921,7 @@ section h2 {
 .map-icon {
     width: 20px;
     height: 20px;
-
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
 }
@@ -1276,11 +929,8 @@ section h2 {
 .map-icon svg {
     width: 18px;
     height: 18px;
-
     fill: none;
-
     stroke: currentColor;
-
     stroke-width: 1.8;
 }
 
@@ -1296,48 +946,30 @@ section h2 {
 
 .dress-code h2 {
     margin-bottom: 15px;
-
     font-size: 55px;
 }
 
-
-/* =========================================================
-   DRESS FORMAL
-========================================================= */
-
 .dress-formal {
     margin: 18px 0 22px;
-
     font-size: 38px;
-
     font-weight: 600;
-
     line-height: 1.15;
-
     letter-spacing: 2px;
-
     color: var(--gold);
 }
 
 .dress-message {
     margin: 20px 0 0;
-
     font-size: 30px;
-
     font-weight: 500;
-
     line-height: 1.3;
-
     color: var(--dark-text);
 }
 
 .dress-note {
     margin: 10px 0 0;
-
     font-size: 21px;
-
     font-style: italic;
-
     color: var(--sage-text);
 }
 
@@ -1348,46 +980,32 @@ section h2 {
 
 .dress-icons {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     gap: 32px;
-
     margin-top: 30px;
-
     min-height: 120px;
 }
 
 .dress-icon {
     width: 105px;
     height: 120px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     background: transparent;
-
     border: none;
-
     position: relative;
-
     transition:
         transform 0.25s ease;
 }
 
 .dress-icon img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: contain;
-
     object-position: center;
-
     background: transparent;
 }
 
@@ -1403,17 +1021,12 @@ section h2 {
 
 .dress-icon::after {
     content: "";
-
     position: absolute;
-
     left: 50%;
     bottom: -5px;
-
     width: 30px;
     height: 1px;
-
     transform: translateX(-50%);
-
     background: rgba(32,35,31,0.25);
 }
 
@@ -1423,11 +1036,8 @@ section h2 {
 
 .dress-divider {
     width: 1px;
-
     height: 60px;
-
     background: rgba(32,35,31,0.25);
-
     margin: 0 2px;
 }
 
@@ -1438,7 +1048,6 @@ section h2 {
 
 .dress-code {
     justify-content: flex-start;
-
     padding-top: 55px;
 }
 
@@ -1453,15 +1062,10 @@ section h2 {
 .album p,
 .event p {
     max-width: 650px;
-
     margin: 0 0 12px;
-
     font-size: 25px;
-
     font-weight: 500;
-
     line-height: 1.5;
-
     color: var(--dark-text);
 }
 
@@ -1473,25 +1077,15 @@ section h2 {
 .confirm-button,
 .album-button {
     margin-top: 20px;
-
     padding: 14px 30px;
-
     border: none;
-
     border-radius: 50px;
-
     background: var(--gold);
-
     color: white;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 20px;
-
     font-weight: 600;
-
     cursor: pointer;
-
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
@@ -1500,7 +1094,6 @@ section h2 {
 .confirm-button:hover,
 .album-button:hover {
     transform: translateY(-3px);
-
     box-shadow:
         0 8px 20px rgba(90,70,30,0.20);
 }
@@ -1508,7 +1101,6 @@ section h2 {
 
 /* =========================================================
    ITINERARIO
-   ICONO GRANDE + NOMBRE + HORA
 ========================================================= */
 
 .itinerary {
@@ -1519,34 +1111,18 @@ section h2 {
     max-width: 650px;
 }
 
-
-/* =========================================================
-   CONTENEDOR DE CADA MOMENTO
-========================================================= */
-
 .itinerary-item {
     width: min(470px, 92%);
-
     min-height: 100px;
-
     margin: 13px auto;
-
     padding: 14px 28px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 24px;
-
     border-left: none;
-
     border-bottom: 1px solid rgba(196,154,69,0.35);
-
     text-align: left;
-
     transition:
         transform 0.25s ease,
         background 0.25s ease;
@@ -1556,89 +1132,51 @@ section h2 {
     border-bottom: none;
 }
 
-
-/* =========================================================
-   ICONO
-========================================================= */
-
 .itinerary-icon {
     width: 78px;
     height: 78px;
-
     flex: 0 0 78px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     color: var(--gold);
 }
 
 .itinerary-icon svg {
     width: 70px;
     height: 70px;
-
     fill: none;
-
     stroke: currentColor;
-
     stroke-width: 1.4;
-
     stroke-linecap: round;
-
     stroke-linejoin: round;
 }
 
-
-/* =========================================================
-   INFORMACIÓN
-========================================================= */
-
 .itinerary-info {
     min-width: 180px;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: flex-start;
-
     justify-content: center;
 }
 
 .itinerary-item h3 {
     margin: 0 0 2px;
-
     font-family: 'Great Vibes', cursive;
-
     font-size: 38px;
-
     line-height: 1;
-
     font-weight: 400;
-
     color: var(--gold);
 }
 
 .itinerary-item p {
     margin: 0;
-
     font-family: 'Cormorant Garamond', serif;
-
     font-size: 25px;
-
     line-height: 1.2;
-
     font-weight: 600;
-
     color: var(--dark-text);
 }
-
-
-/* =========================================================
-   HOVER ITINERARIO
-========================================================= */
 
 .itinerary-item:hover {
     transform: translateY(-3px);
@@ -1650,58 +1188,655 @@ section h2 {
 
 
 /* =========================================================
-   COUNTDOWN
+   REGALO
+========================================================= */
+
+.gift {
+    width: 100%;
+    min-height: 610px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 90px 25px 80px;
+    margin: 0;
+    text-align: center;
+    overflow: visible;
+    isolation: isolate;
+    background: #B7C9B2;
+}
+
+.gift-content {
+    width: min(720px, 94%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+}
+
+.gift h2 {
+    margin: 0 0 18px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 55px;
+    line-height: 1.05;
+    font-weight: 400;
+    color: var(--dark-text);
+    text-align: center;
+}
+
+.gift h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 1px;
+    margin: 14px auto 0;
+    background: var(--gold);
+    opacity: 0.75;
+}
+
+.gift-main-message {
+    width: 100%;
+    max-width: 650px;
+    margin: 8px auto 16px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    line-height: 1.25;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    color: #526653;
+    text-align: center;
+}
+
+.gift-message {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+    color: var(--dark-text);
+    text-align: center;
+}
+
+.gift-bank-card {
+    width: min(560px, 94%);
+    position: relative;
+    margin: 5px auto 24px;
+    padding: 24px 30px 22px;
+    background: rgba(238,244,235,0.82);
+    border: 1px solid rgba(196,154,69,0.42);
+    border-radius: 18px;
+    box-shadow:
+        0 10px 28px rgba(60,80,65,0.11);
+    overflow: hidden;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.gift-bank-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 75px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: var(--gold);
+    opacity: 0.8;
+}
+
+.gift-bank-card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -28px;
+    width: 70px;
+    height: 70px;
+    transform: translateY(-50%);
+    border: 1px solid rgba(196,154,69,0.12);
+    border-radius: 50%;
+}
+
+.gift-bank-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.gift-bank-icon {
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(196,154,69,0.45);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.50);
+    color: var(--gold);
+    box-shadow:
+        0 3px 10px rgba(60,80,65,0.07);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.gift-bank-icon span {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.gift-bank-row:hover .gift-bank-icon {
+    transform: translateY(-2px);
+    box-shadow:
+        0 5px 14px rgba(60,80,65,0.12);
+}
+
+.gift-bank-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
+
+.gift-label {
+    margin: 0 0 2px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--sage-text);
+}
+
+.gift-bank-info strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: var(--dark-text);
+}
+
+.gift-bank-divider {
+    width: 100%;
+    height: 1px;
+    margin: 2px 0;
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(196,154,69,0.38),
+            transparent
+        );
+}
+
+.gift-closing {
+    width: 100%;
+    max-width: 540px;
+    margin: 3px auto 0;
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    color: var(--dark-text);
+    text-align: center;
+}
+
+
+/* =========================================================
+   COUNTDOWN — NOS VEMOS EN
+   DISEÑO ELEGANTE
+========================================================= */
+
+.countdown {
+    min-height: 650px;
+    padding: 105px 25px 95px;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(246,243,234,0.20) 0%,
+            rgba(246,243,234,0.08) 30%,
+            transparent 65%
+        ),
+        var(--sage-dark);
+
+    text-align: center;
+    position: relative;
+    overflow: visible;
+}
+
+
+/* =========================================================
+   DECORACIÓN SVG SUPERIOR
+========================================================= */
+
+.countdown-ornament {
+    width: 150px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    color: var(--gold);
+}
+
+.countdown-ornament svg {
+    width: 150px;
+    height: 34px;
+
+    display: block;
+
+    overflow: visible;
+}
+
+.countdown-ornament .ornament-line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+}
+
+.countdown-ornament .ornament-circle {
+    fill: var(--cream);
+    stroke: currentColor;
+    stroke-width: 1.2;
+}
+
+.countdown-ornament .ornament-heart {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.countdown-content {
+    width: min(900px, 100%);
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TÍTULO
 ========================================================= */
 
 .countdown h2 {
-    margin-bottom: 25px;
+    margin: 0;
 
-    font-size: 60px;
+    font-family: 'Great Vibes', cursive;
+
+    font-size: 68px;
+
+    line-height: 1;
+
+    font-weight: 400;
+
+    /*
+       El título ya no depende del dorado.
+       Esto mejora mucho el contraste.
+    */
+    color: var(--dark-text);
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.25);
 }
 
-.timer {
-    display: flex;
 
-    justify-content: center;
+/* =========================================================
+   LÍNEA DECORATIVA DEL TÍTULO
+========================================================= */
 
-    align-items: center;
+.countdown h2::after {
+    content: "";
 
-    flex-wrap: wrap;
+    display: block;
 
-    gap: 20px;
+    width: 65px;
 
-    margin-top: 10px;
+    height: 1px;
+
+    margin: 16px auto 0;
+
+    background: var(--gold);
+
+    opacity: 0.85;
 }
 
-.timer div {
-    min-width: 115px;
 
-    padding: 20px 15px;
+/* =========================================================
+   SUBTÍTULO
+========================================================= */
 
-    border-radius: 10px;
+.countdown-subtitle {
+    width: 100%;
+    max-width: 620px;
 
-    background: var(--sage-text);
+    margin: 17px auto 0;
 
-    color: white;
+    font-family: 'Cormorant Garamond', serif;
 
-    font-size: 18px;
+    font-size: 22px;
 
     font-weight: 500;
 
-    box-shadow:
-        0 8px 20px rgba(60,80,65,0.15);
+    line-height: 1.4;
+
+    letter-spacing: 0.5px;
+
+    color: var(--sage-text);
+
+    text-align: center;
 }
 
-.timer span {
+
+/* =========================================================
+   CONTENEDOR DEL CONTADOR
+========================================================= */
+
+.timer {
+    width: min(850px, 100%);
+
+    margin: 46px auto 0;
+
+    display: flex;
+
+    align-items: stretch;
+
+    justify-content: center;
+
+    gap: 0;
+}
+
+
+/* =========================================================
+   CADA UNIDAD DEL CONTADOR
+========================================================= */
+
+.timer-item {
+    min-width: 145px;
+
+    padding: 19px 25px 17px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    /*
+       Tarjeta crema muy sutil para separar
+       los números del fondo verde.
+    */
+    background: rgba(246,243,234,0.62) !important;
+
+    border: 1px solid rgba(255,255,255,0.42);
+
+    border-radius: 14px;
+
+    color: var(--dark-text) !important;
+
+    box-shadow:
+        0 8px 22px rgba(60,80,65,0.08);
+
+    backdrop-filter: blur(3px);
+
+    -webkit-backdrop-filter: blur(3px);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* =========================================================
+   EFECTO HOVER
+========================================================= */
+
+.timer-item:hover {
+    transform: translateY(-4px);
+
+    background: rgba(246,243,234,0.82) !important;
+
+    box-shadow:
+        0 12px 28px rgba(60,80,65,0.13);
+}
+
+
+/* =========================================================
+   PEQUEÑO DETALLE SUPERIOR
+========================================================= */
+
+.timer-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+
+    left: 50%;
+
+    width: 24px;
+
+    height: 1px;
+
+    transform: translateX(-50%);
+
+    background: var(--gold);
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   NÚMERO
+========================================================= */
+
+.timer-item > span {
     display: block;
 
-    margin-bottom: 8px;
+    margin: 0;
 
-    font-size: 44px;
+    padding-top: 4px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 72px;
+
+    line-height: 0.95;
 
     font-weight: 600;
 
+    letter-spacing: 1px;
+
+    /*
+       Número oscuro para máxima legibilidad.
+    */
+    color: var(--dark-text);
+
+    font-variant-numeric: tabular-nums;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.45);
+}
+
+
+/* =========================================================
+   ETIQUETA
+========================================================= */
+
+.timer-item small {
+    display: block;
+
+    margin-top: 12px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 15px;
+
     line-height: 1;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    /*
+       Verde en lugar de dorado.
+    */
+    color: var(--sage-text);
+}
+
+
+/* =========================================================
+   SEPARADORES
+========================================================= */
+
+.timer-separator {
+    width: 34px;
+
+    flex: 0 0 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 34px;
+
+    font-weight: 500;
+
+    color: var(--gold);
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   LÍNEA DECORATIVA
+========================================================= */
+
+.countdown-line {
+    position: relative;
+
+    width: 120px;
+
+    height: 1px;
+
+    margin: 39px auto 20px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   PEQUEÑO DIAMANTE CENTRAL
+========================================================= */
+
+.countdown-line::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 6px;
+    height: 6px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+
+    background: var(--cream);
+
+    border: 1px solid var(--gold);
+}
+
+
+/* =========================================================
+   FRASE FINAL
+========================================================= */
+
+.countdown-closing {
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size: 35px;
+
+    line-height: 1.3;
+
+    font-weight: 400;
+
+    /*
+       Dorado únicamente como acento.
+       Aquí sí funciona porque está sobre
+       un fondo limpio y tiene menor extensión.
+    */
+    color: #8C6B2F;
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.20);
 }
 
 
@@ -1711,29 +1846,19 @@ section h2 {
 
 .closing h1 {
     max-width: 900px;
-
     margin-bottom: 20px;
-
     font-family: 'Great Vibes', cursive;
-
     font-size: 70px;
-
     font-weight: 400;
-
     line-height: 1.1;
-
     color: var(--gold);
 }
 
 .closing p {
     max-width: 600px;
-
     font-size: 26px;
-
     font-weight: 500;
-
     line-height: 1.5;
-
     color: var(--dark-text);
 }
 
@@ -1744,56 +1869,35 @@ section h2 {
 
 .music-button {
     position: fixed;
-
     right: 22px;
     bottom: 22px;
-
     width: 50px;
     height: 50px;
-
     padding: 0;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border: 1px solid rgba(196,154,69,0.65);
-
     border-radius: 50%;
-
     background: rgba(250,248,243,0.96);
-
     color: var(--gold);
-
     cursor: pointer;
-
     z-index: 9999;
-
     box-shadow:
         0 5px 18px rgba(50,60,45,0.16);
-
     backdrop-filter: blur(5px);
-
     -webkit-backdrop-filter: blur(5px);
 }
 
 .music-button .music-icon {
     position: absolute;
-
     width: 25px;
     height: 25px;
-
     fill: none;
-
     stroke: currentColor;
-
     stroke-width: 1.8;
-
     stroke-linecap: round;
-
     stroke-linejoin: round;
-
     transition:
         opacity 0.25s ease,
         transform 0.25s ease;
@@ -2089,18 +2193,12 @@ section h2 {
 
     .ceremony-image {
         width: 100vw;
-
         height: 215px;
-
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
-
         margin-bottom: 52px;
-
         position: relative;
-
         overflow: visible;
-
         z-index: 3;
     }
 
@@ -2137,15 +2235,10 @@ section h2 {
     .ceremony-address {
         width: 100%;
         max-width: 330px;
-
         margin: 0 auto 20px;
-
         padding: 0 10px;
-
         font-size: 21px;
-
         line-height: 1.4;
-
         font-weight: 500;
     }
 
@@ -2156,13 +2249,9 @@ section h2 {
 
     .map-button {
         min-height: 46px;
-
         padding: 10px 22px;
-
         gap: 8px;
-
         border-radius: 50px;
-
         font-size: 18px;
     }
 
@@ -2288,22 +2377,16 @@ section h2 {
 
     .itinerary-item {
         width: min(370px, 94%);
-
         min-height: 88px;
-
         margin: 10px auto;
-
         padding: 10px 8px;
-
         gap: 17px;
-
         justify-content: center;
     }
 
     .itinerary-icon {
         width: 65px;
         height: 65px;
-
         flex: 0 0 65px;
     }
 
@@ -2327,30 +2410,272 @@ section h2 {
 
 
     /* =====================================================
-       COUNTDOWN
+       REGALO — CELULAR
+    ===================================================== */
+
+    .gift {
+        min-height: 610px;
+        padding-top: 80px;
+        padding-bottom: 75px;
+        background: #B7C9B2;
+    }
+
+    .gift-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .gift h2 {
+        margin-bottom: 17px;
+        font-size: 47px;
+        line-height: 1.05;
+    }
+
+    .gift h2::after {
+        width: 45px;
+        margin-top: 11px;
+    }
+
+    .gift-main-message {
+        width: 94%;
+        margin: 7px auto 15px;
+        font-size: 32px;
+        line-height: 1.25;
+        color: #526653;
+    }
+
+    .gift-message {
+        width: 94%;
+        margin-bottom: 22px;
+        font-size: 20px;
+        line-height: 1.48;
+    }
+
+    .gift-bank-card {
+        width: 96%;
+        margin: 2px auto 20px;
+        padding: 17px 17px 16px;
+        border-radius: 16px;
+        box-shadow:
+            0 8px 22px rgba(60,80,65,0.10);
+    }
+
+    .gift-bank-card::before {
+        width: 55px;
+        height: 2px;
+    }
+
+    .gift-bank-row {
+        gap: 13px;
+        padding: 8px 0;
+    }
+
+    .gift-bank-icon {
+        width: 45px;
+        height: 45px;
+        flex: 0 0 45px;
+    }
+
+    .gift-bank-icon span {
+        font-size: 21px;
+    }
+
+    .gift-label {
+        margin-bottom: 1px;
+        font-size: 13px;
+        letter-spacing: 0.7px;
+    }
+
+    .gift-bank-info strong {
+        font-size: 22px;
+        line-height: 1.2;
+        letter-spacing: 0.2px;
+    }
+
+    .gift-closing {
+        width: 94%;
+        margin-top: 2px;
+        font-size: 25px;
+        line-height: 1.3;
+    }
+
+
+    /* =====================================================
+       COUNTDOWN — NOS VEMOS EN — CELULAR
+    ===================================================== */
+
+    .countdown {
+        min-height: 570px;
+
+        padding: 72px 15px 68px;
+
+        background:
+            radial-gradient(
+                circle at 50% 42%,
+                rgba(246,243,234,0.20) 0%,
+                rgba(246,243,234,0.07) 34%,
+                transparent 68%
+            ),
+            var(--sage-dark);
+    }
+
+
+    /* =====================================================
+       ORNAMENTO SVG
+    ===================================================== */
+
+    .countdown-ornament {
+        width: 120px;
+        height: 28px;
+
+        margin-bottom: 9px;
+    }
+
+    .countdown-ornament svg {
+        width: 120px;
+        height: 28px;
+    }
+
+
+    /* =====================================================
+       TÍTULO
     ===================================================== */
 
     .countdown h2 {
-        font-size: 47px;
-        margin-bottom: 20px;
+        font-size: 52px;
+        line-height: 1;
     }
+
+    .countdown h2::after {
+        width: 45px;
+        margin-top: 12px;
+    }
+
+
+    /* =====================================================
+       SUBTÍTULO
+    ===================================================== */
+
+    .countdown-subtitle {
+        width: 94%;
+
+        margin-top: 12px;
+
+        font-size: 19px;
+
+        line-height: 1.35;
+
+        letter-spacing: 0.3px;
+    }
+
+
+    /* =====================================================
+       CONTADOR
+    ===================================================== */
 
     .timer {
         width: 100%;
+
+        margin-top: 34px;
+
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 5px;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 13px 10px;
     }
 
-    .timer div {
+
+    /* =====================================================
+       UNIDADES
+    ===================================================== */
+
+    .timer-item {
         min-width: 0;
-        padding: 15px 5px;
-        font-size: 16px;
+
+        min-height: 105px;
+
+        padding: 15px 5px 13px;
+
+        border-radius: 13px;
+
+        box-shadow:
+            0 6px 16px rgba(60,80,65,0.08);
     }
 
-    .timer span {
-        font-size: 32px;
+
+    /* =====================================================
+       DETALLE SUPERIOR
+    ===================================================== */
+
+    .timer-item::before {
+        top: 7px;
+
+        width: 20px;
+    }
+
+
+    /* =====================================================
+       NÚMEROS
+    ===================================================== */
+
+    .timer-item > span {
+        font-size: 55px;
+
+        line-height: 0.95;
+
+        padding-top: 3px;
+    }
+
+
+    /* =====================================================
+       ETIQUETAS
+    ===================================================== */
+
+    .timer-item small {
+        margin-top: 9px;
+
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* =====================================================
+       SEPARADORES
+    ===================================================== */
+
+    .timer-separator {
+        display: none;
+    }
+
+
+    /* =====================================================
+       LÍNEA
+    ===================================================== */
+
+    .countdown-line {
+        width: 75px;
+
+        margin-top: 30px;
+
+        margin-bottom: 17px;
+    }
+
+
+    /* =====================================================
+       FRASE FINAL
+    ===================================================== */
+
+    .countdown-closing {
+        width: 94%;
+
+        font-size: 28px;
+
+        line-height: 1.25;
+
+        color: #8C6B2F;
     }
 
 
@@ -2441,29 +2766,20 @@ section h2 {
         padding: 85px 25px 70px;
     }
 
-
     .message::after {
         left: 0;
         bottom: -1px;
         width: 100%;
         height: 90px;
-
         background-image:
             url("../assets/images/rasgadostransp.png");
-
         background-repeat: no-repeat;
-
         background-position: center bottom;
-
         background-size: 100% 90px;
-
         transform: rotate(180deg);
-
         z-index: 10;
-
         pointer-events: none;
     }
-
 
     .ceremony-image {
         height: 320px;
@@ -2510,18 +2826,14 @@ section h2 {
 
     .itinerary-item {
         width: 470px;
-
         min-height: 105px;
-
         padding: 14px 30px;
-
         gap: 28px;
     }
 
     .itinerary-icon {
         width: 82px;
         height: 82px;
-
         flex: 0 0 82px;
     }
 
@@ -2540,5 +2852,103 @@ section h2 {
 
     .itinerary-item p {
         font-size: 26px;
+    }
+
+
+    /* =====================================================
+       REGALO — COMPUTADORA
+    ===================================================== */
+
+    .gift {
+        min-height: 610px;
+        padding-top: 90px;
+        padding-bottom: 80px;
+        background: #B7C9B2;
+    }
+
+    .gift-content {
+        max-width: 720px;
+    }
+
+    .gift h2 {
+        font-size: 55px;
+    }
+
+    .gift-main-message {
+        font-size: 40px;
+        color: #526653;
+    }
+
+    .gift-message {
+        font-size: 25px;
+    }
+
+    .gift-bank-card {
+        width: 570px;
+        padding: 24px 32px 22px;
+    }
+
+    .gift-bank-info strong {
+        font-size: 29px;
+    }
+
+    .gift-closing {
+        font-size: 31px;
+    }
+
+
+    /* =====================================================
+       COUNTDOWN — NOS VEMOS EN — COMPUTADORA
+    ===================================================== */
+
+    .countdown {
+        min-height: 650px;
+
+        padding-top: 105px;
+
+        padding-bottom: 95px;
+    }
+
+    .countdown-ornament {
+        width: 150px;
+        height: 34px;
+    }
+
+    .countdown-ornament svg {
+        width: 150px;
+        height: 34px;
+    }
+
+    .countdown h2 {
+        font-size: 68px;
+    }
+
+    .countdown-subtitle {
+        font-size: 22px;
+    }
+
+    .timer {
+        width: min(850px, 100%);
+
+        margin-top: 46px;
+    }
+
+    .timer-item {
+        min-width: 145px;
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .timer-item > span {
+        font-size: 72px;
+    }
+
+    .timer-item small {
+        font-size: 15px;
+    }
+
+    .countdown-closing {
+        font-size: 35px;
     }
 }
