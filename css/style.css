@@ -53,6 +53,8 @@ a {
 
     --white: #FFFFFF;
 
+    --dress-black: #000000;
+
     --tear-height: 70px;
 }
 
@@ -346,12 +348,6 @@ a {
     position: relative;
 
     background: var(--sage-light);
-
-    /*
-       IMPORTANTE:
-       La invitación NO usa display:none.
-       Se prepara detrás del sobre desde el inicio.
-    */
 
     display: block;
 
@@ -1112,10 +1108,10 @@ section h2 {
     max-width: 900px;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
+
+    transform: translateY(-35px);
 }
 
 .event h2 {
@@ -1233,7 +1229,6 @@ section h2 {
 ========================================================= */
 
 .map-button {
-
     display: inline-flex;
 
     align-items: center;
@@ -1305,14 +1300,19 @@ section h2 {
     font-size: 55px;
 }
 
+
+/* =========================================================
+   DRESS FORMAL
+========================================================= */
+
 .dress-formal {
-    margin: 0;
+    margin: 18px 0 22px;
 
     font-size: 38px;
 
     font-weight: 600;
 
-    line-height: 1;
+    line-height: 1.15;
 
     letter-spacing: 2px;
 
@@ -1352,50 +1352,94 @@ section h2 {
     justify-content: center;
     align-items: center;
 
-    gap: 30px;
+    gap: 32px;
 
-    margin-top: 28px;
+    margin-top: 30px;
+
+    min-height: 120px;
 }
 
 .dress-icon {
-    width: 68px;
-    height: 68px;
+    width: 105px;
+    height: 120px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
+    background: transparent;
 
-    background: rgba(196,154,69,0.12);
+    border: none;
 
-    border: 1px solid rgba(196,154,69,0.40);
+    position: relative;
 
-    box-shadow:
-        0 5px 14px rgba(80,60,30,0.12);
+    transition:
+        transform 0.25s ease;
 }
 
-.dress-icon svg {
-    width: 52px;
-    height: 52px;
+.dress-icon img {
+    display: block;
 
-    fill: none;
+    width: 100%;
+    height: 100%;
 
-    stroke: var(--gold);
+    object-fit: contain;
 
-    stroke-width: 1.8;
+    object-position: center;
 
-    stroke-linecap: round;
+    background: transparent;
+}
 
-    stroke-linejoin: round;
+.dress-icon .dress-svg {
+    width: 92px;
+    height: 120px;
+}
+
+.dress-icon .suit-svg {
+    width: 92px;
+    height: 120px;
+}
+
+.dress-icon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -5px;
+
+    width: 30px;
+    height: 1px;
+
+    transform: translateX(-50%);
+
+    background: rgba(32,35,31,0.25);
+}
+
+.dress-icon:hover {
+    transform: translateY(-4px);
 }
 
 .dress-divider {
     width: 1px;
-    height: 38px;
 
-    background: rgba(196,154,69,0.45);
+    height: 60px;
+
+    background: rgba(32,35,31,0.25);
+
+    margin: 0 2px;
+}
+
+
+/* =========================================================
+   DRESS CODE — POSICIÓN
+========================================================= */
+
+.dress-code {
+    justify-content: flex-start;
+
+    padding-top: 55px;
 }
 
 
@@ -1464,24 +1508,113 @@ section h2 {
 
 /* =========================================================
    ITINERARIO
+   ICONO GRANDE + NOMBRE + HORA
+========================================================= */
+
+.itinerary {
+    text-align: center;
+}
+
+.itinerary .section-content {
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   CONTENEDOR DE CADA MOMENTO
 ========================================================= */
 
 .itinerary-item {
-    width: min(400px, 90%);
+    width: min(470px, 92%);
 
-    margin: 12px auto;
+    min-height: 100px;
 
-    padding: 15px 30px;
+    margin: 13px auto;
 
-    border-left: 2px solid var(--gold);
+    padding: 14px 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 24px;
+
+    border-left: none;
+
+    border-bottom: 1px solid rgba(196,154,69,0.35);
+
+    text-align: left;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.itinerary-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   ICONO
+========================================================= */
+
+.itinerary-icon {
+    width: 78px;
+    height: 78px;
+
+    flex: 0 0 78px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--gold);
+}
+
+.itinerary-icon svg {
+    width: 70px;
+    height: 70px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.itinerary-info {
+    min-width: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
 }
 
 .itinerary-item h3 {
-    margin-bottom: 3px;
+    margin: 0 0 2px;
 
     font-family: 'Great Vibes', cursive;
 
     font-size: 38px;
+
+    line-height: 1;
 
     font-weight: 400;
 
@@ -1491,11 +1624,28 @@ section h2 {
 .itinerary-item p {
     margin: 0;
 
-    font-size: 24px;
+    font-family: 'Cormorant Garamond', serif;
 
-    font-weight: 500;
+    font-size: 25px;
+
+    line-height: 1.2;
+
+    font-weight: 600;
 
     color: var(--dark-text);
+}
+
+
+/* =========================================================
+   HOVER ITINERARIO
+========================================================= */
+
+.itinerary-item:hover {
+    transform: translateY(-3px);
+}
+
+.itinerary-item:hover .itinerary-icon {
+    transform: scale(1.04);
 }
 
 
@@ -1743,7 +1893,9 @@ section h2 {
     }
 
 
-    /* PORTADA */
+    /* =====================================================
+       PORTADA
+    ===================================================== */
 
     .hero-image {
         height: 420px;
@@ -1813,7 +1965,9 @@ section h2 {
     }
 
 
-    /* SECCIONES */
+    /* =====================================================
+       SECCIONES
+    ===================================================== */
 
     .message,
     .event,
@@ -1824,12 +1978,24 @@ section h2 {
     .album,
     .countdown,
     .closing {
-        min-height: 600px;
-        padding: 90px 20px 80px;
+        min-height: 520px;
+        padding: 80px 20px 65px;
     }
 
 
-    /* RASGADOS */
+    /* =====================================================
+       DRESS CODE
+    ===================================================== */
+
+    .dress-code {
+        justify-content: flex-start;
+        padding-top: 50px;
+    }
+
+
+    /* =====================================================
+       RASGADOS
+    ===================================================== */
 
     .dress-code::before,
     .confirmation::before,
@@ -1844,12 +2010,14 @@ section h2 {
     }
 
 
-    /* MENSAJE */
+    /* =====================================================
+       MENSAJE
+    ===================================================== */
 
     .message {
-        min-height: 540px;
-        padding-top: 90px;
-        padding-bottom: 90px;
+        min-height: 520px;
+        padding-top: 80px;
+        padding-bottom: 70px;
     }
 
     .message::before {
@@ -1886,54 +2054,132 @@ section h2 {
     }
 
 
-    /* CEREMONIA */
+    /* =====================================================
+       CEREMONIA
+    ===================================================== */
 
     .event {
-        padding-top: 90px;
+        padding-top: 30px;
+        padding-bottom: 70px;
+    }
+
+    .ceremony-content {
+        width: 100%;
+        max-width: 100%;
+        transform: translateY(-15px);
     }
 
     .event h2 {
-        margin-bottom: 15px;
+        margin: 0 0 10px;
         font-size: 43px;
+        line-height: 1.05;
     }
 
     .ceremony-place {
-        margin-bottom: 20px;
+        margin: 0 15px 20px;
         font-size: 19px;
+        line-height: 1.25;
+        font-weight: 600;
     }
 
+
+    /* =====================================================
+       IMAGEN CEREMONIA
+    ===================================================== */
+
     .ceremony-image {
-        height: 220px;
-        margin-bottom: 55px;
+        width: 100vw;
+
+        height: 215px;
+
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+
+        margin-bottom: 52px;
+
+        position: relative;
+
+        overflow: visible;
+
+        z-index: 3;
+    }
+
+    .ceremony-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
     }
 
     .ceremony-image::before,
     .ceremony-image::after {
-        height: 52px;
-        background-size: 100% 52px;
+        height: 50px;
+        background-size: 100% 50px;
     }
 
     .ceremony-image::before {
-        top: -16px;
+        top: -15px;
+        background-position: center bottom;
     }
 
     .ceremony-image::after {
-        bottom: -16px;
+        bottom: -15px;
+        background-position: center top;
+        transform: rotate(180deg);
     }
+
+
+    /* =====================================================
+       DIRECCIÓN
+    ===================================================== */
 
     .ceremony-address {
-        max-width: 94%;
-        margin-bottom: 20px;
+        width: 100%;
+        max-width: 330px;
+
+        margin: 0 auto 20px;
+
+        padding: 0 10px;
+
         font-size: 21px;
+
+        line-height: 1.4;
+
+        font-weight: 500;
     }
+
+
+    /* =====================================================
+       MAPA
+    ===================================================== */
 
     .map-button {
-        padding: 11px 22px;
-        font-size: 19px;
+        min-height: 46px;
+
+        padding: 10px 22px;
+
+        gap: 8px;
+
+        border-radius: 50px;
+
+        font-size: 18px;
+    }
+
+    .map-icon {
+        width: 19px;
+        height: 19px;
+    }
+
+    .map-icon svg {
+        width: 17px;
+        height: 17px;
     }
 
 
-    /* DRESS */
+    /* =====================================================
+       DRESS
+    ===================================================== */
 
     .dress-code-content {
         width: 94%;
@@ -1944,8 +2190,12 @@ section h2 {
     }
 
     .dress-formal {
+        margin: 15px 0 20px;
         font-size: 30px;
+        font-weight: 600;
+        line-height: 1.15;
         letter-spacing: 1.5px;
+        color: var(--gold);
     }
 
     .dress-message {
@@ -1960,27 +2210,46 @@ section h2 {
         line-height: 1.35;
     }
 
+
+    /* =====================================================
+       ICONOS DRESS
+    ===================================================== */
+
     .dress-icons {
         gap: 18px;
-        margin-top: 23px;
+        margin-top: 24px;
+        min-height: 95px;
     }
 
     .dress-icon {
-        width: 48px;
-        height: 48px;
+        width: 78px;
+        height: 95px;
     }
 
-    .dress-icon svg {
-        width: 37px;
-        height: 37px;
+    .dress-icon .dress-svg {
+        width: 72px;
+        height: 94px;
+    }
+
+    .dress-icon .suit-svg {
+        width: 72px;
+        height: 94px;
+    }
+
+    .dress-icon::after {
+        width: 23px;
+        bottom: -3px;
     }
 
     .dress-divider {
-        height: 28px;
+        height: 45px;
+        background: rgba(32,35,31,0.22);
     }
 
 
-    /* TEXTOS */
+    /* =====================================================
+       TEXTOS
+    ===================================================== */
 
     .dress-code p,
     .confirmation p,
@@ -1992,7 +2261,9 @@ section h2 {
     }
 
 
-    /* BOTONES */
+    /* =====================================================
+       BOTONES
+    ===================================================== */
 
     .confirm-button,
     .album-button {
@@ -2002,16 +2273,52 @@ section h2 {
     }
 
 
-    /* ITINERARIO */
+    /* =====================================================
+       ITINERARIO — CELULAR
+    ===================================================== */
+
+    .itinerary {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .itinerary .section-content {
+        width: 100%;
+    }
 
     .itinerary-item {
-        width: 90%;
-        margin: 12px auto;
-        padding: 12px 20px;
+        width: min(370px, 94%);
+
+        min-height: 88px;
+
+        margin: 10px auto;
+
+        padding: 10px 8px;
+
+        gap: 17px;
+
+        justify-content: center;
+    }
+
+    .itinerary-icon {
+        width: 65px;
+        height: 65px;
+
+        flex: 0 0 65px;
+    }
+
+    .itinerary-icon svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .itinerary-info {
+        min-width: 145px;
     }
 
     .itinerary-item h3 {
-        font-size: 34px;
+        margin-bottom: 2px;
+        font-size: 32px;
     }
 
     .itinerary-item p {
@@ -2019,7 +2326,9 @@ section h2 {
     }
 
 
-    /* COUNTDOWN */
+    /* =====================================================
+       COUNTDOWN
+    ===================================================== */
 
     .countdown h2 {
         font-size: 47px;
@@ -2045,7 +2354,9 @@ section h2 {
     }
 
 
-    /* CIERRE */
+    /* =====================================================
+       CIERRE
+    ===================================================== */
 
     .closing h1 {
         max-width: 100%;
@@ -2059,7 +2370,9 @@ section h2 {
     }
 
 
-    /* MÚSICA */
+    /* =====================================================
+       MÚSICA
+    ===================================================== */
 
     .music-button {
         right: 16px;
@@ -2110,6 +2423,11 @@ section h2 {
         font-size: 60px;
     }
 
+
+    /* =====================================================
+       SECCIONES
+    ===================================================== */
+
     .message,
     .event,
     .dress-code,
@@ -2119,25 +2437,108 @@ section h2 {
     .album,
     .countdown,
     .closing {
-        min-height: 650px;
+        min-height: 560px;
+        padding: 85px 25px 70px;
     }
+
 
     .message::after {
         left: 0;
         bottom: -1px;
         width: 100%;
         height: 90px;
+
         background-image:
             url("../assets/images/rasgadostransp.png");
+
         background-repeat: no-repeat;
+
         background-position: center bottom;
+
         background-size: 100% 90px;
+
         transform: rotate(180deg);
+
         z-index: 10;
+
         pointer-events: none;
     }
 
+
     .ceremony-image {
         height: 320px;
+    }
+
+
+    /* =====================================================
+       ICONOS DRESS
+    ===================================================== */
+
+    .dress-icons {
+        gap: 36px;
+        margin-top: 30px;
+        min-height: 125px;
+    }
+
+    .dress-icon {
+        width: 110px;
+        height: 125px;
+    }
+
+    .dress-icon .dress-svg {
+        width: 98px;
+        height: 125px;
+    }
+
+    .dress-icon .suit-svg {
+        width: 98px;
+        height: 125px;
+    }
+
+    .dress-divider {
+        height: 62px;
+    }
+
+
+    /* =====================================================
+       ITINERARIO — COMPUTADORA
+    ===================================================== */
+
+    .itinerary .section-content {
+        max-width: 650px;
+    }
+
+    .itinerary-item {
+        width: 470px;
+
+        min-height: 105px;
+
+        padding: 14px 30px;
+
+        gap: 28px;
+    }
+
+    .itinerary-icon {
+        width: 82px;
+        height: 82px;
+
+        flex: 0 0 82px;
+    }
+
+    .itinerary-icon svg {
+        width: 75px;
+        height: 75px;
+    }
+
+    .itinerary-info {
+        min-width: 210px;
+    }
+
+    .itinerary-item h3 {
+        font-size: 40px;
+    }
+
+    .itinerary-item p {
+        font-size: 26px;
     }
 }
