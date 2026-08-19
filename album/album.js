@@ -1,6 +1,7 @@
 /* =========================================================
    ÁLBUM — ELIZABETH & CARLOS
    INTERACCIONES + LIGHTBOX CARRUSEL
+   SECCIÓN INDEPENDIENTE
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("closeShareModal");
 
     const modalBackdrop =
-        document.querySelector(".modal-backdrop");
+        shareModal?.querySelector(".modal-backdrop");
 
     const photoInput =
         document.getElementById("photoInput");
@@ -73,18 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        ESTILOS DEL CARRUSEL
-       Se agregan desde JS para no alterar el diseño
-       existente del álbum.
     ====================================================== */
 
     const carouselStyles =
         document.createElement("style");
 
     carouselStyles.textContent = `
-
-        /* ===============================================
-           CONTROLES DEL CARRUSEL
-        ================================================ */
 
         .lightbox-nav {
 
@@ -176,10 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ===============================================
-           CONTADOR DEL LIGHTBOX
-        ================================================ */
-
         .lightbox-counter {
 
             position: absolute;
@@ -227,10 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ===============================================
-           TRANSICIÓN DE LA FOTO
-        ================================================ */
-
         .lightbox-image-changing {
 
             opacity: 0;
@@ -250,10 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ===============================================
-           TABLET
-        ================================================ */
-
         @media (max-width: 850px) {
 
             .lightbox-nav {
@@ -266,13 +249,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
             .lightbox-prev {
 
                 left: 14px;
 
             }
-
 
             .lightbox-next {
 
@@ -283,10 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ===============================================
-           MÓVIL
-        ================================================ */
-
         @media (max-width: 600px) {
 
             .lightbox {
@@ -295,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     10px;
 
             }
-
 
             .lightbox-nav {
 
@@ -310,20 +286,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
             .lightbox-prev {
 
                 left: 8px;
 
             }
 
-
             .lightbox-next {
 
                 right: 8px;
 
             }
-
 
             .lightbox-counter {
 
@@ -336,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     11px;
 
             }
-
 
             .lightbox-caption {
 
@@ -351,10 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ===============================================
-           MÓVIL MUY PEQUEÑO
-        ================================================ */
-
         @media (max-width: 380px) {
 
             .lightbox-nav {
@@ -367,13 +335,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
             .lightbox-prev {
 
                 left: 5px;
 
             }
-
 
             .lightbox-next {
 
@@ -391,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CREAR CONTROLES DEL LIGHTBOX
+       CONTROLES DEL LIGHTBOX
     ====================================================== */
 
     let previousButton = null;
@@ -407,10 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /* ===============================================
-           BOTÓN ANTERIOR
-        ================================================ */
 
         previousButton =
             document.createElement("button");
@@ -430,10 +392,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "‹";
 
 
-        /* ===============================================
-           BOTÓN SIGUIENTE
-        ================================================ */
-
         nextButton =
             document.createElement("button");
 
@@ -452,10 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "›";
 
 
-        /* ===============================================
-           CONTADOR
-        ================================================ */
-
         lightboxCounter =
             document.createElement("div");
 
@@ -467,10 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "polite"
         );
 
-
-        /* ===============================================
-           INSERTAR
-        ================================================ */
 
         lightbox.appendChild(
             previousButton
@@ -485,10 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        /* ===============================================
-           EVENTOS
-        ================================================ */
-
         previousButton.addEventListener(
             "click",
             (event) => {
@@ -496,6 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.stopPropagation();
 
                 showPreviousPhoto();
+
             }
         );
 
@@ -507,6 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.stopPropagation();
 
                 showNextPhoto();
+
             }
         );
 
@@ -517,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ABRIR MODAL
+       MODAL — ABRIR
     ====================================================== */
 
     function openShareModal() {
@@ -538,11 +486,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.body.style.overflow =
             "hidden";
+
     }
 
 
     /* =====================================================
-       CERRAR MODAL
+       MODAL — CERRAR
     ====================================================== */
 
     function closeShare() {
@@ -563,6 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.body.style.overflow =
             "";
+
     }
 
 
@@ -635,7 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       VISTA PREVIA
+       PREVISUALIZACIÓN
     ====================================================== */
 
     function renderPreviews() {
@@ -770,7 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const name =
-                    guestName.value.trim();
+                    guestName?.value.trim() || "";
 
 
                 if (!name) {
@@ -779,7 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Escribe tu nombre para aparecer en el álbum."
                     );
 
-                    guestName.focus();
+                    guestName?.focus();
 
                     return;
 
@@ -796,16 +746,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectedFiles = [];
 
 
-                photoInput.value =
-                    "";
+                if (photoInput) {
+
+                    photoInput.value =
+                        "";
+
+                }
 
 
-                previewContainer.innerHTML =
-                    "";
+                if (previewContainer) {
+
+                    previewContainer.innerHTML =
+                        "";
+
+                }
 
 
-                guestName.value =
-                    "";
+                if (guestName) {
+
+                    guestName.value =
+                        "";
+
+                }
 
 
                 closeShare();
@@ -832,8 +794,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 albumGallery.scrollIntoView({
+
                     behavior: "smooth",
+
                     block: "start"
+
                 });
 
             }
@@ -844,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        OBTENER FOTOGRAFÍAS REALES
-       ================================================ */
+    ====================================================== */
 
     function getGalleryPhotos() {
 
@@ -868,15 +833,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const image =
                     photo.dataset.image;
 
-
-                /*
-                   Solamente incluimos fotografías
-                   reales.
-
-                   Los placeholders no tienen
-                   data-image y por eso quedan
-                   fuera del carrusel.
-                */
 
                 if (!image) {
                     return;
@@ -942,11 +898,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `${currentPhotoIndex + 1} / ${galleryPhotos.length}`;
 
 
-        /*
-           Si solo existe una fotografía,
-           ocultamos las flechas.
-        */
-
         const showNavigation =
             galleryPhotos.length > 1;
 
@@ -974,20 +925,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       MOSTRAR FOTOGRAFÍA
+       MOSTRAR FOTO
     ====================================================== */
 
     function showPhoto(
         index,
         animate = true
     ) {
-
-        /*
-           Volvemos a consultar la galería.
-           Así las nuevas fotografías que se
-           agreguen posteriormente también
-           pueden entrar al carrusel.
-        */
 
         const updatedPhotos =
             getGalleryPhotos();
@@ -1006,13 +950,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatedPhotos;
 
 
-        /*
-           Normalizar índice.
-        */
-
-        if (
-            index < 0
-        ) {
+        if (index < 0) {
 
             index =
                 galleryPhotos.length - 1;
@@ -1043,10 +981,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /*
-           Transición de salida.
-        */
 
         if (
             animate &&
@@ -1081,7 +1015,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ACTUALIZAR IMAGEN DEL LIGHTBOX
+       ACTUALIZAR IMAGEN
     ====================================================== */
 
     function updateLightboxImage(
@@ -1126,10 +1060,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       FOTO ANTERIOR
+       ANTERIOR
     ====================================================== */
 
     function showPreviousPhoto() {
+
+        galleryPhotos =
+            getGalleryPhotos();
+
 
         if (
             galleryPhotos.length <= 1
@@ -1138,15 +1076,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
 
         }
-
-
-        /*
-           Recargar lista para detectar
-           fotografías nuevas.
-        */
-
-        galleryPhotos =
-            getGalleryPhotos();
 
 
         currentPhotoIndex =
@@ -1171,10 +1100,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       FOTO SIGUIENTE
+       SIGUIENTE
     ====================================================== */
 
     function showNextPhoto() {
+
+        galleryPhotos =
+            getGalleryPhotos();
+
 
         if (
             galleryPhotos.length <= 1
@@ -1183,15 +1116,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
 
         }
-
-
-        /*
-           Recargar lista para detectar
-           fotografías nuevas.
-        */
-
-        galleryPhotos =
-            getGalleryPhotos();
 
 
         currentPhotoIndex =
@@ -1236,11 +1160,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /*
-                   Si es un placeholder,
-                   no hacemos nada.
-                */
-
                 const image =
                     photoButton.dataset.image;
 
@@ -1249,11 +1168,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-
-                /*
-                   Buscar nuevamente las fotos
-                   reales de la galería.
-                */
 
                 galleryPhotos =
                     getGalleryPhotos();
@@ -1286,15 +1200,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
-                lightbox.classList.add(
-                    "is-open"
-                );
+                if (lightbox) {
 
+                    lightbox.classList.add(
+                        "is-open"
+                    );
 
-                lightbox.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
+                    lightbox.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
 
 
                 document.body.style.overflow =
@@ -1371,7 +1288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLIC EN FONDO DEL LIGHTBOX
+       FONDO LIGHTBOX
     ====================================================== */
 
     if (lightbox) {
@@ -1379,14 +1296,6 @@ document.addEventListener("DOMContentLoaded", () => {
         lightbox.addEventListener(
             "click",
             (event) => {
-
-                /*
-                   Solo cerramos cuando se pulsa
-                   directamente sobre el fondo.
-
-                   Los botones de navegación,
-                   imagen y caption no cierran.
-                */
 
                 if (
                     event.target ===
@@ -1410,10 +1319,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener(
         "keydown",
         (event) => {
-
-            /*
-               ESC
-            */
 
             if (
                 event.key ===
@@ -1447,12 +1352,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            /*
-               Las flechas solamente
-               funcionan cuando el Lightbox
-               está abierto.
-            */
 
             if (
                 !lightbox ||
@@ -1494,7 +1393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       TOUCH / SWIPE PARA MÓVIL
+       TOUCH / SWIPE
     ====================================================== */
 
     if (lightbox) {
@@ -1557,12 +1456,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     touchEndX;
 
 
-                /*
-                   Necesitamos un desplazamiento
-                   mínimo de 50px para considerar
-                   que realmente fue un swipe.
-                */
-
                 const minimumSwipe =
                     50;
 
@@ -1581,19 +1474,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     difference > 0
                 ) {
 
-                    /*
-                       Deslizó hacia la izquierda
-                       → siguiente fotografía.
-                    */
-
                     showNextPhoto();
 
                 } else {
-
-                    /*
-                       Deslizó hacia la derecha
-                       → fotografía anterior.
-                    */
 
                     showPreviousPhoto();
 
@@ -1609,7 +1492,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CONTADOR PRINCIPAL DEL ÁLBUM
+       CONTADOR PRINCIPAL
     ====================================================== */
 
     function updateCounter() {
@@ -1621,7 +1504,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const photos =
             document.querySelectorAll(
-                ".memory"
+                ".album-page .memory"
             );
 
 
@@ -1632,6 +1515,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     updateCounter();
-
 
 });

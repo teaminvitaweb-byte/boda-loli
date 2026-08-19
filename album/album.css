@@ -2,81 +2,46 @@
    ÁLBUM — ELIZABETH & CARLOS
    DISEÑO EDITORIAL / MASONRY CONTROLADO
    SAGE + CREMA + DORADO
+
+   IMPORTANTE:
+   TODO EL CSS ESTÁ AISLADO DEL RESTO DE LA INVITACIÓN.
 ========================================================= */
 
 
 /* =========================================================
-   VARIABLES
+   VARIABLES EXCLUSIVAS DEL ÁLBUM
 ========================================================= */
 
-:root {
+.album-page {
 
-    --sage-dark: #536653;
-    --sage: #B7C9B2;
-    --sage-light: #D6E2D1;
-    --sage-text: #394638;
+    --album-sage-dark: #536653;
+    --album-sage: #B7C9B2;
+    --album-sage-light: #D6E2D1;
+    --album-sage-text: #394638;
 
-    --cream: #F6F3EA;
-    --cream-light: #FAF8F3;
+    --album-cream: #F6F3EA;
+    --album-cream-light: #FAF8F3;
 
-    --gold: #C49A45;
-    --gold-dark: #8C6B2F;
-    --gold-soft: rgba(196,154,69,0.25);
+    --album-gold: #C49A45;
+    --album-gold-dark: #8C6B2F;
+    --album-gold-soft: rgba(196,154,69,0.25);
 
-    --dark-text: #20231F;
+    --album-dark-text: #20231F;
 
-    --white: #FFFFFF;
-
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-
-    margin: 0;
-
-    padding: 0;
-
-    box-sizing: border-box;
-
-}
-
-
-html {
-
-    scroll-behavior: smooth;
-
-}
-
-
-body {
-
-    margin: 0;
-
-    background: var(--cream);
-
-    color: var(--dark-text);
-
-    font-family:
-        'Cormorant Garamond',
-        Georgia,
-        serif;
-
-    -webkit-font-smoothing: antialiased;
+    --album-white: #FFFFFF;
 
 }
 
 
 /* =========================================================
-   ÁLBUM
+   ÁLBUM PRINCIPAL
 ========================================================= */
 
 .album-page {
 
     position: relative;
+
+    width: 100%;
 
     min-height: 100vh;
 
@@ -94,6 +59,24 @@ body {
             #DCE6D8 42%,
             #D6E2D1 100%
         );
+
+    color: var(--album-dark-text);
+
+    font-family:
+        'Cormorant Garamond',
+        Georgia,
+        serif;
+
+    -webkit-font-smoothing: antialiased;
+
+}
+
+
+.album-page *,
+.album-page *::before,
+.album-page *::after {
+
+    box-sizing: border-box;
 
 }
 
@@ -142,6 +125,8 @@ body {
 
 .album-header h1 {
 
+    margin: 0;
+
     font-family:
         'Great Vibes',
         cursive;
@@ -175,7 +160,7 @@ body {
 
 
 /* =========================================================
-   ORNAMENTO SUPERIOR
+   ORNAMENTO
 ========================================================= */
 
 .album-title-line {
@@ -195,7 +180,7 @@ body {
         linear-gradient(
             to right,
             transparent,
-            var(--gold),
+            var(--album-gold),
             transparent
         );
 
@@ -216,7 +201,7 @@ body {
 
     letter-spacing: 0.3px;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -303,7 +288,7 @@ body {
     background:
         rgba(250,248,243,0.82);
 
-    color: var(--dark-text);
+    color: var(--album-dark-text);
 
 }
 
@@ -317,7 +302,7 @@ body {
     background:
         rgba(255,255,255,0.38);
 
-    color: var(--dark-text);
+    color: var(--album-dark-text);
 
 }
 
@@ -343,7 +328,7 @@ body {
 
     border-radius: 50%;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
     background:
         rgba(196,154,69,0.08);
@@ -406,7 +391,7 @@ body {
 
     line-height: 1.25;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -424,7 +409,7 @@ body {
 
     font-weight: 300;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
@@ -464,7 +449,7 @@ body {
         Georgia,
         serif;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -475,7 +460,7 @@ body {
 
     font-weight: 600;
 
-    color: var(--gold-dark);
+    color: var(--album-gold-dark);
 
 }
 
@@ -503,7 +488,7 @@ body {
 
     justify-content: center;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
@@ -601,7 +586,7 @@ body {
 
     font-size: 20px;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
@@ -625,7 +610,6 @@ body {
 
 /* =========================================================
    FOTO 1
-   OCUPA TODO EL ANCHO
 ========================================================= */
 
 .memory-1 {
@@ -660,18 +644,13 @@ body {
 
     gap: 28px;
 
-    /*
-       Ambas columnas tendrán exactamente
-       la misma altura.
-    */
-
     align-items: stretch;
 
 }
 
 
 /* =========================================================
-   COLUMNA IZQUIERDA — FOTO 2
+   FOTO 2
 ========================================================= */
 
 .memory-2 {
@@ -687,12 +666,6 @@ body {
 
 .memory-2 .memory-photo {
 
-    /*
-       La fotografía ocupa el espacio disponible.
-       La altura final queda determinada por
-       la altura total del bloque derecho.
-    */
-
     flex: 1;
 
     min-height: 0;
@@ -702,7 +675,6 @@ body {
 
 /* =========================================================
    COLUMNA DERECHA
-   FOTO 3 + FOTO 4
 ========================================================= */
 
 .album-right-column {
@@ -779,7 +751,7 @@ body {
 
     cursor: pointer;
 
-    background: var(--cream);
+    background: var(--album-cream);
 
     box-shadow:
         0 12px 28px
@@ -788,6 +760,8 @@ body {
     transition:
         transform 0.35s ease,
         box-shadow 0.35s ease;
+
+    font: inherit;
 
 }
 
@@ -829,7 +803,7 @@ body {
 
 
 /* =========================================================
-   MARCO EDITORIAL
+   MARCO
 ========================================================= */
 
 .memory-photo::after {
@@ -912,7 +886,7 @@ body {
     background:
         rgba(250,248,243,0.94);
 
-    color: var(--gold-dark);
+    color: var(--album-gold-dark);
 
     box-shadow:
         0 7px 20px
@@ -995,7 +969,7 @@ body {
 
     text-align: center;
 
-    color: var(--gold-dark);
+    color: var(--album-gold-dark);
 
 }
 
@@ -1047,11 +1021,13 @@ body {
 
 .placeholder-content p {
 
+    margin: 0;
+
     font-size: 19px;
 
     letter-spacing: 0.5px;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -1085,7 +1061,7 @@ body {
 
     line-height: 1.15;
 
-    color: var(--dark-text);
+    color: var(--album-dark-text);
 
 }
 
@@ -1100,7 +1076,7 @@ body {
 
     letter-spacing: 0.4px;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -1144,7 +1120,7 @@ body {
         linear-gradient(
             to right,
             transparent,
-            var(--gold),
+            var(--album-gold),
             transparent
         );
 
@@ -1182,12 +1158,14 @@ body {
 
     font-size: 14px;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
 
 .album-closing p {
+
+    margin: 0;
 
     font-family:
         'Great Vibes',
@@ -1197,7 +1175,7 @@ body {
 
     line-height: 1.25;
 
-    color: var(--gold-dark);
+    color: var(--album-gold-dark);
 
 }
 
@@ -1296,6 +1274,18 @@ body {
 
     text-align: center;
 
+    font-family:
+        'Cormorant Garamond',
+        Georgia,
+        serif;
+
+}
+
+
+.modal-card * {
+
+    box-sizing: border-box;
+
 }
 
 
@@ -1315,7 +1305,7 @@ body {
 
     background: transparent;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
     font-family: Arial, sans-serif;
 
@@ -1343,7 +1333,7 @@ body {
 
     justify-content: center;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
@@ -1369,7 +1359,10 @@ body {
 
 .modal-kicker {
 
-    margin-bottom: 7px;
+    margin:
+        0
+        0
+        7px;
 
     font-size: 12px;
 
@@ -1377,12 +1370,14 @@ body {
 
     letter-spacing: 3px;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
 
 .modal-card h2 {
+
+    margin: 0;
 
     font-family:
         'Great Vibes',
@@ -1394,7 +1389,7 @@ body {
 
     line-height: 1;
 
-    color: var(--gold-dark);
+    color: var(--album-gold-dark);
 
 }
 
@@ -1419,7 +1414,7 @@ body {
 
     line-height: 1.45;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -1470,7 +1465,7 @@ body {
 
     justify-content: center;
 
-    color: var(--gold);
+    color: var(--album-gold);
 
 }
 
@@ -1509,7 +1504,7 @@ body {
 
     font-size: 14px;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -1542,7 +1537,7 @@ body {
 
     border-radius: 5px;
 
-    background: var(--sage-light);
+    background: var(--album-sage-light);
 
 }
 
@@ -1607,7 +1602,7 @@ body {
 
     font-weight: 600;
 
-    color: var(--sage-text);
+    color: var(--album-sage-text);
 
 }
 
@@ -1640,13 +1635,13 @@ body {
 
     font-size: 17px;
 
-    color: var(--dark-text);
+    color: var(--album-dark-text);
 
 }
 
 
 /* =========================================================
-   BOTÓN
+   BOTÓN COMPARTIR
 ========================================================= */
 
 .share-submit {
@@ -1662,9 +1657,9 @@ body {
     border-radius: 50px;
 
     background:
-        var(--sage-dark);
+        var(--album-sage-dark);
 
-    color: var(--cream);
+    color: var(--album-cream);
 
     font-family:
         'Cormorant Garamond',
@@ -1688,7 +1683,26 @@ body {
 
     vertical-align: middle;
 
-    color: var(--gold);
+    color: var(--album-gold);
+
+}
+
+
+.share-submit svg {
+
+    width: 20px;
+
+    height: 20px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
 
 }
 
@@ -1770,25 +1784,6 @@ body {
 }
 
 
-.lightbox-caption {
-
-    position: absolute;
-
-    left: 20px;
-
-    right: 20px;
-
-    bottom: 18px;
-
-    text-align: center;
-
-    color: var(--cream);
-
-    font-size: 18px;
-
-}
-
-
 /* =========================================================
    TABLET
 ========================================================= */
@@ -1804,13 +1799,11 @@ body {
 
     }
 
-
     .album-gallery {
 
         width: min(700px, 94%);
 
     }
-
 
     .album-bottom-grid {
 
@@ -1818,13 +1811,11 @@ body {
 
     }
 
-
     .album-right-column {
 
         gap: 20px;
 
     }
-
 
     .memory-1 .memory-photo {
 
@@ -1850,7 +1841,6 @@ body {
 
     }
 
-
     .album-header h1 {
 
         font-size:
@@ -1864,7 +1854,6 @@ body {
 
     }
 
-
     .album-title-line {
 
         margin:
@@ -1873,7 +1862,6 @@ body {
             15px;
 
     }
-
 
     .album-intro {
 
@@ -1886,9 +1874,7 @@ body {
     }
 
 
-    /* =====================================================
-       ACCIONES
-    ====================================================== */
+    /* ACCIONES */
 
     .album-actions {
 
@@ -1901,7 +1887,6 @@ body {
         gap: 10px;
 
     }
-
 
     .album-action {
 
@@ -1917,7 +1902,6 @@ body {
 
     }
 
-
     .action-icon {
 
         width: 42px;
@@ -1928,7 +1912,6 @@ body {
 
     }
 
-
     .action-icon svg {
 
         width: 22px;
@@ -1937,13 +1920,11 @@ body {
 
     }
 
-
     .action-text strong {
 
         font-size: 19px;
 
     }
-
 
     .action-text small {
 
@@ -1952,9 +1933,7 @@ body {
     }
 
 
-    /* =====================================================
-       CONTADOR
-    ====================================================== */
+    /* CONTADOR */
 
     .album-counter {
 
@@ -1964,13 +1943,11 @@ body {
 
     }
 
-
     .counter-number {
 
         font-size: 18px;
 
     }
-
 
     .counter-text {
 
@@ -1979,9 +1956,7 @@ body {
     }
 
 
-    /* =====================================================
-       SEPARADOR
-    ====================================================== */
+    /* SEPARADOR */
 
     .album-divider {
 
@@ -1997,9 +1972,7 @@ body {
     }
 
 
-    /* =====================================================
-       GALERÍA
-    ====================================================== */
+    /* GALERÍA */
 
     .album-gallery {
 
@@ -2007,29 +1980,17 @@ body {
 
     }
 
-
-    /*
-       FOTO 1
-       ANCHO COMPLETO
-    */
-
     .memory-1 {
 
         margin-bottom: 10px;
 
     }
 
-
     .memory-1 .memory-photo {
 
         height: 190px;
 
     }
-
-
-    /*
-       BLOQUE INFERIOR
-    */
 
     .album-bottom-grid {
 
@@ -2039,19 +2000,9 @@ body {
 
         gap: 9px;
 
-        /*
-           Importante:
-           se mantiene una altura común.
-        */
-
         align-items: stretch;
 
     }
-
-
-    /*
-       FOTO 2
-    */
 
     .memory-2 {
 
@@ -2059,21 +2010,11 @@ body {
 
     }
 
-
-    /*
-       DERECHA
-    */
-
     .album-right-column {
 
         gap: 9px;
 
     }
-
-
-    /*
-       Fotos 3 y 4
-    */
 
     .memory-3,
     .memory-4 {
@@ -2082,18 +2023,11 @@ body {
 
     }
 
-
     .memory-photo {
 
         border-radius: 3px;
 
     }
-
-
-    /*
-       La suma de FOTO 3 + FOTO 4
-       es exactamente igual a FOTO 2.
-    */
 
     .memory-2 .memory-photo,
     .memory-3 .memory-photo,
@@ -2104,9 +2038,7 @@ body {
     }
 
 
-    /*
-       INFO
-    */
+    /* INFORMACIÓN */
 
     .memory-info {
 
@@ -2117,7 +2049,6 @@ body {
 
     }
 
-
     .memory-info strong {
 
         font-size: 14px;
@@ -2125,7 +2056,6 @@ body {
         line-height: 1.1;
 
     }
-
 
     .memory-info small {
 
@@ -2138,9 +2068,7 @@ body {
     }
 
 
-    /*
-       PLACEHOLDERS
-    */
+    /* PLACEHOLDERS */
 
     .placeholder-content span {
 
@@ -2152,7 +2080,6 @@ body {
 
     }
 
-
     .placeholder-content span svg {
 
         width: 20px;
@@ -2161,7 +2088,6 @@ body {
 
     }
 
-
     .placeholder-content p {
 
         font-size: 13px;
@@ -2169,9 +2095,7 @@ body {
     }
 
 
-    /*
-       OVERLAY
-    */
+    /* OVERLAY */
 
     .memory-overlay {
 
@@ -2192,7 +2116,6 @@ body {
 
     }
 
-
     .memory-overlay span {
 
         width: 29px;
@@ -2204,7 +2127,6 @@ body {
 
     }
 
-
     .memory-overlay svg {
 
         width: 14px;
@@ -2214,9 +2136,7 @@ body {
     }
 
 
-    /* =====================================================
-       CIERRE
-    ====================================================== */
+    /* CIERRE */
 
     .album-closing {
 
@@ -2225,7 +2145,6 @@ body {
         margin-top: 52px;
 
     }
-
 
     .album-closing p {
 
@@ -2236,16 +2155,13 @@ body {
     }
 
 
-    /* =====================================================
-       MODAL
-    ====================================================== */
+    /* MODAL */
 
     .album-modal {
 
         padding: 10px;
 
     }
-
 
     .modal-card {
 
@@ -2260,20 +2176,17 @@ body {
 
     }
 
-
     .modal-card h2 {
 
         font-size: 42px;
 
     }
 
-
     .modal-description {
 
         font-size: 16px;
 
     }
-
 
     .preview-container {
 
@@ -2285,16 +2198,13 @@ body {
     }
 
 
-    /* =====================================================
-       LIGHTBOX
-    ====================================================== */
+    /* LIGHTBOX */
 
     .lightbox {
 
         padding: 15px;
 
     }
-
 
     .lightbox img {
 
@@ -2303,7 +2213,6 @@ body {
         max-height: 78vh;
 
     }
-
 
     .lightbox-close {
 
@@ -2314,7 +2223,6 @@ body {
         font-size: 34px;
 
     }
-
 
     .lightbox-caption {
 
@@ -2346,13 +2254,11 @@ body {
 
     }
 
-
     .album-header h1 {
 
         font-size: 47px;
 
     }
-
 
     .album-intro {
 
@@ -2360,13 +2266,11 @@ body {
 
     }
 
-
     .album-action {
 
         min-height: 75px;
 
     }
-
 
     .action-text strong {
 
@@ -2374,17 +2278,11 @@ body {
 
     }
 
-
     .action-text small {
 
         font-size: 12px;
 
     }
-
-
-    /*
-       FOTO 1
-    */
 
     .memory-1 .memory-photo {
 
@@ -2392,17 +2290,11 @@ body {
 
     }
 
-
-    /*
-       Mantener proporción del bloque
-    */
-
     .album-bottom-grid {
 
         gap: 7px;
 
     }
-
 
     .album-right-column {
 
@@ -2410,20 +2302,17 @@ body {
 
     }
 
-
     .memory-info strong {
 
         font-size: 12px;
 
     }
 
-
     .memory-info small {
 
         font-size: 9px;
 
     }
-
 
     .memory-overlay span {
 
@@ -2433,7 +2322,6 @@ body {
 
     }
 
-
     .memory-overlay svg {
 
         width: 12px;
@@ -2441,7 +2329,6 @@ body {
         height: 12px;
 
     }
-
 
     .album-closing p {
 
@@ -2464,13 +2351,11 @@ body {
 
     }
 
-
     .album-gallery {
 
         width: min(1080px, 94%);
 
     }
-
 
     .memory-1 .memory-photo {
 
@@ -2478,13 +2363,11 @@ body {
 
     }
 
-
     .album-bottom-grid {
 
         gap: 30px;
 
     }
-
 
     .album-right-column {
 
@@ -2507,20 +2390,17 @@ body {
 
     }
 
-
     .album-actions {
 
         width: min(800px, 90%);
 
     }
 
-
     .album-bottom-grid {
 
         gap: 34px;
 
     }
-
 
     .album-right-column {
 
@@ -2537,16 +2417,15 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
 
-    html {
-
-        scroll-behavior: auto;
-
-    }
-
-
-    *,
-    *::before,
-    *::after {
+    .album-page *,
+    .album-page *::before,
+    .album-page *::after,
+    .album-modal *,
+    .album-modal *::before,
+    .album-modal *::after,
+    .lightbox *,
+    .lightbox *::before,
+    .lightbox *::after {
 
         transition-duration: 0.01ms !important;
 
