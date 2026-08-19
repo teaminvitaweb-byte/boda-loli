@@ -1,6 +1,6 @@
 /* =========================================================
    ÁLBUM — ELIZABETH & CARLOS
-   DISEÑO EDITORIAL / MASONRY
+   DISEÑO EDITORIAL / MASONRY CONTROLADO
    SAGE + CREMA + DORADO
 ========================================================= */
 
@@ -140,26 +140,6 @@ body {
 }
 
 
-.album-kicker {
-
-    margin-bottom: 12px;
-
-    font-family:
-        'Cormorant Garamond',
-        Georgia,
-        serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    letter-spacing: 4px;
-
-    color: var(--sage-text);
-
-}
-
-
 .album-header h1 {
 
     font-family:
@@ -218,13 +198,6 @@ body {
             var(--gold),
             transparent
         );
-
-}
-
-
-.album-title-line::after {
-
-    display: none;
 
 }
 
@@ -349,30 +322,8 @@ body {
 }
 
 
-.album-action-primary:hover {
-
-    border-color:
-        rgba(196,154,69,0.7);
-
-    background:
-        rgba(250,248,243,0.96);
-
-}
-
-
-.album-action-secondary:hover {
-
-    border-color:
-        rgba(83,102,83,0.42);
-
-    background:
-        rgba(255,255,255,0.58);
-
-}
-
-
 /* =========================================================
-   ICONOS DE ACCIONES
+   ICONOS
 ========================================================= */
 
 .action-icon {
@@ -474,9 +425,6 @@ body {
     font-weight: 300;
 
     color: var(--gold);
-
-    transition:
-        transform 0.25s ease;
 
 }
 
@@ -653,8 +601,6 @@ body {
 
     font-size: 20px;
 
-    line-height: 1;
-
     color: var(--gold);
 
 }
@@ -662,7 +608,6 @@ body {
 
 /* =========================================================
    GALERÍA
-   MASONRY REAL
 ========================================================= */
 
 .album-gallery {
@@ -675,15 +620,128 @@ body {
 
     margin: 0 auto;
 
+}
+
+
+/* =========================================================
+   FOTO 1
+   OCUPA TODO EL ANCHO
+========================================================= */
+
+.memory-1 {
+
+    width: 100%;
+
+    margin-bottom: 28px;
+
+}
+
+
+.memory-1 .memory-photo {
+
+    height: 430px;
+
+}
+
+
+/* =========================================================
+   BLOQUE INFERIOR
+========================================================= */
+
+.album-bottom-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 28px;
+
     /*
-       Masonry mediante columnas.
-       Las imágenes fluyen verticalmente
-       aprovechando sus diferentes alturas.
+       Ambas columnas tendrán exactamente
+       la misma altura.
     */
 
-    column-count: 2;
+    align-items: stretch;
 
-    column-gap: 28px;
+}
+
+
+/* =========================================================
+   COLUMNA IZQUIERDA — FOTO 2
+========================================================= */
+
+.memory-2 {
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.memory-2 .memory-photo {
+
+    /*
+       La fotografía ocupa el espacio disponible.
+       La altura final queda determinada por
+       la altura total del bloque derecho.
+    */
+
+    flex: 1;
+
+    min-height: 0;
+
+}
+
+
+/* =========================================================
+   COLUMNA DERECHA
+   FOTO 3 + FOTO 4
+========================================================= */
+
+.album-right-column {
+
+    display: grid;
+
+    grid-template-rows:
+        1fr
+        1fr;
+
+    gap: 28px;
+
+    min-height: 0;
+
+}
+
+
+/* =========================================================
+   FOTOS 3 Y 4
+========================================================= */
+
+.memory-3,
+.memory-4 {
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.memory-3 .memory-photo,
+.memory-4 .memory-photo {
+
+    flex: 1;
+
+    min-height: 0;
 
 }
 
@@ -698,84 +756,8 @@ body {
 
     width: 100%;
 
-    display: inline-block;
-
-    vertical-align: top;
-
-    margin:
-        0
-        0
-        28px;
-
-    break-inside: avoid;
-
-    -webkit-column-break-inside: avoid;
-
-    page-break-inside: avoid;
-
 }
 
-
-/* =========================================================
-   ALTURAS EDITORIALES
-========================================================= */
-
-.memory:nth-child(6n + 1) .memory-photo {
-
-    height: 430px;
-
-}
-
-
-.memory:nth-child(6n + 2) .memory-photo {
-
-    height: 310px;
-
-}
-
-
-.memory:nth-child(6n + 3) .memory-photo {
-
-    height: 365px;
-
-}
-
-
-.memory:nth-child(6n + 4) .memory-photo {
-
-    height: 300px;
-
-}
-
-
-.memory:nth-child(6n + 5) .memory-photo {
-
-    height: 345px;
-
-}
-
-
-.memory:nth-child(6n) .memory-photo {
-
-    height: 330px;
-
-}
-
-
-/*
-   Primera fotografía protagonista.
-*/
-
-.memory:first-child .memory-photo {
-
-    height: 430px;
-
-}
-
-
-/* =========================================================
-   FOTO
-========================================================= */
 
 .memory-photo {
 
@@ -847,25 +829,7 @@ body {
 
 
 /* =========================================================
-   COMPATIBILIDAD
-========================================================= */
-
-.memory-large .memory-photo {
-
-    height: 430px;
-
-}
-
-
-.memory-wide .memory-photo {
-
-    height: 300px;
-
-}
-
-
-/* =========================================================
-   MARCO EDITORIAL SUTIL
+   MARCO EDITORIAL
 ========================================================= */
 
 .memory-photo::after {
@@ -972,94 +936,6 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
-
-}
-
-
-/* =========================================================
-   DETALLES EDITORIALES
-========================================================= */
-
-.memory:nth-child(3n)::after {
-
-    content: "◇";
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: -19px;
-
-    transform:
-        translateX(-50%);
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size: 12px;
-
-    color: var(--gold);
-
-    opacity: 0.72;
-
-    pointer-events: none;
-
-}
-
-
-.memory:nth-child(4n)::before {
-
-    content: "";
-
-    position: absolute;
-
-    right: 14px;
-
-    top: 14px;
-
-    width: 25px;
-
-    height: 19px;
-
-    border:
-        1px solid
-        rgba(196,154,69,0.65);
-
-    border-radius: 3px;
-
-    opacity: 0.7;
-
-    pointer-events: none;
-
-    z-index: 3;
-
-}
-
-
-.memory:nth-child(4n) .memory-photo::before {
-
-    content: "";
-
-    position: absolute;
-
-    right: 21px;
-
-    top: 19px;
-
-    width: 9px;
-
-    height: 9px;
-
-    border:
-        1px solid
-        rgba(196,154,69,0.65);
-
-    border-radius: 50%;
-
-    z-index: 4;
-
-    pointer-events: none;
 
 }
 
@@ -1181,10 +1057,13 @@ body {
 
 
 /* =========================================================
-   INFORMACIÓN DE FOTO
+   INFORMACIÓN
 ========================================================= */
 
 .memory-info {
+
+    flex:
+        0 0 auto;
 
     padding:
         9px
@@ -1303,8 +1182,6 @@ body {
 
     font-size: 14px;
 
-    line-height: 1;
-
     color: var(--gold);
 
 }
@@ -1321,21 +1198,6 @@ body {
     line-height: 1.25;
 
     color: var(--gold-dark);
-
-}
-
-
-.album-closing span {
-
-    display: block;
-
-    margin-top: 14px;
-
-    font-size: 14px;
-
-    letter-spacing: 3px;
-
-    color: var(--sage-text);
 
 }
 
@@ -1437,10 +1299,6 @@ body {
 }
 
 
-/* =========================================================
-   CERRAR MODAL
-========================================================= */
-
 .modal-close {
 
     position: absolute;
@@ -1459,29 +1317,14 @@ body {
 
     color: var(--sage-text);
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
     font-size: 28px;
-
-    font-weight: 300;
 
     cursor: pointer;
 
 }
 
-
-.modal-close:hover {
-
-    color: var(--gold-dark);
-
-}
-
-
-/* =========================================================
-   ORNAMENTO MODAL
-========================================================= */
 
 .modal-ornament {
 
@@ -1610,25 +1453,6 @@ body {
 
     cursor: pointer;
 
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-
-}
-
-
-.upload-box:hover {
-
-    background:
-        rgba(214,226,209,0.55);
-
-    border-color:
-        var(--gold);
-
-    transform:
-        translateY(-2px);
-
 }
 
 
@@ -1675,8 +1499,6 @@ body {
     font-size: 19px;
 
     font-weight: 600;
-
-    color: var(--dark-text);
 
 }
 
@@ -1757,10 +1579,6 @@ body {
 
     color: white;
 
-    font-size: 15px;
-
-    line-height: 20px;
-
     cursor: pointer;
 
 }
@@ -1824,27 +1642,11 @@ body {
 
     color: var(--dark-text);
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-
-}
-
-
-.name-field input:focus {
-
-    border-color:
-        var(--gold);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(196,154,69,0.10);
-
 }
 
 
 /* =========================================================
-   BOTÓN COMPARTIR
+   BOTÓN
 ========================================================= */
 
 .share-submit {
@@ -1873,28 +1675,7 @@ body {
 
     font-weight: 600;
 
-    letter-spacing: 0.3px;
-
     cursor: pointer;
-
-    box-shadow:
-        0 7px 18px
-        rgba(60,80,65,0.15);
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-
-}
-
-
-.share-submit:hover {
-
-    transform:
-        translateY(-2px);
-
-    background:
-        #465846;
 
 }
 
@@ -1908,25 +1689,6 @@ body {
     vertical-align: middle;
 
     color: var(--gold);
-
-}
-
-
-.share-submit svg {
-
-    width: 19px;
-
-    height: 19px;
-
-    fill: none;
-
-    stroke: currentColor;
-
-    stroke-width: 1.4;
-
-    stroke-linecap: round;
-
-    stroke-linejoin: round;
 
 }
 
@@ -1984,10 +1746,6 @@ body {
 
     border-radius: 3px;
 
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.4);
-
 }
 
 
@@ -2006,8 +1764,6 @@ body {
     color: white;
 
     font-size: 38px;
-
-    font-weight: 200;
 
     cursor: pointer;
 
@@ -2053,63 +1809,24 @@ body {
 
         width: min(700px, 94%);
 
-        column-count: 2;
+    }
 
-        column-gap: 20px;
+
+    .album-bottom-grid {
+
+        gap: 20px;
 
     }
 
 
-    .memory {
+    .album-right-column {
 
-        margin-bottom: 22px;
-
-    }
-
-
-    .memory:nth-child(6n + 1) .memory-photo {
-
-        height: 350px;
+        gap: 20px;
 
     }
 
 
-    .memory:nth-child(6n + 2) .memory-photo {
-
-        height: 255px;
-
-    }
-
-
-    .memory:nth-child(6n + 3) .memory-photo {
-
-        height: 310px;
-
-    }
-
-
-    .memory:nth-child(6n + 4) .memory-photo {
-
-        height: 245px;
-
-    }
-
-
-    .memory:nth-child(6n + 5) .memory-photo {
-
-        height: 285px;
-
-    }
-
-
-    .memory:nth-child(6n) .memory-photo {
-
-        height: 270px;
-
-    }
-
-
-    .memory-large .memory-photo {
+    .memory-1 .memory-photo {
 
         height: 350px;
 
@@ -2120,11 +1837,9 @@ body {
 
 /* =========================================================
    CELULAR
-   2 COLUMNAS MASONRY
 ========================================================= */
 
 @media (max-width: 600px) {
-
 
     .album-page {
 
@@ -2132,21 +1847,6 @@ body {
             62px
             10px
             75px;
-
-    }
-
-
-    /* =====================================================
-       ENCABEZADO
-    ====================================================== */
-
-    .album-kicker {
-
-        margin-bottom: 9px;
-
-        font-size: 10px;
-
-        letter-spacing: 2.7px;
 
     }
 
@@ -2249,15 +1949,6 @@ body {
 
         font-size: 13px;
 
-        line-height: 1.2;
-
-    }
-
-
-    .action-arrow {
-
-        font-size: 22px;
-
     }
 
 
@@ -2288,24 +1979,6 @@ body {
     }
 
 
-    .counter-icon {
-
-        width: 17px;
-
-        height: 17px;
-
-    }
-
-
-    .counter-icon svg {
-
-        width: 16px;
-
-        height: 16px;
-
-    }
-
-
     /* =====================================================
        SEPARADOR
     ====================================================== */
@@ -2324,231 +1997,181 @@ body {
     }
 
 
-    .album-divider i {
-
-        width: 20px;
-
-        height: 20px;
-
-        font-size: 17px;
-
-    }
-
-
     /* =====================================================
-       GALERÍA MÓVIL
-       MASONRY DE 2 COLUMNAS
+       GALERÍA
     ====================================================== */
 
     .album-gallery {
 
         width: 100%;
 
-        display: block;
+    }
 
-        column-count: 2;
 
-        column-gap: 9px;
+    /*
+       FOTO 1
+       ANCHO COMPLETO
+    */
+
+    .memory-1 {
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .memory-1 .memory-photo {
+
+        height: 190px;
 
     }
 
 
     /*
-       Cada tarjeta queda dentro de una columna.
-       Esto evita los huecos artificiales del Grid.
+       BLOQUE INFERIOR
     */
 
-    .memory {
+    .album-bottom-grid {
 
-        width: 100%;
+        grid-template-columns:
+            1fr
+            1fr;
 
-        display: inline-block;
+        gap: 9px;
 
-        vertical-align: top;
+        /*
+           Importante:
+           se mantiene una altura común.
+        */
 
-        margin:
-            0
-            0
-            11px;
-
-        break-inside: avoid;
-
-        -webkit-column-break-inside: avoid;
-
-        page-break-inside: avoid;
+        align-items: stretch;
 
     }
 
 
-    /* =====================================================
-       FOTOS PEQUEÑAS PARA EL MOSAICO
-    ====================================================== */
+    /*
+       FOTO 2
+    */
+
+    .memory-2 {
+
+        height: 100%;
+
+    }
+
+
+    /*
+       DERECHA
+    */
+
+    .album-right-column {
+
+        gap: 9px;
+
+    }
+
+
+    /*
+       Fotos 3 y 4
+    */
+
+    .memory-3,
+    .memory-4 {
+
+        min-height: 0;
+
+    }
+
 
     .memory-photo {
 
-        width: 100%;
-
-        height: 150px;
-
         border-radius: 3px;
-
-    }
-
-
-    .memory:nth-child(6n + 1) .memory-photo {
-
-        height: 190px;
-
-    }
-
-
-    .memory:nth-child(6n + 2) .memory-photo {
-
-        height: 145px;
-
-    }
-
-
-    .memory:nth-child(6n + 3) .memory-photo {
-
-        height: 170px;
-
-    }
-
-
-    .memory:nth-child(6n + 4) .memory-photo {
-
-        height: 140px;
-
-    }
-
-
-    .memory:nth-child(6n + 5) .memory-photo {
-
-        height: 165px;
-
-    }
-
-
-    .memory:nth-child(6n) .memory-photo {
-
-        height: 155px;
 
     }
 
 
     /*
-       Primera fotografía protagonista,
-       pero sin romper el mosaico.
+       La suma de FOTO 3 + FOTO 4
+       es exactamente igual a FOTO 2.
     */
 
-    .memory:first-child .memory-photo {
+    .memory-2 .memory-photo,
+    .memory-3 .memory-photo,
+    .memory-4 .memory-photo {
 
-        height: 190px;
-
-    }
-
-
-    .memory-large .memory-photo {
-
-        height: 190px;
+        min-height: 0;
 
     }
 
 
-    .memory-wide .memory-photo {
+    /*
+       INFO
+    */
 
-        height: 145px;
+    .memory-info {
 
-    }
-
-
-    /* =====================================================
-       ÚLTIMA FOTO
-       Ya no se fuerza a ocupar todo el ancho.
-       Permanece dentro del mosaico.
-    ====================================================== */
-
-    .album-gallery .memory:last-child {
-
-        width: 100%;
-
-        margin-bottom: 11px;
+        padding:
+            5px
+            2px
+            0;
 
     }
 
 
-    .album-gallery .memory:last-child .memory-photo {
+    .memory-info strong {
 
-        width: 100%;
+        font-size: 14px;
 
-        height: 155px;
-
-        border-radius: 3px;
+        line-height: 1.1;
 
     }
 
 
-    .album-gallery .memory:last-child .memory-photo img {
+    .memory-info small {
 
-        object-fit: cover;
+        margin-top: 2px;
 
-        object-position: center;
+        font-size: 10px;
 
-    }
-
-
-    /* =====================================================
-       DETALLES
-    ====================================================== */
-
-    .memory:nth-child(3n)::after {
-
-        bottom: -9px;
-
-        font-size: 8px;
+        line-height: 1.15;
 
     }
 
 
-    .memory:nth-child(4n)::before,
+    /*
+       PLACEHOLDERS
+    */
 
-    .memory:nth-child(4n) .memory-photo::before {
+    .placeholder-content span {
 
-        opacity: 0.40;
+        width: 39px;
 
-    }
+        height: 39px;
 
-
-    .memory:nth-child(4n)::before {
-
-        right: 7px;
-
-        top: 7px;
-
-        width: 18px;
-
-        height: 14px;
+        margin-bottom: 5px;
 
     }
 
 
-    .memory:nth-child(4n) .memory-photo::before {
+    .placeholder-content span svg {
 
-        right: 12px;
+        width: 20px;
 
-        top: 11px;
-
-        width: 6px;
-
-        height: 6px;
+        height: 20px;
 
     }
 
 
-    /* =====================================================
+    .placeholder-content p {
+
+        font-size: 13px;
+
+    }
+
+
+    /*
        OVERLAY
-    ====================================================== */
+    */
 
     .memory-overlay {
 
@@ -2558,8 +2181,7 @@ body {
 
         justify-content: flex-end;
 
-        padding:
-            6px;
+        padding: 6px;
 
         background:
             linear-gradient(
@@ -2593,94 +2215,6 @@ body {
 
 
     /* =====================================================
-       INFO
-    ====================================================== */
-
-    .memory-info {
-
-        padding:
-            5px
-            2px
-            0;
-
-    }
-
-
-    .memory-info strong {
-
-        font-size: 14px;
-
-        line-height: 1.1;
-
-    }
-
-
-    .memory-info small {
-
-        margin-top: 2px;
-
-        font-size: 10px;
-
-        line-height: 1.15;
-
-    }
-
-
-    /* =====================================================
-       PLACEHOLDER
-    ====================================================== */
-
-    .placeholder-photo {
-
-        min-height: 150px;
-
-    }
-
-
-    .placeholder-photo::before {
-
-        inset: 7px;
-
-    }
-
-
-    .placeholder-content span {
-
-        width: 39px;
-
-        height: 39px;
-
-        margin-bottom: 5px;
-
-    }
-
-
-    .placeholder-content span svg {
-
-        width: 20px;
-
-        height: 20px;
-
-    }
-
-
-    .placeholder-content p {
-
-        font-size: 13px;
-
-    }
-
-
-    .album-gallery .memory:last-child .placeholder-photo {
-
-        min-height: 155px;
-
-        height: 155px;
-
-    }
-
-
-    /* =====================================================
        CIERRE
     ====================================================== */
 
@@ -2693,29 +2227,11 @@ body {
     }
 
 
-    .closing-line {
-
-        margin-bottom: 18px;
-
-    }
-
-
     .album-closing p {
 
         font-size: 30px;
 
         line-height: 1.22;
-
-    }
-
-
-    .album-closing span {
-
-        margin-top: 11px;
-
-        font-size: 11px;
-
-        letter-spacing: 2.5px;
 
     }
 
@@ -2756,49 +2272,6 @@ body {
 
         font-size: 16px;
 
-        line-height: 1.4;
-
-    }
-
-
-    .modal-ornament {
-
-        width: 38px;
-
-        height: 38px;
-
-    }
-
-
-    .modal-ornament svg {
-
-        width: 27px;
-
-        height: 27px;
-
-    }
-
-
-    .upload-box {
-
-        min-height: 120px;
-
-        padding: 17px;
-
-    }
-
-
-    .upload-box strong {
-
-        font-size: 18px;
-
-    }
-
-
-    .upload-box small {
-
-        font-size: 13px;
-
     }
 
 
@@ -2808,40 +2281,6 @@ body {
             repeat(3, 1fr);
 
         gap: 6px;
-
-    }
-
-
-    .name-field {
-
-        margin-top: 17px;
-
-    }
-
-
-    .name-field label {
-
-        font-size: 15px;
-
-    }
-
-
-    .name-field input {
-
-        min-height: 45px;
-
-        font-size: 16px;
-
-    }
-
-
-    .share-submit {
-
-        min-height: 48px;
-
-        margin-top: 17px;
-
-        font-size: 18px;
 
     }
 
@@ -2898,7 +2337,6 @@ body {
 
 @media (max-width: 380px) {
 
-
     .album-page {
 
         padding:
@@ -2944,103 +2382,31 @@ body {
     }
 
 
-    /* =====================================================
-       MASONRY MUY PEQUEÑO
-    ====================================================== */
+    /*
+       FOTO 1
+    */
 
-    .album-gallery {
-
-        column-count: 2;
-
-        column-gap: 7px;
-
-    }
-
-
-    .memory {
-
-        margin-bottom: 9px;
-
-    }
-
-
-    .memory-photo {
-
-        height: 125px;
-
-    }
-
-
-    .memory:nth-child(6n + 1) .memory-photo {
+    .memory-1 .memory-photo {
 
         height: 160px;
 
     }
 
 
-    .memory:nth-child(6n + 2) .memory-photo {
+    /*
+       Mantener proporción del bloque
+    */
 
-        height: 120px;
+    .album-bottom-grid {
 
-    }
-
-
-    .memory:nth-child(6n + 3) .memory-photo {
-
-        height: 145px;
+        gap: 7px;
 
     }
 
 
-    .memory:nth-child(6n + 4) .memory-photo {
+    .album-right-column {
 
-        height: 118px;
-
-    }
-
-
-    .memory:nth-child(6n + 5) .memory-photo {
-
-        height: 138px;
-
-    }
-
-
-    .memory:nth-child(6n) .memory-photo {
-
-        height: 130px;
-
-    }
-
-
-    .memory:first-child .memory-photo,
-
-    .memory-large .memory-photo {
-
-        height: 160px;
-
-    }
-
-
-    .memory-wide .memory-photo {
-
-        height: 120px;
-
-    }
-
-
-    .album-gallery .memory:last-child .memory-photo {
-
-        height: 130px;
-
-    }
-
-
-    .album-gallery .memory:last-child .placeholder-photo {
-
-        height: 130px;
-
-        min-height: 130px;
+        gap: 7px;
 
     }
 
@@ -3092,7 +2458,6 @@ body {
 
 @media (min-width: 1000px) {
 
-
     .album-page {
 
         padding-top: 105px;
@@ -3100,116 +2465,30 @@ body {
     }
 
 
-    /*
-       MASONRY EDITORIAL DE 2 COLUMNAS
-
-       Importante:
-       Ya NO usamos grid aquí.
-
-       column-count permite que cada fotografía
-       conserve su propia altura y que las imágenes
-       se acomoden como un mosaico editorial.
-    */
-
     .album-gallery {
 
         width: min(1080px, 94%);
 
-        display: block;
-
-        column-count: 2;
-
-        column-gap: 30px;
-
     }
 
 
-    .memory {
-
-        display: inline-block;
-
-        width: 100%;
-
-        margin:
-            0
-            0
-            30px;
-
-        vertical-align: top;
-
-        break-inside: avoid;
-
-        -webkit-column-break-inside: avoid;
-
-        page-break-inside: avoid;
-
-    }
-
-
-    /*
-       Las alturas crean el efecto
-       Masonry / mosaico asimétrico.
-    */
-
-    .memory:nth-child(6n + 1) .memory-photo {
+    .memory-1 .memory-photo {
 
         height: 430px;
 
     }
 
 
-    .memory:nth-child(6n + 2) .memory-photo {
+    .album-bottom-grid {
 
-        height: 305px;
-
-    }
-
-
-    .memory:nth-child(6n + 3) .memory-photo {
-
-        height: 365px;
+        gap: 30px;
 
     }
 
 
-    .memory:nth-child(6n + 4) .memory-photo {
+    .album-right-column {
 
-        height: 295px;
-
-    }
-
-
-    .memory:nth-child(6n + 5) .memory-photo {
-
-        height: 340px;
-
-    }
-
-
-    .memory:nth-child(6n) .memory-photo {
-
-        height: 325px;
-
-    }
-
-
-    .memory:first-child .memory-photo {
-
-        height: 430px;
-
-    }
-
-
-    .memory-large .memory-photo {
-
-        height: 430px;
-
-    }
-
-
-    .memory-wide .memory-photo {
-
-        height: 300px;
+        gap: 30px;
 
     }
 
@@ -3222,12 +2501,9 @@ body {
 
 @media (min-width: 1400px) {
 
-
     .album-gallery {
 
         width: min(1120px, 90%);
-
-        column-gap: 34px;
 
     }
 
@@ -3239,6 +2515,19 @@ body {
     }
 
 
+    .album-bottom-grid {
+
+        gap: 34px;
+
+    }
+
+
+    .album-right-column {
+
+        gap: 34px;
+
+    }
+
 }
 
 
@@ -3247,7 +2536,6 @@ body {
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
 
     html {
 
