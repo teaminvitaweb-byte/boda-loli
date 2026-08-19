@@ -1066,7 +1066,7 @@ section h2 {
     font-size: 25px;
     font-weight: 500;
     line-height: 1.5;
-    color: var(--dark-text);
+    color: 8C6B2F;
 }
 
 
@@ -1242,13 +1242,23 @@ section h2 {
     width: 100%;
     max-width: 650px;
     margin: 8px auto 16px;
+
     font-family: 'Great Vibes', cursive;
-    font-size: 40px;
+
+    font-size: 35px; /* ← antes 78px */
     line-height: 1.25;
     font-weight: 400;
     letter-spacing: 0.2px;
-    color: #526653;
+
+    color: var(--dark-text); /* ← antes #A67C32 */
+
     text-align: center;
+}
+
+@media (max-width: 600px) {
+    .gift-main-message {
+        font-size: 24px;
+    }
 }
 
 .gift-message {
@@ -1265,7 +1275,8 @@ section h2 {
 }
 
 .gift-bank-card {
-    width: min(560px, 94%);
+    width: 100%;
+    max-width: 420px;
     position: relative;
     margin: 5px auto 24px;
     padding: 24px 30px 22px;
@@ -1307,7 +1318,7 @@ section h2 {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 20px;
     padding: 10px 0;
     position: relative;
@@ -1347,7 +1358,6 @@ section h2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
     text-align: left;
 }
 
@@ -1393,7 +1403,7 @@ section h2 {
     line-height: 1.3;
     font-weight: 400;
     letter-spacing: 0.1px;
-    color: var(--dark-text);
+    color: #8C6B2F;
     text-align: center;
 }
 
@@ -1521,6 +1531,13 @@ section h2 {
    LÍNEA DECORATIVA DEL TÍTULO
 ========================================================= */
 
+
+
+.event h2::after,
+.dress-code h2::after,
+.confirmation h2::after,
+.itinerary h2::after,
+.album h2::after,
 .countdown h2::after {
     content: "";
 
@@ -1764,19 +1781,19 @@ section h2 {
 .countdown-line {
     position: relative;
 
-    width: 120px;
+    width: 100%;
+    max-width: 220px; /* 🔥 clave: adaptable pero elegante */
 
     height: 1px;
 
-    margin: 39px auto 20px;
+    margin: 25px auto; /* 🔥 equilibrado para cualquier sección */
 
-    background:
-        linear-gradient(
-            to right,
-            transparent,
-            var(--gold),
-            transparent
-        );
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(196,154,69,0.5), /* tono consistente con regalos */
+        transparent
+    );
 
     opacity: 0.8;
 }
@@ -2174,14 +2191,14 @@ section h2 {
     }
 
     .event h2 {
-        margin: 0 0 10px;
-        font-size: 43px;
-        line-height: 1.05;
-    }
+    margin: 0 0 30px;
+    font-size: 55px;
+   }
+
 
     .ceremony-place {
         margin: 0 15px 20px;
-        font-size: 19px;
+        font-size: 21px;
         line-height: 1.25;
         font-weight: 600;
     }
@@ -2345,7 +2362,7 @@ section h2 {
     .gift p,
     .album p,
     .event p {
-        font-size: 21px;
+        font-size: 25px;
         line-height: 1.5;
     }
 
@@ -2396,7 +2413,7 @@ section h2 {
     }
 
     .itinerary-info {
-        min-width: 145px;
+        min-width: 20px;
     }
 
     .itinerary-item h3 {
@@ -2436,13 +2453,13 @@ section h2 {
         margin-top: 11px;
     }
 
-    .gift-main-message {
-        width: 94%;
-        margin: 7px auto 15px;
-        font-size: 32px;
-        line-height: 1.25;
-        color: #526653;
-    }
+.gift-main-message {
+    width: 94%;
+    margin: 7px auto 15px;
+    font-size: clamp(48px, 13vw, 62px);
+    line-height: 1.25;
+    color: #A67C32;
+}
 
     .gift-message {
         width: 94%;
@@ -2451,46 +2468,47 @@ section h2 {
         line-height: 1.48;
     }
 
-    .gift-bank-card {
-        width: 96%;
-        margin: 2px auto 20px;
-        padding: 17px 17px 16px;
-        border-radius: 16px;
-        box-shadow:
-            0 8px 22px rgba(60,80,65,0.10);
-    }
+  .gift-bank-card {
+    width: fit-content;
+    margin: 2px auto 20px;
+    padding: 17px 16px;
+    border-radius: 16px;
+    box-shadow:
+        0 8px 22px rgba(60,80,65,0.10);
+}
 
-    .gift-bank-card::before {
-        width: 55px;
-        height: 2px;
-    }
+.gift-bank-card::before {
+    width: 55px;
+    height: 2px;
+}
 
-    .gift-bank-row {
-        gap: 13px;
-        padding: 8px 0;
-    }
+.gift-bank-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 🔥 clave */
+    gap: 14px;
+}
 
-    .gift-bank-icon {
-        width: 45px;
-        height: 45px;
-        flex: 0 0 45px;
-    }
+.gift-bank-icon {
+    flex: 0 0 50px;   /* 🔥 ancho fijo */
+    height: 50px;
+}
 
-    .gift-bank-icon span {
-        font-size: 21px;
-    }
+.gift-bank-icon span {
+    font-size: 21px;
+}
 
-    .gift-label {
-        margin-bottom: 1px;
-        font-size: 13px;
-        letter-spacing: 0.7px;
-    }
+.gift-label {
+    margin-bottom: 1px;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+}
 
-    .gift-bank-info strong {
-        font-size: 22px;
-        line-height: 1.2;
-        letter-spacing: 0.2px;
-    }
+.gift-bank-info strong {
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+}
 
     .gift-closing {
         width: 94%;
@@ -2843,7 +2861,7 @@ section h2 {
     }
 
     .itinerary-info {
-        min-width: 210px;
+        min-width: 20px;
     }
 
     .itinerary-item h3 {
@@ -2876,7 +2894,7 @@ section h2 {
 
     .gift-main-message {
         font-size: 40px;
-        color: #526653;
+        color:#8C6B2F;
     }
 
     .gift-message {
@@ -2951,4 +2969,230 @@ section h2 {
     .countdown-closing {
         font-size: 35px;
     }
+}
+
+
+/* =========================================================
+   CIERRE — REFINAMIENTO VISUAL ELEGANTE
+   SOLO MODIFICA LA SECCIÓN .closing
+========================================================= */
+
+.closing {
+    position: relative;
+    min-height: 650px;
+    background:
+        radial-gradient(circle at center 42%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.16) 32%, rgba(214,226,209,0) 68%),
+        linear-gradient(180deg, #D6E2D1 0%, #D1DECC 48%, #CBD9C7 100%);
+    overflow: hidden;
+}
+
+.closing::after {
+    content: "";
+    position: absolute;
+    width: min(620px, 85vw);
+    height: min(620px, 85vw);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 35%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.closing .section-content {
+    position: relative;
+    width: min(900px, 92%);
+    min-height: 390px;
+    padding: 75px 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(145deg, rgba(246,243,234,0.58), rgba(255,255,255,0.22));
+    border: 1px solid rgba(196,154,69,0.28);
+    border-radius: 3px;
+    box-shadow: 0 20px 55px rgba(65,82,64,0.10), inset 0 0 0 1px rgba(255,255,255,0.28);
+    z-index: 5;
+}
+
+.closing .section-content::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(196,154,69,0.20);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.closing .section-content::after {
+    content: "◆";
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 18px;
+    color: var(--gold);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+    z-index: 6;
+}
+
+.closing .section-content > * {
+    position: relative;
+    z-index: 7;
+}
+
+.closing h1 {
+    max-width: 850px;
+    margin: 0 auto 28px;
+    padding: 0 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(54px, 7vw, 78px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 0.2px;
+    color: #A67C32;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.65), 0 2px 8px rgba(120,90,35,0.10);
+}
+
+/* =========================================================
+   LÍNEA DEBAJO DE LOS NOMBRES
+   MISMO ESTILO QUE LA LÍNEA DEL COUNTDOWN
+========================================================= */
+
+.closing h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    width: 110px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.75;
+}
+
+/* =========================================================
+   DIAMANTE CENTRAL DE LA LÍNEA
+========================================================= */
+
+.closing h1::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -21px;
+    width: 6px;
+    height: 6px;
+    transform: translateX(-50%) rotate(45deg);
+    background: #F6F3EA;
+    border: 1px solid var(--gold);
+    z-index: 2;
+}
+
+.closing p {
+    max-width: 570px;
+    margin: 8px auto 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: 0.4px;
+    color: #394638;
+    text-align: center;
+}
+
+/* =========================================================
+   CORAZÓN ELIMINADO
+========================================================= */
+
+.closing p::after {
+    content: none;
+}
+
+@media (max-width: 600px) {
+
+    .closing {
+        min-height: 590px;
+        padding: 90px 18px 75px;
+    }
+
+    .closing .section-content {
+        width: 94%;
+        min-height: 390px;
+        padding: 70px 24px 60px;
+        border-radius: 3px;
+    }
+
+    .closing .section-content::before {
+        inset: 10px;
+    }
+
+    .closing .section-content::after {
+        top: 22px;
+        width: 90px;
+        font-size: 9px;
+        letter-spacing: 13px;
+    }
+
+    .closing h1 {
+        max-width: 100%;
+        margin-bottom: 27px;
+        padding: 0 8px;
+        font-size: clamp(48px, 13vw, 62px);
+        line-height: 1.08;
+    }
+
+    .closing h1::after {
+        width: 85px;
+        bottom: -17px;
+    }
+
+    .closing h1::before {
+        bottom: -20px;
+        width: 5px;
+        height: 5px;
+    }
+
+    .closing p {
+        max-width: 300px;
+        margin-top: 5px;
+        font-size: 20px;
+        line-height: 1.5;
+        letter-spacing: 0.25px;
+    }
+
+    .closing p::after {
+        content: none;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .closing {
+        min-height: 620px;
+    }
+
+    .closing .section-content {
+        min-height: 410px;
+    }
+
+    .closing h1 {
+        font-size: 78px;
+    }
+
+    .closing p {
+        font-size: 27px;
+    }
+
+
+
+
 }
