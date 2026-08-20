@@ -1,10 +1,93 @@
 /* =========================================================
    ÁLBUM — ELIZABETH & CARLOS
-   INTERACCIONES + LIGHTBOX CARRUSEL
-   SECCIÓN INDEPENDIENTE
+   CARGA DINÁMICA + INTERACCIONES + LIGHTBOX CARRUSEL
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+
+    /* =====================================================
+       CARGAR HTML DEL ÁLBUM
+    ====================================================== */
+
+    const albumContainer =
+        document.getElementById("albumContainer");
+
+
+    if (!albumContainer) {
+
+        console.error(
+            "❌ No existe #albumContainer en el HTML principal."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        console.log(
+            "⏳ Cargando sección Álbum..."
+        );
+
+
+        const response =
+            await fetch("album/album.html");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Error HTTP ${response.status}`
+            );
+
+        }
+
+
+        const albumHTML =
+            await response.text();
+
+
+        albumContainer.innerHTML =
+            albumHTML;
+
+
+        console.log(
+            "✓ HTML del álbum cargado"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ No se pudo cargar album.html:",
+            error
+        );
+
+
+        albumContainer.innerHTML = `
+
+            <div
+                style="
+                    padding:40px 20px;
+                    text-align:center;
+                    font-family:Georgia,serif;
+                "
+            >
+
+                <p>
+                    No se pudo cargar el álbum.
+                </p>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
 
 
     /* =====================================================
@@ -12,49 +95,93 @@ document.addEventListener("DOMContentLoaded", () => {
     ====================================================== */
 
     const sharePhotoButton =
-        document.getElementById("sharePhotoButton");
+        document.getElementById(
+            "sharePhotoButton"
+        );
+
 
     const viewMemoriesButton =
-        document.getElementById("viewMemoriesButton");
+        document.getElementById(
+            "viewMemoriesButton"
+        );
+
 
     const shareModal =
-        document.getElementById("shareModal");
+        document.getElementById(
+            "shareModal"
+        );
+
 
     const closeShareModal =
-        document.getElementById("closeShareModal");
+        document.getElementById(
+            "closeShareModal"
+        );
+
 
     const modalBackdrop =
-        shareModal?.querySelector(".modal-backdrop");
+        document.querySelector(
+            ".modal-backdrop"
+        );
+
 
     const photoInput =
-        document.getElementById("photoInput");
+        document.getElementById(
+            "photoInput"
+        );
+
 
     const previewContainer =
-        document.getElementById("previewContainer");
+        document.getElementById(
+            "previewContainer"
+        );
+
 
     const guestName =
-        document.getElementById("guestName");
+        document.getElementById(
+            "guestName"
+        );
+
 
     const shareSubmit =
-        document.getElementById("shareSubmit");
+        document.getElementById(
+            "shareSubmit"
+        );
+
 
     const lightbox =
-        document.getElementById("lightbox");
+        document.getElementById(
+            "lightbox"
+        );
+
 
     const lightboxImage =
-        document.getElementById("lightboxImage");
+        document.getElementById(
+            "lightboxImage"
+        );
+
 
     const lightboxCaption =
-        document.getElementById("lightboxCaption");
+        document.getElementById(
+            "lightboxCaption"
+        );
+
 
     const closeLightbox =
-        document.getElementById("closeLightbox");
+        document.getElementById(
+            "closeLightbox"
+        );
+
 
     const albumGallery =
-        document.getElementById("albumGallery");
+        document.getElementById(
+            "albumGallery"
+        );
+
 
     const photoCounter =
-        document.getElementById("photoCounter");
+        document.getElementById(
+            "photoCounter"
+        );
 
 
     /* =====================================================
@@ -79,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const carouselStyles =
         document.createElement("style");
 
+
     carouselStyles.textContent = `
 
         .lightbox-nav {
@@ -87,7 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             z-index: 5;
 
@@ -152,22 +281,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .lightbox-nav:active {
 
             transform:
-                translateY(-50%) scale(0.94);
+                translateY(-50%)
+                scale(0.94);
 
         }
 
 
         .lightbox-prev {
-
             left: 25px;
-
         }
 
 
         .lightbox-next {
-
             right: 25px;
-
         }
 
 
@@ -185,8 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
             z-index: 5;
 
             padding:
-                5px
-                13px;
+                5px 13px;
 
             border:
                 1px solid
@@ -249,16 +374,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
             .lightbox-prev {
-
                 left: 14px;
-
             }
 
+
             .lightbox-next {
-
                 right: 14px;
-
             }
 
         }
@@ -268,10 +391,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             .lightbox {
 
-                padding:
-                    10px;
+                padding: 10px;
 
             }
+
 
             .lightbox-nav {
 
@@ -286,17 +409,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
             .lightbox-prev {
-
                 left: 8px;
-
             }
+
 
             .lightbox-next {
-
                 right: 8px;
-
             }
+
 
             .lightbox-counter {
 
@@ -305,18 +427,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 font-size: 14px;
 
                 padding:
-                    4px
-                    11px;
+                    4px 11px;
 
             }
+
 
             .lightbox-caption {
 
                 bottom: 14px;
 
                 padding:
-                    0
-                    55px;
+                    0 55px;
 
             }
 
@@ -335,21 +456,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
             .lightbox-prev {
-
                 left: 5px;
-
             }
 
+
             .lightbox-next {
-
                 right: 5px;
-
             }
 
         }
 
     `;
+
 
     document.head.appendChild(
         carouselStyles
@@ -357,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CONTROLES DEL LIGHTBOX
+       CONTROLES
     ====================================================== */
 
     let previousButton = null;
@@ -377,16 +497,20 @@ document.addEventListener("DOMContentLoaded", () => {
         previousButton =
             document.createElement("button");
 
+
         previousButton.type =
             "button";
 
+
         previousButton.className =
             "lightbox-nav lightbox-prev";
+
 
         previousButton.setAttribute(
             "aria-label",
             "Fotografía anterior"
         );
+
 
         previousButton.innerHTML =
             "‹";
@@ -395,16 +519,20 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton =
             document.createElement("button");
 
+
         nextButton.type =
             "button";
 
+
         nextButton.className =
             "lightbox-nav lightbox-next";
+
 
         nextButton.setAttribute(
             "aria-label",
             "Fotografía siguiente"
         );
+
 
         nextButton.innerHTML =
             "›";
@@ -413,8 +541,10 @@ document.addEventListener("DOMContentLoaded", () => {
         lightboxCounter =
             document.createElement("div");
 
+
         lightboxCounter.className =
             "lightbox-counter";
+
 
         lightboxCounter.setAttribute(
             "aria-live",
@@ -426,9 +556,11 @@ document.addEventListener("DOMContentLoaded", () => {
             previousButton
         );
 
+
         lightbox.appendChild(
             nextButton
         );
+
 
         lightbox.appendChild(
             lightboxCounter
@@ -465,7 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       MODAL — ABRIR
+       MODAL COMPARTIR
     ====================================================== */
 
     function openShareModal() {
@@ -479,20 +611,18 @@ document.addEventListener("DOMContentLoaded", () => {
             "is-open"
         );
 
+
         shareModal.setAttribute(
             "aria-hidden",
             "false"
         );
+
 
         document.body.style.overflow =
             "hidden";
 
     }
 
-
-    /* =====================================================
-       MODAL — CERRAR
-    ====================================================== */
 
     function closeShare() {
 
@@ -505,20 +635,18 @@ document.addEventListener("DOMContentLoaded", () => {
             "is-open"
         );
 
+
         shareModal.setAttribute(
             "aria-hidden",
             "true"
         );
+
 
         document.body.style.overflow =
             "";
 
     }
 
-
-    /* =====================================================
-       BOTÓN COMPARTIR
-    ====================================================== */
 
     if (sharePhotoButton) {
 
@@ -529,10 +657,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* =====================================================
-       CERRAR MODAL
-    ====================================================== */
 
     if (closeShareModal) {
 
@@ -585,7 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PREVISUALIZACIÓN
+       PREVISUALIZACIONES
     ====================================================== */
 
     function renderPreviews() {
@@ -720,7 +844,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const name =
-                    guestName?.value.trim() || "";
+                    guestName
+                        ? guestName.value.trim()
+                        : "";
 
 
                 if (!name) {
@@ -729,7 +855,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Escribe tu nombre para aparecer en el álbum."
                     );
 
-                    guestName?.focus();
+
+                    if (guestName) {
+                        guestName.focus();
+                    }
+
 
                     return;
 
@@ -747,26 +877,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 if (photoInput) {
-
-                    photoInput.value =
-                        "";
-
+                    photoInput.value = "";
                 }
 
 
                 if (previewContainer) {
-
-                    previewContainer.innerHTML =
-                        "";
-
+                    previewContainer.innerHTML = "";
                 }
 
 
                 if (guestName) {
-
-                    guestName.value =
-                        "";
-
+                    guestName.value = "";
                 }
 
 
@@ -808,7 +929,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       OBTENER FOTOGRAFÍAS REALES
+       OBTENER FOTOS REALES
     ====================================================== */
 
     function getGalleryPhotos() {
@@ -1015,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ACTUALIZAR IMAGEN
+       ACTUALIZAR LIGHTBOX
     ====================================================== */
 
     function updateLightboxImage(
@@ -1206,6 +1327,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "is-open"
                     );
 
+
                     lightbox.setAttribute(
                         "aria-hidden",
                         "false"
@@ -1249,6 +1371,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             lightboxImage.src =
                 "";
+
 
             lightboxImage.classList.remove(
                 "lightbox-image-changing"
@@ -1348,6 +1471,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 }
 
+
                 return;
 
             }
@@ -1393,7 +1517,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       TOUCH / SWIPE
+       SWIPE MÓVIL
     ====================================================== */
 
     if (lightbox) {
@@ -1413,6 +1537,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 touchStartX =
                     event.touches[0].clientX;
+
 
                 touchEndX =
                     touchStartX;
@@ -1504,16 +1629,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const photos =
             document.querySelectorAll(
-                ".album-page .memory"
+                ".memory[data-memory='true']"
             );
 
 
+        /*
+           Si no existen elementos con
+           data-memory, contamos únicamente
+           las fotografías reales.
+        */
+
+        if (photos.length > 0) {
+
+            photoCounter.textContent =
+                photos.length;
+
+            return;
+
+        }
+
+
+        const realPhotos =
+            getGalleryPhotos();
+
+
         photoCounter.textContent =
-            photos.length;
+            realPhotos.length;
 
     }
 
 
     updateCounter();
+
+
+    /* =====================================================
+       FINAL
+    ====================================================== */
+
+    console.log(
+        "✓ Álbum inicializado correctamente"
+    );
 
 });
