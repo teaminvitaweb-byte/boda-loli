@@ -1,7 +1,7 @@
 /* =========================================================
    ÁLBUM — ELIZABETH & CARLOS
-   SUPABASE + CARGA DINÁMICA + INTERACCIONES + LIGHTBOX
-   CARRUSEL + SWIPE MÓVIL
+   SUPABASE + CARGA DINÁMICA + INTERACCIONES
+   LIGHTBOX + CARRUSEL + SWIPE MÓVIL
 ========================================================= */
 
 
@@ -41,7 +41,7 @@ console.log(
 ========================================================= */
 
 const MAX_FILE_SIZE =
-    10 * 1024 * 1024; // 10 MB por fotografía
+    10 * 1024 * 1024; // 10 MB
 
 
 const ALLOWED_MIME_TYPES = [
@@ -268,322 +268,11 @@ document.addEventListener(
 
         let galleryPhotos = [];
 
-        /*
-         * NUEVO:
-         *
-         * Aquí se almacenan TODOS los recuerdos
-         * recuperados desde Supabase.
-         *
-         * No se limita a 4.
-         *
-         * Esto permite que el carrusel conozca
-         * tanto las fotografías antiguas como
-         * las nuevas.
-         */
-
         let allMemories = [];
 
         let touchStartX = 0;
 
         let touchEndX = 0;
-
-
-        /* =================================================
-           ESTILOS DEL CARRUSEL
-        ================================================== */
-
-        const carouselStyles =
-            document.createElement(
-                "style"
-            );
-
-
-        carouselStyles.textContent = `
-
-            .lightbox-nav {
-
-                position: absolute;
-
-                top: 50%;
-
-                transform:
-                    translateY(-50%);
-
-                z-index: 5;
-
-                width: 54px;
-
-                height: 54px;
-
-                display: flex;
-
-                align-items: center;
-
-                justify-content: center;
-
-                border: 1px solid
-                    rgba(255,255,255,0.35);
-
-                border-radius: 50%;
-
-                background:
-                    rgba(250,248,243,0.14);
-
-                color: #FFFFFF;
-
-                font-family:
-                    Georgia,
-                    serif;
-
-                font-size: 34px;
-
-                font-weight: 300;
-
-                line-height: 1;
-
-                cursor: pointer;
-
-                backdrop-filter:
-                    blur(5px);
-
-                -webkit-backdrop-filter:
-                    blur(5px);
-
-                transition:
-                    background 0.25s ease,
-                    border-color 0.25s ease,
-                    transform 0.25s ease,
-                    opacity 0.25s ease;
-
-            }
-
-
-            .lightbox-nav:hover {
-
-                background:
-                    rgba(250,248,243,0.28);
-
-                border-color:
-                    rgba(255,255,255,0.65);
-
-            }
-
-
-            .lightbox-nav:active {
-
-                transform:
-                    translateY(-50%)
-                    scale(0.94);
-
-            }
-
-
-            .lightbox-prev {
-                left: 25px;
-            }
-
-
-            .lightbox-next {
-                right: 25px;
-            }
-
-
-            .lightbox-counter {
-
-                position: absolute;
-
-                left: 50%;
-
-                bottom: 48px;
-
-                transform:
-                    translateX(-50%);
-
-                z-index: 5;
-
-                padding:
-                    5px 13px;
-
-                border:
-                    1px solid
-                    rgba(255,255,255,0.22);
-
-                border-radius: 30px;
-
-                background:
-                    rgba(20,27,21,0.38);
-
-                color:
-                    rgba(255,255,255,0.92);
-
-                font-family:
-                    'Cormorant Garamond',
-                    Georgia,
-                    serif;
-
-                font-size: 16px;
-
-                letter-spacing: 1px;
-
-                backdrop-filter:
-                    blur(5px);
-
-                -webkit-backdrop-filter:
-                    blur(5px);
-
-            }
-
-
-            .lightbox-image-changing {
-
-                opacity: 0;
-
-                transform:
-                    scale(0.985);
-
-            }
-
-
-            #lightboxImage {
-
-                transition:
-                    opacity 0.18s ease,
-                    transform 0.18s ease;
-
-            }
-
-
-            /*
-             * Se conserva por compatibilidad
-             * con versiones anteriores.
-             */
-
-            .album-dynamic-memories {
-
-                display: contents;
-
-            }
-
-
-            .memory-guest {
-
-                position: relative;
-
-            }
-
-
-            @media (max-width: 850px) {
-
-                .lightbox-nav {
-
-                    width: 48px;
-
-                    height: 48px;
-
-                    font-size: 30px;
-
-                }
-
-
-                .lightbox-prev {
-                    left: 14px;
-                }
-
-
-                .lightbox-next {
-                    right: 14px;
-                }
-
-            }
-
-
-            @media (max-width: 600px) {
-
-                .lightbox {
-
-                    padding: 10px;
-
-                }
-
-
-                .lightbox-nav {
-
-                    width: 42px;
-
-                    height: 42px;
-
-                    font-size: 27px;
-
-                    background:
-                        rgba(20,27,21,0.35);
-
-                }
-
-
-                .lightbox-prev {
-                    left: 8px;
-                }
-
-
-                .lightbox-next {
-                    right: 8px;
-                }
-
-
-                .lightbox-counter {
-
-                    bottom: 45px;
-
-                    font-size: 14px;
-
-                    padding:
-                        4px 11px;
-
-                }
-
-
-                .lightbox-caption {
-
-                    bottom: 14px;
-
-                    padding:
-                        0 55px;
-
-                }
-
-            }
-
-
-            @media (max-width: 380px) {
-
-                .lightbox-nav {
-
-                    width: 38px;
-
-                    height: 38px;
-
-                    font-size: 24px;
-
-                }
-
-
-                .lightbox-prev {
-                    left: 5px;
-                }
-
-
-                .lightbox-next {
-                    right: 5px;
-                }
-
-            }
-
-        `;
-
-
-        document.head.appendChild(
-            carouselStyles
-        );
 
 
         /* =================================================
@@ -809,9 +498,12 @@ document.addEventListener(
             if (!file) {
 
                 return {
+
                     valid: false,
+
                     message:
                         "Archivo no válido."
+
                 };
 
             }
@@ -906,8 +598,7 @@ document.addEventListener(
 
                     const files =
                         Array.from(
-                            event.target.files ||
-                            []
+                            event.target.files || []
                         );
 
 
@@ -1161,7 +852,6 @@ document.addEventListener(
 
         /* =================================================
            SUBIR FOTOS A SUPABASE
-           STORAGE + TABLA MEMORIES
         ================================================== */
 
         async function uploadPhotosToSupabase(
@@ -1175,7 +865,6 @@ document.addEventListener(
             for (
                 const file of files
             ) {
-
 
                 const validation =
                     validatePhotoFile(
@@ -1283,12 +972,6 @@ document.addEventListener(
                     publicUrlData.publicUrl;
 
 
-                console.log(
-                    "✓ URL pública:",
-                    publicUrl
-                );
-
-
                 const {
                     data:
                         memoryData,
@@ -1355,12 +1038,6 @@ document.addEventListener(
                 }
 
 
-                console.log(
-                    "✓ Recuerdo registrado:",
-                    memoryData
-                );
-
-
                 uploadedPhotos.push({
 
                     id:
@@ -1392,8 +1069,7 @@ document.addEventListener(
 
 
         /* =================================================
-           RENDERIZAR UNA FOTO EN UNA POSICIÓN
-           DE LAS 4 POSICIONES EXISTENTES
+           RENDERIZAR MEMORIA EN SLOT
         ================================================== */
 
         function renderMemoryInSlot(
@@ -1421,11 +1097,6 @@ document.addEventListener(
             }
 
 
-            /*
-             * Marcar la tarjeta como recuerdo
-             * dinámico visible.
-             */
-
             slot.dataset.memory =
                 "true";
 
@@ -1438,11 +1109,6 @@ document.addEventListener(
                 "memory-guest"
             );
 
-
-            /*
-             * Datos utilizados por el
-             * lightbox.
-             */
 
             button.dataset.image =
                 memory.public_url;
@@ -1458,20 +1124,11 @@ document.addEventListener(
             );
 
 
-            /*
-             * Buscar imagen existente.
-             */
-
             let image =
                 button.querySelector(
                     "img"
                 );
 
-
-            /*
-             * Si la tarjeta era placeholder,
-             * crear la imagen.
-             */
 
             if (!image) {
 
@@ -1502,11 +1159,6 @@ document.addEventListener(
                 "lazy";
 
 
-            /*
-             * Eliminar placeholder
-             * si existía.
-             */
-
             const placeholder =
                 button.querySelector(
                     ".placeholder-content"
@@ -1519,10 +1171,6 @@ document.addEventListener(
 
             }
 
-
-            /*
-             * Mantener / crear overlay.
-             */
 
             let overlay =
                 button.querySelector(
@@ -1572,10 +1220,6 @@ document.addEventListener(
 
             }
 
-
-            /*
-             * Información inferior.
-             */
 
             const info =
                 slot.querySelector(
@@ -1674,19 +1318,6 @@ document.addEventListener(
             }
 
 
-            /*
-             * =================================================
-             * GUARDAR TODOS LOS RECUERDOS
-             * =================================================
-             *
-             * NO usamos limit(4).
-             *
-             * Supabase conserva y entrega todos.
-             *
-             * Esto permite que el carrusel conozca
-             * las fotos antiguas y las nuevas.
-             */
-
             allMemories =
                 Array.isArray(memories)
                     ? memories
@@ -1698,24 +1329,12 @@ document.addEventListener(
             );
 
 
-            /*
-             * =================================================
-             * SOLO 4 PARA LA VISTA PRINCIPAL
-             * =================================================
-             */
-
             const visibleMemories =
                 allMemories.slice(
                     0,
                     4
                 );
 
-
-            /*
-             * =================================================
-             * LAS 4 POSICIONES EXISTENTES
-             * =================================================
-             */
 
             const slots = [
 
@@ -1737,12 +1356,6 @@ document.addEventListener(
 
             ];
 
-
-            /*
-             * =================================================
-             * RENDERIZAR LAS 4 MÁS RECIENTES
-             * =================================================
-             */
 
             visibleMemories.forEach(
                 (memory, index) => {
@@ -1766,17 +1379,6 @@ document.addEventListener(
                 }
             );
 
-
-            /*
-             * =================================================
-             * POSICIONES QUE YA NO TIENEN FOTO
-             * =================================================
-             *
-             * Si antes había 4 fotos y después
-             * se ejecuta nuevamente la función,
-             * limpiamos solamente las posiciones
-             * dinámicas que ya no correspondan.
-             */
 
             slots.forEach(
                 (slot, index) => {
@@ -1835,24 +1437,16 @@ document.addEventListener(
             );
 
 
-            /*
-             * =================================================
-             * ACTUALIZAR CONTADOR
-             * =================================================
-             *
-             * Muestra el total almacenado.
-             */
-
             updateCounter();
 
 
             console.log(
-                "✓ Las 4 posiciones principales fueron actualizadas"
+                "✓ Las posiciones principales fueron actualizadas"
             );
 
 
             console.log(
-                "✓ Todas las fotos quedan disponibles para el carrusel"
+                "✓ Todas las fotos disponibles para el carrusel"
             );
 
         }
@@ -1867,7 +1461,6 @@ document.addEventListener(
             shareSubmit.addEventListener(
                 "click",
                 async () => {
-
 
                     if (
                         selectedFiles.length === 0
@@ -1951,9 +1544,8 @@ document.addEventListener(
                             true;
 
 
-                        shareSubmit.innerHTML = `
-                            Subiendo recuerdos...
-                        `;
+                        shareSubmit.innerHTML =
+                            "Subiendo recuerdos...";
 
 
                         console.log(
@@ -1973,14 +1565,6 @@ document.addEventListener(
                             uploadedPhotos
                         );
 
-
-                        /*
-                         * Recargar:
-                         *
-                         * - todas las fotos desde Supabase
-                         * - las 4 más recientes en pantalla
-                         * - todas disponibles en el carrusel
-                         */
 
                         await loadMemories();
 
@@ -2121,14 +1705,9 @@ document.addEventListener(
             const photos = [];
 
 
-            /*
-             * =================================================
-             * 1. FOTOGRAFÍAS ORIGINALES DEL DISEÑO
-             * =================================================
-             *
-             * Las dos fotos originales de album.html
-             * siguen disponibles en el carrusel.
-             */
+            /* =================================================
+               FOTOGRAFÍAS ORIGINALES
+            ================================================== */
 
             if (albumGallery) {
 
@@ -2140,15 +1719,6 @@ document.addEventListener(
 
                 buttons.forEach(
                     (photo) => {
-
-                        /*
-                         * Si esta tarjeta tiene una
-                         * fotografía de invitado,
-                         * NO la agregamos aquí todavía.
-                         *
-                         * Se agregará desde allMemories
-                         * para mantener todas las fotos.
-                         */
 
                         const memoryId =
                             photo.closest(
@@ -2217,19 +1787,9 @@ document.addEventListener(
             }
 
 
-            /*
-             * =================================================
-             * 2. TODAS LAS FOTOS DE SUPABASE
-             * =================================================
-             *
-             * Aquí entran:
-             *
-             * - antiguas
-             * - nuevas
-             * - las 4 visibles
-             *
-             * TODAS.
-             */
+            /* =================================================
+               TODAS LAS FOTOS DE SUPABASE
+            ================================================== */
 
             allMemories.forEach(
                 (memory) => {
@@ -2582,11 +2142,6 @@ document.addEventListener(
                         photoButton.dataset.image;
 
 
-                    /*
-                     * Placeholder:
-                     * no abrir.
-                     */
-
                     if (!image) {
 
                         return;
@@ -2598,11 +2153,6 @@ document.addEventListener(
                         getGalleryPhotos();
 
 
-                    /*
-                     * Buscar primero por el elemento
-                     * visible.
-                     */
-
                     let clickedIndex =
                         galleryPhotos.findIndex(
                             (photo) =>
@@ -2610,11 +2160,6 @@ document.addEventListener(
                                 photoButton
                         );
 
-
-                    /*
-                     * Si es una fotografía de invitado,
-                     * buscar también por su ID.
-                     */
 
                     if (
                         clickedIndex === -1
@@ -2755,7 +2300,7 @@ document.addEventListener(
 
 
         /* =================================================
-           FONDO LIGHTBOX
+           CERRAR AL TOCAR FONDO
         ================================================== */
 
         if (lightbox) {
@@ -2787,9 +2332,7 @@ document.addEventListener(
             "keydown",
             (event) => {
 
-                /*
-                 * ESC
-                 */
+                /* ESC */
 
                 if (
                     event.key ===
@@ -2825,11 +2368,6 @@ document.addEventListener(
                 }
 
 
-                /*
-                 * Si lightbox no está abierto,
-                 * no procesar flechas.
-                 */
-
                 if (
                     !lightbox ||
                     !lightbox.classList.contains(
@@ -2842,9 +2380,7 @@ document.addEventListener(
                 }
 
 
-                /*
-                 * IZQUIERDA
-                 */
+                /* IZQUIERDA */
 
                 if (
                     event.key ===
@@ -2858,9 +2394,7 @@ document.addEventListener(
                 }
 
 
-                /*
-                 * DERECHA
-                 */
+                /* DERECHA */
 
                 if (
                     event.key ===
@@ -2994,15 +2528,6 @@ document.addEventListener(
             }
 
 
-            /*
-             * El contador representa el total
-             * de fotografías de invitados
-             * almacenadas en Supabase.
-             *
-             * NO representa solamente las 4
-             * visibles.
-             */
-
             photoCounter.textContent =
                 allMemories.length;
 
@@ -3010,7 +2535,7 @@ document.addEventListener(
 
 
         /* =================================================
-           CARGA INICIAL DE RECUERDOS
+           CARGA INICIAL
         ================================================== */
 
         await loadMemories();
@@ -3030,7 +2555,6 @@ document.addEventListener(
         console.log(
             "✓ Álbum inicializado correctamente"
         );
-
 
     }
 );
