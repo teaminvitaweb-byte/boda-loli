@@ -1632,28 +1632,43 @@ document.addEventListener(
                             false;
 
 
-                        shareSubmit.innerHTML = `
+                       
+                            
+shareSubmit.innerHTML = `
 
-                            Compartir recuerdos
+    <span class="share-submit-icon">
 
-                            <span>
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
 
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                >
+            <path
+                d="M4 7h4l1.5-2h5L16 7h4v12H4Z"
+            ></path>
 
-                                    <path d="M12 4v12"></path>
+            <circle
+                cx="12"
+                cy="13"
+                r="3.5"
+            ></circle>
 
-                                    <path d="M7 11l5 5 5-5"></path>
+        </svg>
 
-                                    <path d="M5 20h14"></path>
+    </span>
 
-                                </svg>
+    <span>
+        Subir fotos
+    </span>
 
-                            </span>
+`;
 
-                        `;
+
+
+
+
+
+
 
                     }
 
@@ -1663,37 +1678,96 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           VER RECUERDOS
-        ================================================== */
-
-        if (viewMemoriesButton) {
-
-            viewMemoriesButton.addEventListener(
-                "click",
-                () => {
-
-                    if (!albumGallery) {
-
-                        return;
-
-                    }
 
 
-                    albumGallery.scrollIntoView({
 
-                        behavior:
-                            "smooth",
+/* =================================================
+   VER RECUERDOS
+   ABRIR DIRECTAMENTE EL VISOR DE FOTOGRAFÍAS
+================================================= */
 
-                        block:
-                            "start"
+if (viewMemoriesButton) {
 
-                    });
+    viewMemoriesButton.addEventListener(
+        "click",
+        () => {
 
-                }
+            /*
+             * Obtener todas las fotografías disponibles.
+             */
+
+            galleryPhotos =
+                getGalleryPhotos();
+
+
+            /*
+             * Si no hay fotografías,
+             * no abrir el visor.
+             */
+
+            if (
+                galleryPhotos.length === 0
+            ) {
+
+                alert(
+                    "Todavía no hay fotografías disponibles."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Mostrar la primera fotografía.
+             */
+
+            currentPhotoIndex = 0;
+
+
+            showPhoto(
+                currentPhotoIndex,
+                false
             );
 
+
+            /*
+             * Abrir visor.
+             */
+
+            if (lightbox) {
+
+                lightbox.classList.add(
+                    "is-open"
+                );
+
+
+                lightbox.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+            }
+
+
+            /*
+             * Bloquear desplazamiento
+             * de la página mientras
+             * el visor está abierto.
+             */
+
+            document.body.style.overflow =
+                "hidden";
+
         }
+    );
+
+}
+
+
+
+
+       
 
 
         /* =================================================

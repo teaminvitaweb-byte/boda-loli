@@ -1406,7 +1406,7 @@
     max-width: 400px;
 
     margin:
-        15px
+        25px
         auto
         22px;
 
@@ -1648,64 +1648,110 @@
 
     width: 100%;
 
-    min-height: 50px;
+    min-height: 54px;
 
-    margin-top: 20px;
+    display: flex;
 
-    border: 0;
+    align-items: center;
 
-    border-radius: 50px;
+    justify-content: center;
 
-    background:
-        var(--album-sage-dark);
+    gap: 10px;
 
-    color: var(--album-cream);
+    margin-top: 18px;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #B7C9B2;
+
+    color: #8C6B2F;
 
     font-family:
         'Cormorant Garamond',
         Georgia,
         serif;
 
-    font-size: 19px;
+    font-size: 18px;
 
     font-weight: 600;
 
+    letter-spacing: 0.5px;
+
     cursor: pointer;
 
-}
-
-
-.share-submit span {
-
-    display: inline-flex;
-
-    margin-left: 8px;
-
-    vertical-align: middle;
-
-    color: var(--album-gold);
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        box-shadow 0.2s ease;
 
 }
 
 
-.share-submit svg {
+.share-submit:hover {
 
-    width: 20px;
+    transform: translateY(-1px);
 
-    height: 20px;
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,0.16);
+
+}
+
+
+.share-submit:active {
+
+    transform: scale(0.98);
+
+}
+
+
+.share-submit:disabled {
+
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+.share-submit-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.share-submit-icon svg {
+
+    width: 22px;
+
+    height: 22px;
 
     fill: none;
 
     stroke: currentColor;
 
-    stroke-width: 1.5;
+    stroke-width: 1.7;
 
     stroke-linecap: round;
 
     stroke-linejoin: round;
 
 }
-
 
 /* =========================================================
    LIGHTBOX — VISOR DE FOTOGRAFÍAS
@@ -2677,12 +2723,15 @@
     .modal-card h2 {
 
         font-size: 42px;
+      
 
     }
 
     .modal-description {
 
+      
         font-size: 16px;
+      
 
     }
 
