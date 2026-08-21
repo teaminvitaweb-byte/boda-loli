@@ -1027,7 +1027,7 @@ section h2 {
     width: 30px;
     height: 1px;
     transform: translateX(-50%);
-    background: rgba(32,35,31,0.25);
+    background: rgb(196, 154, 69);
 }
 
 .dress-icon:hover {
@@ -2581,7 +2581,7 @@ section h2 {
 
     .dress-divider {
         height: 45px;
-        background: rgba(32,35,31,0.22);
+        background: rgb(196, 154, 69);
     }
 
 
@@ -3141,8 +3141,8 @@ section h2 {
 }
 
 .itinerary-icon img {
-    width: 72px;
-    height: 72px;
+    width: 90px;
+    height: 90px;
 
     object-fit: contain;
 
