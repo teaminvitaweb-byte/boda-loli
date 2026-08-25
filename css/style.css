@@ -1066,7 +1066,7 @@ section h2 {
     font-size: 25px;
     font-weight: 500;
     line-height: 1.5;
-    color: 8C6B2F;
+    color: #8C6B2F;
 }
 
 
@@ -1124,8 +1124,8 @@ section h2 {
     border-bottom: 1px solid rgba(196,154,69,0.35);
     text-align: left;
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .itinerary-item:last-child {
@@ -1134,22 +1134,22 @@ section h2 {
 
 .itinerary-icon {
 
-    width: 78px;
-    height: 78px;
+    width: 100px;
+    height: 100px;
 
-    flex: 0 0 78px;
+    flex: 0 0 100px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .itinerary-icon img {
 
-    width: 68px;
-    height: 68px;
+    width: 90px;
+    height: 90px;
 
     object-fit: contain;
 
@@ -1232,7 +1232,7 @@ section h2 {
 
     width: 1px;
 
-    background: #8C6B2F;
+    background: rgb(196, 154, 69);
 
     transform: translateX(-50%);
 }
@@ -1250,7 +1250,7 @@ section h2 {
 
     border-radius: 50%;
 
-    background: #8C6B2F;
+    background: rgb(196, 154, 69);
 
     transform: translate(-50%, -50%);
 
@@ -1260,8 +1260,8 @@ section h2 {
 .timeline-icon {
     position: absolute;
 
-    width: 72px;
-    height: 72px;
+    width: 100px;
+    height: 100px;
 
     display: flex;
     align-items: center;
@@ -1273,8 +1273,8 @@ section h2 {
 }
 
 .timeline-icon img {
-    width: 52px;
-    height: 52px;
+    width: 100px;
+    height: 100px;
 
     object-fit: contain;
 
@@ -1312,7 +1312,7 @@ section h2 {
     line-height: 1;
     font-weight: 400;
 
-    color: #8C6B2F;
+    color: rgb(196, 154, 69);
 }
 
 
@@ -1321,23 +1321,22 @@ section h2 {
 ===================================================== */
 
 .timeline-item:nth-child(odd) .timeline-icon {
-    left: calc(50% - 110px);
+    left: calc(50% - 125px);
 }
 
 .timeline-item:nth-child(odd) .timeline-info {
-    left: calc(50% + 35px);
+    left: calc(50% + 50px);
     text-align: left;
 }
 
 .timeline-item:nth-child(even) .timeline-icon {
-    right: calc(50% - 110px);
+    right: calc(50% - 125px);
 }
 
 .timeline-item:nth-child(even) .timeline-info {
-    right: calc(50% + 35px);
+    right: calc(50% + 50px);
     text-align: right;
 }
-
 
 
 
@@ -2666,11 +2665,8 @@ section h2 {
 }
 
 .itinerary-icon img {
-    width: 54px;
-    height: 54px;
-    max-width: 100%;
-    max-height: 100%;
-
+    width: 115px;
+    height: 115px;
     object-fit: contain;
     display: block;
 }
@@ -3134,10 +3130,10 @@ section h2 {
     }
 
     .itinerary-icon {
-    width: 82px;
-    height: 82px;
+    width: 100px;
+    height: 100px;
 
-    flex: 0 0 82px;
+    flex: 0 0 100px;
 
     display: flex;
     align-items: center;
@@ -3147,8 +3143,8 @@ section h2 {
 }
 
 .itinerary-icon img {
-    width: 90px;
-    height: 90px;
+    width: 130px;
+    height: 130px;
 
     object-fit: contain;
 
@@ -3487,4 +3483,21 @@ section h2 {
         font-size: 27px;
     }
 
+}
+
+/* PRUEBA ITINERARIO */
+.itinerary .itinerary-item .itinerary-icon {
+    width: 120px !important;
+    height: 120px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+    flex: 0 0 120px !important;
+}
+
+.itinerary .itinerary-item .itinerary-icon img {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
 }
