@@ -43,14 +43,13 @@
     padding: 16px 25px;
 
     font-family: 'Great Vibes', cursive;
-    font-size: 36px;
+    font-size: 44px;
     line-height: 1.2;
     font-weight: 400;
 
     color: rgb(43, 53, 42);
 
-    border-top: 1px solid rgba(180, 150, 90, 0.45);
-    border-bottom: 1px solid rgba(180, 150, 90, 0.45);
+  
 
     white-space: nowrap;
 }
@@ -61,7 +60,8 @@
 ========================================================= */
 
 .confirm-button,
-.confirmation-submit {
+.confirmation-submit,
+.confirmation-modify {
 
     display: inline-flex;
 
@@ -104,7 +104,8 @@
 ========================================================= */
 
 .confirm-button:hover,
-.confirmation-submit:hover {
+.confirmation-submit:hover,
+.confirmation-modify:hover {
 
     transform: translateY(-3px);
 
@@ -119,7 +120,8 @@
 ========================================================= */
 
 .confirm-button:active,
-.confirmation-submit:active {
+.confirmation-submit:active,
+.confirmation-modify:active {
 
     transform: translateY(0);
 
@@ -134,7 +136,8 @@
 ========================================================= */
 
 .confirm-button:disabled,
-.confirmation-submit:disabled {
+.confirmation-submit:disabled,
+.confirmation-modify:disabled {
 
     cursor: not-allowed;
 
@@ -181,7 +184,207 @@
 }
 
 
+/* =========================================================
+   ESTADO DE CONFIRMACIÓN
+========================================================= */
 
+.confirmation-status {
+
+    width: 100%;
+
+    margin: 28px auto 0;
+
+    padding: 25px 25px 28px;
+
+    border-top: 1px solid rgba(180, 150, 90, 0.45);
+    border-bottom: 1px solid rgba(180, 150, 90, 0.45);
+
+}
+
+
+.confirmation-status-title {
+
+    margin: 0 0 18px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 25px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    color: rgb(43, 53, 42);
+
+}
+
+
+.confirmation-status-subtitle {
+
+    margin: 0 0 22px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 19px;
+
+    line-height: 1.4;
+
+    color: var(--dark-text);
+
+}
+
+
+/* =========================================================
+   ESTADO INDIVIDUAL
+========================================================= */
+
+.confirmation-status-individual {
+
+    margin: 0 auto 25px;
+
+}
+
+
+.confirmation-status-name {
+
+    margin-bottom: 8px;
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    color: var(--gold);
+
+}
+
+
+.confirmation-status-answer {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 22px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+}
+
+
+.confirmation-status-answer.is-yes {
+
+    color: rgb(73, 105, 68);
+
+}
+
+
+.confirmation-status-answer.is-no {
+
+    color: rgb(130, 82, 72);
+
+}
+
+
+/* =========================================================
+   ESTADO FAMILIA
+========================================================= */
+
+.confirmation-status-family {
+
+    width: 100%;
+
+    margin: 0 auto 25px;
+
+}
+
+
+.confirmation-status-family-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 12px 10px;
+
+    border-bottom:
+        1px solid rgba(180, 150, 90, 0.22);
+
+}
+
+
+.confirmation-status-family-name {
+
+    text-align: left;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+
+    font-weight: 500;
+
+    color: var(--dark-text);
+
+}
+
+
+.confirmation-status-family-answer {
+
+    flex-shrink: 0;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+
+.confirmation-status-family-answer.is-yes {
+
+    color: rgb(73, 105, 68);
+
+}
+
+
+.confirmation-status-family-answer.is-no {
+
+    color: rgb(130, 82, 72);
+
+}
+
+
+/* =========================================================
+   BOTÓN MODIFICAR
+========================================================= */
+
+.confirmation-modify {
+
+    background: transparent;
+
+    color: var(--gold);
+
+    border:
+        1px solid rgba(180, 150, 90, 0.7);
+
+}
+
+
+.confirmation-modify:hover {
+
+    background: var(--gold);
+
+    color: white;
+
+}
 
 
 /* =========================================================
@@ -452,6 +655,201 @@
 
 
 /* =========================================================
+   MODAL DE CONFIRMACIÓN
+========================================================= */
+
+.confirmation-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+
+.confirmation-modal.is-open {
+
+    display: flex;
+
+}
+
+
+/* =========================================================
+   FONDO DEL MODAL
+========================================================= */
+
+.confirmation-modal-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(43, 53, 42, 0.48);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+}
+
+
+/* =========================================================
+   VENTANA
+========================================================= */
+
+.confirmation-modal-dialog {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+    max-width: 720px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 42px 45px 38px;
+
+    background:
+        var(--sage-light, #f8f6f0);
+
+    border:
+        1px solid rgba(180, 150, 90, 0.55);
+
+    box-shadow:
+        0 18px 50px rgba(43, 53, 42, 0.22);
+
+}
+
+
+/* =========================================================
+   TÍTULO DEL MODAL
+========================================================= */
+
+.confirmation-modal-title {
+
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    font-weight: 500;
+
+    color: rgb(43, 53, 42);
+
+}
+
+
+/* =========================================================
+   CONTENIDO DEL MODAL
+========================================================= */
+
+.confirmation-modal-content {
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+
+.confirmation-modal-close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    font-weight: 300;
+
+    color: var(--gold);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+}
+
+
+.confirmation-modal-close:hover {
+
+    transform: scale(1.08);
+
+    opacity: 0.75;
+
+}
+
+
+/* =========================================================
+   FORMULARIO DENTRO DEL MODAL
+========================================================= */
+
+.confirmation-modal-content
+.confirmation-form {
+
+    width: 100%;
+
+    margin: 0;
+
+    padding-top: 0;
+
+    border-top: none;
+
+}
+
+
+/* =========================================================
+   BLOQUEAR SCROLL DEL FONDO
+========================================================= */
+
+body.confirmation-modal-open {
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
@@ -486,6 +884,25 @@
         font-size: 19px;
     }
 
+
+    .confirmation-modal {
+        padding: 15px;
+    }
+
+
+    .confirmation-modal-dialog {
+        max-height: 92vh;
+
+        padding:
+            38px 25px 30px;
+    }
+
+
+    .confirmation-modal-title {
+        font-size: 27px;
+        margin-bottom: 22px;
+    }
+
 }
 
 
@@ -502,10 +919,11 @@
 
 
     .confirmation-primary-guest {
-    font-size: 32px;
-    padding: 14px 10px;
-    white-space: nowrap;
-}
+        font-size: 38px;
+        padding: 14px 10px;
+        white-space: nowrap;
+    }
+
 
     .confirmation-question {
         font-size: 22px;
@@ -548,9 +966,457 @@
 
 
     .confirm-button,
-    .confirmation-submit {
+    .confirmation-submit,
+    .confirmation-modify {
         width: 100%;
         max-width: 280px;
+    }
+
+
+    .confirmation-status {
+        padding:
+            22px 12px 25px;
+    }
+
+
+    .confirmation-status-title {
+        font-size: 22px;
+    }
+
+
+    .confirmation-status-subtitle {
+        font-size: 18px;
+    }
+
+
+    .confirmation-status-name {
+        font-size: 29px;
+    }
+
+
+    .confirmation-status-answer {
+        font-size: 20px;
+    }
+
+
+    .confirmation-status-family-row {
+        gap: 10px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+
+    .confirmation-status-family-name {
+        font-size: 17px;
+    }
+
+
+    .confirmation-status-family-answer {
+        font-size: 16px;
+    }
+
+
+    .confirmation-modal {
+        padding: 10px;
+    }
+
+
+    .confirmation-modal-dialog {
+        max-height: 94vh;
+
+        padding:
+            38px 15px 25px;
+    }
+
+
+    .confirmation-modal-title {
+        font-size: 25px;
+    }
+
+
+    .confirmation-modal-close {
+        top: 9px;
+        right: 10px;
+        font-size: 28px;
+    }
+
+}
+
+/* =========================================================
+   MODIFICAR CONFIRMACIÓN
+========================================================= */
+
+.confirmation-edit-list {
+    width: 100%;
+    margin: 0 auto 30px;
+}
+
+
+/* =========================================================
+   FILA DE INVITADO
+========================================================= */
+
+.confirmation-edit-row {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        45px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px 10px;
+
+    border-bottom:
+        1px solid rgba(180, 150, 90, 0.25);
+
+    transition:
+        background-color 0.25s ease;
+
+}
+
+
+.confirmation-edit-row.is-editing {
+
+    background:
+        rgba(180, 150, 90, 0.07);
+
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.confirmation-edit-info {
+
+    min-width: 0;
+
+    text-align: left;
+
+}
+
+
+.confirmation-edit-name {
+
+    margin-bottom: 4px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    color:
+        var(--dark-text);
+
+}
+
+
+.confirmation-edit-answer {
+
+    display: inline-block;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 18px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+}
+
+
+.confirmation-edit-answer.is-yes {
+
+    color:
+        rgb(73, 105, 68);
+
+}
+
+
+.confirmation-edit-answer.is-no {
+
+    color:
+        rgb(130, 82, 72);
+
+}
+
+
+/* =========================================================
+   BOTÓN LÁPIZ
+========================================================= */
+
+.confirmation-edit-action {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.confirmation-edit-guest {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    border:
+        1px solid rgba(180, 150, 90, 0.55);
+
+    border-radius: 50%;
+
+    background:
+        transparent;
+
+    color:
+        var(--gold);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+
+.confirmation-edit-guest svg {
+
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+}
+
+
+.confirmation-edit-guest:hover {
+
+    background:
+        var(--gold);
+
+    color:
+        white;
+
+    border-color:
+        var(--gold);
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* =========================================================
+   OPCIONES AL EDITAR
+========================================================= */
+
+.confirmation-edit-options-container {
+
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+}
+
+
+.confirmation-edit-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+}
+
+
+.confirmation-edit-options button {
+
+    min-width: 70px;
+
+    padding: 7px 16px;
+
+    border:
+        1px solid rgba(180, 150, 90, 0.65);
+
+    border-radius: 3px;
+
+    background:
+        transparent;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color:
+        var(--dark-text);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+
+.confirmation-edit-options button:hover {
+
+    border-color:
+        var(--gold);
+
+}
+
+
+.confirmation-edit-options
+button.is-selected {
+
+    background:
+        var(--gold);
+
+    border-color:
+        var(--gold);
+
+    color:
+        white;
+
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR CAMBIOS
+========================================================= */
+
+.confirmation-submit:disabled {
+
+    opacity:
+        0.45;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+
+}
+
+
+/* =========================================================
+   BOTÓN CUANDO HAY CAMBIOS
+========================================================= */
+
+.confirmation-submit.has-changes {
+
+    opacity:
+        1;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .confirmation-edit-row {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            40px;
+
+        gap: 10px;
+
+        padding:
+            14px 4px;
+
+    }
+
+
+    .confirmation-edit-name {
+
+        font-size: 19px;
+
+    }
+
+
+    .confirmation-edit-answer {
+
+        font-size: 17px;
+
+    }
+
+
+    .confirmation-edit-guest {
+
+        width: 34px;
+        height: 34px;
+
+    }
+
+
+    .confirmation-edit-options {
+
+        justify-content: flex-start;
+
+        margin-top: 10px;
+
+    }
+
+
+    .confirmation-edit-options button {
+
+        min-width: 65px;
+
+        padding:
+            7px 13px;
+
+        font-size: 16px;
+
     }
 
 }

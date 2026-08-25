@@ -1,4 +1,3 @@
-
 <section class="confirmation">
 
     <div class="section-content confirmation-content">
@@ -11,15 +10,12 @@
             Confirma tu asistencia
         </h2>
 
-        <p class="confirmation-intro">
-            Su presencia sería un honor para nosotros.
-            Por favor confirme su asistencia para que
-            podamos prepararle la más cálida bienvenida.
-        </p>
-
 
         <!-- =====================================
              INVITADO PRINCIPAL
+             
+             Se muestra inmediatamente después
+             del título de la sección.
         ====================================== -->
 
         <div
@@ -29,45 +25,84 @@
 
 
         <!-- =====================================
-             BOTÓN INICIAL
+             MENSAJE INTRODUCTORIO
         ====================================== -->
 
-       <button
-    id="confirmationOpenForm"
-    class="confirm-button"
-    type="button"
->
+        <p class="confirmation-intro">
+            Tu presencia sería un honor para nosotros.
+            Por favor confirma tu asistencia para que
+            podamos prepararte la más cálida bienvenida.
+        </p>
 
-    <span class="confirmation-icon">
 
-        <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
+        <!-- =====================================
+             ESTADO DE CONFIRMACIÓN
+
+             JavaScript lo mostrará únicamente
+             cuando todos los invitados ya hayan
+             confirmado su asistencia.
+
+             NO muestra el listado inicialmente.
+        ====================================== -->
+
+        <div
+            id="confirmationStatus"
+            class="confirmation-status"
+            hidden
+        ></div>
+
+
+        <!-- =====================================
+             BOTÓN INICIAL
+
+             Invitación sin confirmar:
+             "Confirmar asistencia"
+
+             Invitación confirmada:
+             JavaScript oculta este botón y
+             muestra "Modificar confirmación"
+             dentro de confirmationStatus.
+        ====================================== -->
+
+        <button
+            id="confirmationOpenForm"
+            class="confirm-button"
+            type="button"
         >
 
-            <circle
-                cx="12"
-                cy="12"
-                r="8.5"
-            />
+            <span class="confirmation-icon">
 
-            <path
-                d="M8.5 12.2l2.3 2.3 4.8-5"
-            />
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
 
-        </svg>
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="8.5"
+                    />
 
-    </span>
+                    <path
+                        d="M8.5 12.2l2.3 2.3 4.8-5"
+                    />
 
-    <span>
-        Confirmar asistencia
-    </span>
+                </svg>
 
-</button>
+            </span>
+
+            <span>
+                Confirmar asistencia
+            </span>
+
+        </button>
 
 
         <!-- =====================================
              FORMULARIO
+             
+             Permanece oculto en la sección.
+             JavaScript lo mueve al modal.
         ====================================== -->
 
         <div
@@ -97,44 +132,112 @@
                  ENVIAR
             ================================== -->
 
-           <button
-    id="confirmationSubmit"
-    class="confirmation-submit"
-    type="button"
->
+            <button
+                id="confirmationSubmit"
+                class="confirmation-submit"
+                type="button"
+            >
 
-    <span class="confirmation-icon">
+                <span class="confirmation-icon">
 
-        <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
 
-            <circle
-                cx="12"
-                cy="12"
-                r="8.5"
-            />
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="8.5"
+                        />
 
-            <path
-                d="M8.5 12.2l2.3 2.3 4.8-5"
-            />
+                        <path
+                            d="M8.5 12.2l2.3 2.3 4.8-5"
+                        />
 
-        </svg>
+                    </svg>
 
-    </span>
+                </span>
 
-    <span>
-        Confirmar asistencia
-    </span>
+                <span>
+                    Confirmar asistencia
+                </span>
 
-</button>
-
-
-
+            </button>
 
         </div>
 
     </div>
 
 </section>
+
+
+<!-- =====================================================
+     MODAL DE CONFIRMACIÓN
+====================================================== -->
+
+<div
+    id="confirmationModal"
+    class="confirmation-modal"
+    aria-hidden="true"
+>
+
+    <!-- =====================================
+         FONDO
+    ====================================== -->
+
+    <div
+        class="confirmation-modal-overlay"
+        data-confirmation-close
+    ></div>
+
+
+    <!-- =====================================
+         VENTANA
+    ====================================== -->
+
+    <div
+        class="confirmation-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirmationModalTitle"
+    >
+
+        <!-- =================================
+             CERRAR
+        ================================== -->
+
+        <button
+            type="button"
+            class="confirmation-modal-close"
+            aria-label="Cerrar"
+            data-confirmation-close
+        >
+            ×
+        </button>
+
+
+        <!-- =================================
+             TÍTULO
+        ================================== -->
+
+        <h3
+            id="confirmationModalTitle"
+            class="confirmation-modal-title"
+        >
+            Confirma tu asistencia
+        </h3>
+
+
+        <!-- =================================
+             CONTENIDO
+        ================================== -->
+
+        <div
+            id="confirmationModalContent"
+            class="confirmation-modal-content"
+        ></div>
+
+    </div>
+
+</div>
