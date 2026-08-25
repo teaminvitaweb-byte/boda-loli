@@ -644,7 +644,18 @@ document.addEventListener(
 
         /* =================================================
            CREAR BOTÓN SÍ / NO
-        ================================================== */
+
+           IMPORTANTE:
+
+           Cada invitado solamente puede tener
+           UNA opción seleccionada.
+
+           Esto aplica a:
+
+           - Invitación individual
+           - Invitación familiar
+           - Modificación de confirmación
+========================================================= */
 
         function createOptionButton(
             text,
@@ -662,6 +673,10 @@ document.addEventListener(
                 "button";
 
 
+            button.className =
+                "confirmation-option";
+
+
             button.textContent =
                 text;
 
@@ -669,6 +684,11 @@ document.addEventListener(
             button.dataset.value =
                 value;
 
+
+            /*
+             * Marcar inicialmente la respuesta
+             * que ya tenga el invitado.
+             */
 
             if (
                 getAttendanceValue(
@@ -688,19 +708,47 @@ document.addEventListener(
                 "click",
                 () => {
 
+                    /*
+                     * Guardar nueva respuesta
+                     * del invitado.
+                     */
+
                     guest.asistencia =
                         value;
 
 
-                    const parent =
-                        button.parentElement;
+                    /*
+                     * Buscar el grupo completo
+                     * de opciones de ESTE invitado.
+                     *
+                     * Puede ser:
+                     *
+                     * .confirmation-options
+                     * .confirmation-family-row
+                     * .confirmation-edit-options
+                     *
+                     * De esta manera Sí y No siempre
+                     * se consideran parte del mismo grupo.
+                     */
+
+                    const optionGroup =
+                        button.closest(
+                            ".confirmation-options, " +
+                            ".confirmation-family-row, " +
+                            ".confirmation-edit-options"
+                        );
 
 
-                    if (parent) {
+                    /*
+                     * Quitar la selección anterior
+                     * de TODOS los botones del grupo.
+                     */
 
-                        parent
+                    if (optionGroup) {
+
+                        optionGroup
                             .querySelectorAll(
-                                "button"
+                                "button[data-value]"
                             )
                             .forEach(
                                 (item) => {
@@ -714,6 +762,11 @@ document.addEventListener(
 
                     }
 
+
+                    /*
+                     * Marcar únicamente
+                     * la opción seleccionada.
+                     */
 
                     button.classList.add(
                         "is-selected"
@@ -1416,7 +1469,6 @@ document.addEventListener(
 
                                 optionsContainer.innerHTML =
                                     "";
-
 
                                 return;
 
