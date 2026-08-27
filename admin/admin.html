@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Administrador | Elizabeth & Carlos
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     CONTENEDOR PRINCIPAL
+========================================================= -->
+
+<main class="admin-main">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <header class="admin-header">
+
+        <div>
+
+            <p class="admin-eyebrow">
+                ELIZABETH & CARLOS
+            </p>
+
+            <h1>
+                Administrador
+            </h1>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         RESUMEN
+    ====================================================== -->
+
+    <section class="summary-grid">
+
+
+        <!-- =================================================
+             INVITACIONES
+        ================================================== -->
+
+        <article class="summary-panel invitations-summary">
+
+            <div class="summary-panel-header">
+
+                <div>
+
+                    <p class="summary-eyebrow">
+                        INVITACIONES
+                    </p>
+
+                    <h2>
+                        Estado de invitaciones
+                    </h2>
+
+                </div>
+
+                <span class="summary-symbol">
+                    ✉
+                </span>
+
+            </div>
+
+
+            <div class="summary-cards">
+
+
+                <!-- TOTAL -->
+
+                <button
+                    type="button"
+                    class="summary-card active"
+                    data-filter="all-invitations"
+                >
+
+                    <span class="summary-card-label">
+                        Total
+                    </span>
+
+                    <strong
+                        id="totalInvitations"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitaciones
+                    </small>
+
+                </button>
+
+
+                <!-- RESPONDIDAS -->
+
+                <button
+                    type="button"
+                    class="summary-card"
+                    data-filter="responded-invitations"
+                >
+
+                    <span class="summary-card-label">
+                        Respondidas
+                    </span>
+
+                    <strong
+                        id="respondedInvitations"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitaciones
+                    </small>
+
+                </button>
+
+
+                <!-- PENDIENTES -->
+
+                <button
+                    type="button"
+                    class="summary-card"
+                    data-filter="pending-invitations"
+                >
+
+                    <span class="summary-card-label">
+                        Pendientes
+                    </span>
+
+                    <strong
+                        id="pendingInvitations"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitaciones
+                    </small>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             INVITADOS
+        ================================================== -->
+
+        <article class="summary-panel guests-summary">
+
+            <div class="summary-panel-header">
+
+                <div>
+
+                    <p class="summary-eyebrow">
+                        INVITADOS
+                    </p>
+
+                    <h2>
+                        Estado de invitados
+                    </h2>
+
+                </div>
+
+                <span class="summary-symbol">
+                    ♡
+                </span>
+
+            </div>
+
+
+            <div class="summary-cards">
+
+
+                <!-- TOTAL -->
+
+                <button
+                    type="button"
+                    class="summary-card active"
+                    data-filter="all-guests"
+                >
+
+                    <span class="summary-card-label">
+                        Total
+                    </span>
+
+                    <strong
+                        id="totalGuests"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitados
+                    </small>
+
+                </button>
+
+
+                <!-- ASISTIRÁN -->
+
+                <button
+                    type="button"
+                    class="summary-card"
+                    data-filter="attending-guests"
+                >
+
+                    <span class="summary-card-label">
+                        Asistirán
+                    </span>
+
+                    <strong
+                        id="attendingGuests"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitados
+                    </small>
+
+                </button>
+
+
+                <!-- NO ASISTIRÁN -->
+
+                <button
+                    type="button"
+                    class="summary-card"
+                    data-filter="declined-guests"
+                >
+
+                    <span class="summary-card-label">
+                        No asistirán
+                    </span>
+
+                    <strong
+                        id="declinedGuests"
+                        class="summary-card-number"
+                    >
+                        0
+                    </strong>
+
+                    <small>
+                        invitados
+                    </small>
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LISTADO
+    ====================================================== -->
+
+    <section
+        class="panel invitations-panel"
+        id="listado"
+    >
+
+
+        <!-- =================================================
+             CABECERA
+        ================================================== -->
+
+        <div class="panel-header">
+
+            <div>
+
+                <p
+                    class="panel-eyebrow"
+                    id="listEyebrow"
+                >
+                    INVITACIONES
+                </p>
+
+                <h2 id="listTitle">
+                    Todas las invitaciones
+                </h2>
+
+                <p
+                    class="list-description"
+                    id="listDescription"
+                >
+                    Listado completo de invitaciones registradas.
+                </p>
+
+            </div>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="table-tools">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Buscar..."
+                    aria-label="Buscar"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TABLA
+        ================================================== -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead id="tableHead">
+
+                    <tr>
+
+                        <th>
+                            Invitación
+                        </th>
+
+                        <th>
+                            Teléfono
+                        </th>
+
+                        <th>
+                            Personas
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <div class="table-footer">
+
+            <span id="tableFooterText">
+                Mostrando 0 registros
+            </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>

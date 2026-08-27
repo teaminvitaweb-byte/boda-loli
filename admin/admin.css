@@ -1,0 +1,2523 @@
+/* =========================================================
+   ADMINISTRADOR
+   ELIZABETH & CARLOS
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --sage-dark: #536747;
+    --sage: #71845F;
+    --sage-light: #E5ECDD;
+    --sage-soft: #F1F5EC;
+
+    --gold: #B88932;
+    --gold-soft: #D5B66A;
+
+    --dark: #2E352B;
+    --text: #4A5145;
+    --muted: #737B70;
+
+    --border: #D8DED2;
+
+    /* -----------------------------------------
+       ESTADOS
+    ----------------------------------------- */
+
+    --green-confirmed: #63844F;
+    --green-confirmed-bg: #DDEAD4;
+
+    --green-pending: #A18D45;
+    --green-pending-bg: #F0EBD5;
+
+    --green-declined: #71806A;
+    --green-declined-bg: #E1E8DE;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+
+body {
+
+    margin:
+        0;
+
+    background:
+        #F2F5EF;
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.admin-main {
+
+    width:
+        min(1120px, calc(100% - 32px));
+
+    margin:
+        0 auto;
+
+    padding:
+        28px 0 45px;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.admin-header {
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.admin-eyebrow {
+
+    margin:
+        0 0 4px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.admin-header h1 {
+
+    margin:
+        0;
+
+    color:
+        var(--dark);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        27px;
+
+    font-weight:
+        400;
+
+}
+
+
+/* =========================================================
+   RESUMEN
+========================================================= */
+
+.summary-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        14px;
+
+    margin-bottom:
+        16px;
+
+}
+
+
+/* =========================================================
+   PANEL RESUMEN
+========================================================= */
+
+.summary-panel {
+
+    background:
+        #FFFFFF;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 5px 18px rgba(55, 70, 48, .07);
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   CABECERA RESUMEN
+========================================================= */
+
+.summary-panel-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        13px 15px 11px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        var(--sage-soft);
+
+}
+
+
+.summary-eyebrow {
+
+    margin:
+        0 0 3px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.7px;
+
+}
+
+
+.summary-panel h2 {
+
+    margin:
+        0;
+
+    color:
+        var(--dark);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        17px;
+
+    font-weight:
+        400;
+
+}
+
+
+.summary-symbol {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid #C9D4C0;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--sage-light);
+
+    color:
+        var(--sage-dark);
+
+    font-size:
+        14px;
+
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.summary-cards {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        8px;
+
+    padding:
+        10px;
+
+    background:
+        #FFFFFF;
+
+}
+
+
+.summary-card {
+
+    position:
+        relative;
+
+    min-width:
+        0;
+
+    padding:
+        11px 10px;
+
+    border:
+        1px solid #DDE3D8;
+
+    border-radius:
+        7px;
+
+    background:
+        #F8FAF6;
+
+    color:
+        var(--text);
+
+    text-align:
+        center;
+
+    cursor:
+        pointer;
+
+    transition:
+        .15s ease;
+
+}
+
+
+.summary-card:hover {
+
+    border-color:
+        #AEBDA3;
+
+    background:
+        #F0F5EB;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.summary-card.active {
+
+    border-color:
+        var(--sage);
+
+    background:
+        var(--sage-light);
+
+    box-shadow:
+        inset 0 3px 0 var(--sage-dark);
+
+}
+
+
+/* =========================================================
+   TEXTO TARJETAS
+========================================================= */
+
+.summary-card-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+    font-weight:
+        600;
+
+    text-align:
+        center;
+
+}
+
+
+.summary-card.active
+.summary-card-label {
+
+    color:
+        var(--sage-dark);
+
+}
+
+
+.summary-card-number {
+
+    display:
+        block;
+
+    color:
+        var(--dark);
+
+    font-size:
+        22px;
+
+    line-height:
+        1;
+
+    font-weight:
+        700;
+
+    text-align:
+        center;
+
+}
+
+
+.summary-card small {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        8px;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   COLORES DE TARJETAS
+   PALETA VERDE — DEGRADADOS VIVOS
+========================================================= */
+
+
+/* =========================================================
+   INVITACIONES
+========================================================= */
+
+
+/* -----------------------------------------
+   INVITACIONES — TOTAL
+----------------------------------------- */
+
+.invitations-summary
+.summary-card:nth-child(1) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #F0F5EC 0%,
+            #DCEAD4 100%
+        );
+
+    border-color:
+        #C4D6BB;
+
+}
+
+
+.invitations-summary
+.summary-card:nth-child(1):hover,
+.invitations-summary
+.summary-card:nth-child(1).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #E4F0DD 0%,
+            #CFE2C5 100%
+        );
+
+    border-color:
+        #9FB793;
+
+}
+
+
+/* -----------------------------------------
+   INVITACIONES — RESPONDIDAS
+----------------------------------------- */
+
+.invitations-summary
+.summary-card:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #E8F3E1 0%,
+            #D3E7C9 100%
+        );
+
+    border-color:
+        #BCD1B2;
+
+}
+
+
+.invitations-summary
+.summary-card:nth-child(2):hover,
+.invitations-summary
+.summary-card:nth-child(2).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #DCF0D3 0%,
+            #C3DDB8 100%
+        );
+
+    border-color:
+        #91AD83;
+
+}
+
+
+/* -----------------------------------------
+   INVITACIONES — PENDIENTES
+----------------------------------------- */
+
+.invitations-summary
+.summary-card:nth-child(3) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #EEF3E4 0%,
+            #DCE8CF 100%
+        );
+
+    border-color:
+        #C2D1B6;
+
+}
+
+
+.invitations-summary
+.summary-card:nth-child(3):hover,
+.invitations-summary
+.summary-card:nth-child(3).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #E2EDD7 0%,
+            #C9DDBB 100%
+        );
+
+    border-color:
+        #9CAF8F;
+
+}
+
+
+/* =========================================================
+   INVITADOS
+========================================================= */
+
+
+/* -----------------------------------------
+   INVITADOS — TOTAL
+----------------------------------------- */
+
+.guests-summary
+.summary-card:nth-child(1) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #E5F1E0 0%,
+            #CFE5C7 100%
+        );
+
+    border-color:
+        #B8CFB0;
+
+}
+
+
+.guests-summary
+.summary-card:nth-child(1):hover,
+.guests-summary
+.summary-card:nth-child(1).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #D8EBCF 0%,
+            #BDD9B4 100%
+        );
+
+    border-color:
+        #8FAA83;
+
+}
+
+
+/* -----------------------------------------
+   INVITADOS — ASISTIRÁN
+----------------------------------------- */
+
+.guests-summary
+.summary-card:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #DDF0D6 0%,
+            #C2DFC0 100%
+        );
+
+    border-color:
+        #AAC8A2;
+
+}
+
+
+.guests-summary
+.summary-card:nth-child(2):hover,
+.guests-summary
+.summary-card:nth-child(2).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #D0E9C8 0%,
+            #B2D2A9 100%
+        );
+
+    border-color:
+        #83A77A;
+
+}
+
+
+/* -----------------------------------------
+   INVITADOS — NO ASISTIRÁN
+----------------------------------------- */
+
+.guests-summary
+.summary-card:nth-child(3) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #E8F0E3 0%,
+            #D2E2CC 100%
+        );
+
+    border-color:
+        #B9CDB2;
+
+}
+
+
+.guests-summary
+.summary-card:nth-child(3):hover,
+.guests-summary
+.summary-card:nth-child(3).active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #DDEAD8 0%,
+            #C3D8BC 100%
+        );
+
+    border-color:
+        #91AA88;
+
+}
+
+
+/* =========================================================
+   PANEL LISTADO
+========================================================= */
+
+.panel {
+
+    background:
+        #FFFFFF;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 5px 18px rgba(55, 70, 48, .07);
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   HEADER LISTADO
+========================================================= */
+
+.panel-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        15px 17px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        var(--sage-soft);
+
+}
+
+
+.panel-eyebrow {
+
+    margin:
+        0 0 3px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.7px;
+
+}
+
+
+.panel-header h2 {
+
+    margin:
+        0;
+
+    color:
+        var(--dark);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        19px;
+
+    font-weight:
+        400;
+
+}
+
+
+.list-description {
+
+    margin:
+        4px 0 0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+}
+
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+
+.table-tools {
+
+    flex-shrink:
+        0;
+
+}
+
+
+.table-tools input {
+
+    width:
+        190px;
+
+    padding:
+        9px 11px;
+
+    border:
+        1px solid #CBD4C5;
+
+    border-radius:
+        6px;
+
+    outline:
+        none;
+
+    background:
+        #FFFFFF;
+
+    color:
+        var(--text);
+
+    font-size:
+        11px;
+
+}
+
+
+.table-tools input::placeholder {
+
+    color:
+        #92998E;
+
+}
+
+
+.table-tools input:focus {
+
+    border-color:
+        var(--gold);
+
+    background:
+        #FFFFFF;
+
+    box-shadow:
+        0 0 0 2px rgba(196, 154, 69, .12);
+
+}
+
+
+/* =========================================================
+   TABLA
+========================================================= */
+
+.table-wrapper {
+
+    width:
+        100%;
+
+    overflow-x:
+        auto;
+
+}
+
+
+table {
+
+    width:
+        100%;
+
+    min-width:
+        720px;
+
+    border-collapse:
+        collapse;
+
+}
+
+
+thead {
+
+    background:
+        #EAF0E5;
+
+}
+
+
+th {
+
+    padding:
+        9px 14px;
+
+    text-align:
+        left;
+
+    color:
+        var(--sage-dark);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .9px;
+
+    text-transform:
+        uppercase;
+
+    border-bottom:
+        1px solid #D3DCCD;
+
+}
+
+
+td {
+
+    padding:
+        11px 14px;
+
+    color:
+        var(--text);
+
+    font-size:
+        11px;
+
+    border-bottom:
+        1px solid #E4E8E0;
+
+    vertical-align:
+        middle;
+
+}
+
+
+tbody tr:last-child td {
+
+    border-bottom:
+        none;
+
+}
+
+
+tbody tr:hover {
+
+    background:
+        #F5F8F2;
+
+}
+
+
+td strong {
+
+    color:
+        var(--dark);
+
+}
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+.status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    padding:
+        4px 8px;
+
+    border-radius:
+        20px;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.status.confirmed {
+
+    background:
+        var(--green-confirmed-bg);
+
+    color:
+        #52723F;
+
+    border:
+        1px solid #C1D3B5;
+
+}
+
+
+.status.pending {
+
+    background:
+        var(--green-pending-bg);
+
+    color:
+        #75682E;
+
+    border:
+        1px solid #DED3A5;
+
+}
+
+
+.status.declined {
+
+    background:
+        var(--green-declined-bg);
+
+    color:
+        #596655;
+
+    border:
+        1px solid #CBD5C7;
+
+}
+
+
+/* =========================================================
+   ACCIONES
+========================================================= */
+
+.table-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+
+}
+
+
+.action-button {
+
+    padding:
+        5px 8px;
+
+    border:
+        1px solid #D1D8CC;
+
+    border-radius:
+        5px;
+
+    background:
+        #FFFFFF;
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    font-size:
+        8px;
+
+    transition:
+        .15s ease;
+
+}
+
+
+.action-button:hover {
+
+    border-color:
+        var(--gold-soft);
+
+    color:
+        var(--gold);
+
+    background:
+        #FFFDF7;
+
+}
+
+
+/* =========================================================
+   LISTADO DE INVITADOS
+========================================================= */
+
+.guest-name-cell {
+
+    font-weight:
+        600;
+
+}
+
+
+.invitation-reference {
+
+    display:
+        block;
+
+    margin-top:
+        2px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        8px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.table-footer {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        10px 14px;
+
+    border-top:
+        1px solid var(--border);
+
+    background:
+        #F7F9F5;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+========================================================= */
+
+.empty-row {
+
+    padding:
+        35px 20px !important;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.admin-modal-backdrop {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        9998;
+
+    background:
+        rgba(40, 50, 40, .48);
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    opacity:
+        0;
+
+    transition:
+        opacity .2s ease;
+
+}
+
+
+.admin-modal {
+
+    position:
+        fixed;
+
+    top:
+        50%;
+
+    left:
+        50%;
+
+    width:
+        min(620px, calc(100% - 24px));
+
+    max-height:
+        calc(100vh - 24px);
+
+    overflow-y:
+        auto;
+
+    z-index:
+        9999;
+
+    transform:
+        translate(-50%, -47%);
+
+    background:
+        #FFFFFF;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    box-shadow:
+        0 25px 70px rgba(30, 40, 30, .24);
+
+    opacity:
+        0;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+}
+
+
+#editInvitationModal.is-open
+.admin-modal-backdrop {
+
+    opacity:
+        1;
+
+}
+
+
+#editInvitationModal.is-open
+.admin-modal {
+
+    opacity:
+        1;
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+/* =========================================================
+   HEADER MODAL
+========================================================= */
+
+.admin-modal-header {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    padding:
+        18px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        var(--sage-soft);
+
+}
+
+
+.admin-modal-header p {
+
+    margin:
+        0 0 4px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+.admin-modal-header h2 {
+
+    margin:
+        0;
+
+    color:
+        var(--dark);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        20px;
+
+    font-weight:
+        400;
+
+}
+
+
+.admin-modal-close {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border:
+        1px solid #CCD5C7;
+
+    border-radius:
+        50%;
+
+    background:
+        #FFFFFF;
+
+    color:
+        var(--muted);
+
+    font-size:
+        19px;
+
+    cursor:
+        pointer;
+
+}
+
+
+/* =========================================================
+   FORMULARIO MODAL
+========================================================= */
+
+.admin-modal-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        15px;
+
+    padding:
+        18px;
+
+}
+
+
+.admin-modal-form label {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        6px;
+
+}
+
+
+.admin-modal-form label span {
+
+    color:
+        var(--dark);
+
+    font-size:
+        10px;
+
+    font-weight:
+        600;
+
+}
+
+
+.admin-modal-form input,
+.admin-modal-form select {
+
+    width:
+        100%;
+
+    padding:
+        10px 11px;
+
+    border:
+        1px solid #D0D7CC;
+
+    border-radius:
+        6px;
+
+    outline:
+        none;
+
+    background:
+        #FFFFFF;
+
+    color:
+        var(--text);
+
+    font-size:
+        11px;
+
+}
+
+
+.admin-modal-form input:focus,
+.admin-modal-form select:focus {
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 2px rgba(196,154,69,.10);
+
+}
+
+
+/* =========================================================
+   ACCIONES MODAL
+========================================================= */
+
+.admin-modal-actions {
+
+    display:
+        flex;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        8px;
+
+}
+
+
+.admin-modal-cancel,
+.admin-modal-submit {
+
+    padding:
+        9px 14px;
+
+    border:
+        none;
+
+    border-radius:
+        6px;
+
+    cursor:
+        pointer;
+
+    font-size:
+        10px;
+
+}
+
+
+.admin-modal-cancel {
+
+    background:
+        #E9EEE6;
+
+    color:
+        var(--text);
+
+}
+
+
+.admin-modal-submit {
+
+    background:
+        var(--sage-dark);
+
+    color:
+        #FFFFFF;
+
+}
+
+
+.admin-modal-submit:hover {
+
+    background:
+        #46593C;
+
+}
+
+
+.admin-modal-submit:disabled {
+
+    opacity:
+        .6;
+
+    cursor:
+        wait;
+
+}
+
+
+/* =========================================================
+   PERSONAS DEL MODAL
+========================================================= */
+
+.edit-guests-section {
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        8px;
+
+    background:
+        #F7F9F5;
+
+}
+
+
+.edit-guests-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        10px 12px;
+
+    border-bottom:
+        1px solid #D8DFD2;
+
+    background:
+        #E9EFE4;
+
+}
+
+
+.edit-guests-header > div {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+}
+
+
+.edit-guests-header span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.edit-guests-header strong {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        21px;
+
+    height:
+        21px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--sage-dark);
+
+    color:
+        white;
+
+    font-size:
+        9px;
+
+}
+
+
+.edit-add-guest {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        var(--gold);
+
+    cursor:
+        pointer;
+
+    font-size:
+        9px;
+
+    font-weight:
+        600;
+
+}
+
+
+.edit-guests-list {
+
+    padding:
+        6px 10px;
+
+}
+
+
+.edit-guest-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        7px 0;
+
+    border-bottom:
+        1px solid #E1E6DE;
+
+}
+
+
+.edit-guest-row:last-child {
+
+    border-bottom:
+        none;
+
+}
+
+
+.edit-guest-main {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 125px;
+
+    gap:
+        7px;
+
+    flex:
+        1;
+
+}
+
+
+.edit-guest-name,
+.edit-guest-status {
+
+    width:
+        100%;
+
+    padding:
+        8px;
+
+    border:
+        1px solid #D1D9CD;
+
+    border-radius:
+        5px;
+
+    outline:
+        none;
+
+    background:
+        #FFFFFF;
+
+    color:
+        var(--text);
+
+    font-size:
+        10px;
+
+}
+
+
+.edit-remove-guest {
+
+    width:
+        27px;
+
+    height:
+        27px;
+
+    flex-shrink:
+        0;
+
+    border:
+        1px solid #C8D2C3;
+
+    border-radius:
+        50%;
+
+    background:
+        #E8EEE4;
+
+    color:
+        #60705A;
+
+    cursor:
+        pointer;
+
+    font-size:
+        15px;
+
+}
+
+
+.edit-remove-guest:hover {
+
+    background:
+        #DDE7D8;
+
+    color:
+        #4E6049;
+
+}
+
+
+.edit-no-guests {
+
+    padding:
+        18px 8px;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .summary-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -----------------------------------------
+       CONTENEDOR
+    ----------------------------------------- */
+
+    .admin-main {
+
+        width:
+            calc(100% - 16px);
+
+        padding:
+            18px 0 35px;
+
+    }
+
+
+    /* -----------------------------------------
+       HEADER
+    ----------------------------------------- */
+
+    .admin-header {
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .admin-header h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    /* -----------------------------------------
+       RESUMEN
+    ----------------------------------------- */
+
+    .summary-grid {
+
+        gap:
+            10px;
+
+    }
+
+
+    .summary-panel-header {
+
+        padding:
+            11px 12px;
+
+    }
+
+
+    .summary-panel h2 {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .summary-symbol {
+
+        width:
+            27px;
+
+        height:
+            27px;
+
+        font-size:
+            12px;
+
+    }
+
+
+    .summary-cards {
+
+        gap:
+            6px;
+
+        padding:
+            8px;
+
+    }
+
+
+    .summary-card {
+
+        padding:
+            9px 8px;
+
+    }
+
+
+    .summary-card-number {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .summary-card-label {
+
+        font-size:
+            8px;
+
+    }
+
+
+    .summary-card small {
+
+        font-size:
+            7px;
+
+    }
+
+
+    /* -----------------------------------------
+       PANEL LISTADO
+    ----------------------------------------- */
+
+    .panel-header {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+        gap:
+            10px;
+
+        padding:
+            13px;
+
+    }
+
+
+    .panel-header h2 {
+
+        font-size:
+            17px;
+
+    }
+
+
+    .table-tools,
+    .table-tools input {
+
+        width:
+            100%;
+
+    }
+
+
+    /* =====================================================
+       LISTADO COMO TARJETAS EN MÓVIL
+    ===================================================== */
+
+    .table-wrapper {
+
+        overflow:
+            visible;
+
+        padding:
+            8px;
+
+        background:
+            #F2F5EF;
+
+    }
+
+
+    table {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        border-collapse:
+            separate;
+
+        border-spacing:
+            0 8px;
+
+    }
+
+
+    /* Ocultamos encabezado de tabla */
+
+    thead {
+
+        display:
+            none;
+
+    }
+
+
+    /* Cada fila se convierte en una tarjeta */
+
+    tbody tr {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            0;
+
+        width:
+            100%;
+
+        margin:
+            0;
+
+        padding:
+            11px 12px;
+
+        border:
+            1px solid #D9E1D4;
+
+        border-radius:
+            9px;
+
+        background:
+            #FFFFFF;
+
+        box-shadow:
+            0 2px 8px rgba(55, 70, 48, .055);
+
+    }
+
+
+    tbody tr:hover {
+
+        background:
+            #FFFFFF;
+
+    }
+
+
+    /* Cada celda */
+
+    tbody td {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        gap:
+            10px;
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        padding:
+            7px 0;
+
+        border:
+            none;
+
+        border-bottom:
+            1px solid #EDF0EA;
+
+        font-size:
+            10px;
+
+        text-align:
+            right;
+
+    }
+
+
+    tbody td:last-child {
+
+        border-bottom:
+            none;
+
+    }
+
+
+    /* Etiqueta izquierda */
+
+    tbody td::before {
+
+        flex-shrink:
+            0;
+
+        color:
+            var(--muted);
+
+        font-size:
+            8px;
+
+        font-weight:
+            700;
+
+        letter-spacing:
+            .5px;
+
+        text-transform:
+            uppercase;
+
+        text-align:
+            left;
+
+    }
+
+
+    /* -----------------------------------------
+       ETIQUETAS INVITACIÓN
+    ----------------------------------------- */
+
+    tbody td:nth-child(1)::before {
+
+        content:
+            "Invitación";
+
+    }
+
+
+    tbody td:nth-child(2)::before {
+
+        content:
+            "Teléfono";
+
+    }
+
+
+    tbody td:nth-child(3)::before {
+
+        content:
+            "Personas";
+
+    }
+
+
+    tbody td:nth-child(4)::before {
+
+        content:
+            "Estado";
+
+    }
+
+
+    tbody td:nth-child(5)::before {
+
+        content:
+            "Acción";
+
+    }
+
+
+    /* -----------------------------------------
+       PRIMERA CELDA — NOMBRE
+    ----------------------------------------- */
+
+    tbody td:first-child {
+
+        display:
+            block;
+
+        padding:
+            2px 0 9px;
+
+        text-align:
+            left;
+
+    }
+
+
+    tbody td:first-child::before {
+
+        display:
+            block;
+
+        margin-bottom:
+            3px;
+
+        font-size:
+            7px;
+
+        color:
+            var(--gold);
+
+    }
+
+
+    tbody td:first-child strong {
+
+        display:
+            block;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.25;
+
+    }
+
+
+    /* -----------------------------------------
+       REFERENCIA DE INVITACIÓN
+    ----------------------------------------- */
+
+    .invitation-reference {
+
+        margin-top:
+            3px;
+
+        font-size:
+            8px;
+
+    }
+
+
+    /* -----------------------------------------
+       ESTADOS
+    ----------------------------------------- */
+
+    tbody td .status {
+
+        margin-left:
+            auto;
+
+        font-size:
+            8px;
+
+    }
+
+
+    /* -----------------------------------------
+       ACCIONES
+    ----------------------------------------- */
+
+    tbody td:last-child {
+
+        padding-top:
+            8px;
+
+    }
+
+
+    .table-actions {
+
+        justify-content:
+            flex-end;
+
+        width:
+            100%;
+
+    }
+
+
+    .action-button {
+
+        padding:
+            6px 10px;
+
+        font-size:
+            8px;
+
+    }
+
+
+    /* -----------------------------------------
+       FOOTER
+    ----------------------------------------- */
+
+    .table-footer {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            7px;
+
+        padding:
+            10px 12px;
+
+        text-align:
+            center;
+
+    }
+
+
+    .table-footer .view-all-button {
+
+        width:
+            100%;
+
+    }
+
+
+    /* -----------------------------------------
+       MODAL
+    ----------------------------------------- */
+
+    .admin-modal {
+
+        width:
+            calc(100% - 16px);
+
+    }
+
+
+    .admin-modal-header,
+    .admin-modal-form {
+
+        padding:
+            15px;
+
+    }
+
+
+    .admin-modal-actions {
+
+        flex-direction:
+            column-reverse;
+
+    }
+
+
+    .admin-modal-cancel,
+    .admin-modal-submit {
+
+        width:
+            100%;
+
+    }
+
+
+    /* -----------------------------------------
+       PERSONAS DEL MODAL
+    ----------------------------------------- */
+
+    .edit-guests-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            7px;
+
+    }
+
+
+    .edit-guest-main {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .summary-card {
+
+        padding:
+            8px 6px;
+
+    }
+
+
+    .summary-card-number {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .summary-card-label {
+
+        font-size:
+            7px;
+
+    }
+
+
+    /* -----------------------------------------
+       TARJETAS DEL LISTADO
+    ----------------------------------------- */
+
+    .table-wrapper {
+
+        padding:
+            6px;
+
+    }
+
+
+    tbody tr {
+
+        padding:
+            10px;
+
+        border-radius:
+            8px;
+
+    }
+
+
+    tbody td {
+
+        font-size:
+            9px;
+
+    }
+
+
+    tbody td::before {
+
+        font-size:
+            7px;
+
+    }
+
+
+    tbody td:first-child strong {
+
+        font-size:
+            11px;
+
+    }
+
+}
