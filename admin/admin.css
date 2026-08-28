@@ -1895,7 +1895,7 @@ td strong {
     .admin-header h1 {
 
         font-size:
-            23px;
+            25px;
 
     }
 
@@ -1923,7 +1923,7 @@ td strong {
     .summary-panel h2 {
 
         font-size:
-            15px;
+            18px;
 
     }
 
@@ -1937,7 +1937,7 @@ td strong {
             27px;
 
         font-size:
-            12px;
+            15px;
 
     }
 
@@ -1964,7 +1964,7 @@ td strong {
     .summary-card-number {
 
         font-size:
-            19px;
+            20px;
 
     }
 
@@ -1972,7 +1972,7 @@ td strong {
     .summary-card-label {
 
         font-size:
-            10px;
+            12px;
 
     }
 
@@ -1980,7 +1980,7 @@ td strong {
     .summary-card small {
 
         font-size:
-            10px;
+            12px;
 
     }
 
@@ -2009,7 +2009,7 @@ td strong {
     .panel-header h2 {
 
         font-size:
-            17px;
+            18px;
 
     }
 
@@ -2145,7 +2145,7 @@ td strong {
             1px solid #EDF0EA;
 
         font-size:
-            12px;
+            15px;
 
         text-align:
             right;
@@ -2172,7 +2172,7 @@ td strong {
             var(--muted);
 
         font-size:
-            8px;
+            12px;
 
         font-weight:
             700;
@@ -2260,7 +2260,7 @@ td strong {
             3px;
 
         font-size:
-            11px;
+            12px;
 
         color:
             var(--gold);
@@ -2274,7 +2274,7 @@ td strong {
             block;
 
         font-size:
-            12px;
+            15px;
 
         line-height:
             1.25;
@@ -2292,7 +2292,7 @@ td strong {
             3px;
 
         font-size:
-            10px;
+            12px;
 
     }
 
@@ -2307,7 +2307,7 @@ td strong {
             auto;
 
         font-size:
-            12px;
+            15px;
 
     }
 
@@ -2341,7 +2341,7 @@ td strong {
             6px 10px;
 
         font-size:
-            12px;
+            15px;
 
     }
 
@@ -2516,7 +2516,7 @@ td strong {
     tbody td:first-child strong {
 
         font-size:
-            12px;
+            14px;
 
     }
 
