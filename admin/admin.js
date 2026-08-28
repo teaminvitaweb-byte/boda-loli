@@ -355,6 +355,34 @@ function updateSummary() {
         ).length;
 
 
+    /* =====================================================
+       WHATSAPP
+    ===================================================== */
+
+    const totalWhatsApp =
+        invitations.length;
+
+
+    const sentWhatsApp =
+        invitations.filter(
+            invitation =>
+                Boolean(
+                    invitation.whatsapp_enviado_at
+                )
+        ).length;
+
+
+    const pendingWhatsApp =
+        invitations.filter(
+            invitation =>
+                !invitation.whatsapp_enviado_at
+        ).length;
+
+
+    /* =====================================================
+       ACTUALIZAR INVITACIONES
+    ===================================================== */
+
     setText(
         "totalInvitations",
         totalInvitations
@@ -372,6 +400,10 @@ function updateSummary() {
         pendingInvitations
     );
 
+
+    /* =====================================================
+       ACTUALIZAR INVITADOS
+    ===================================================== */
 
     setText(
         "totalGuests",
@@ -391,6 +423,28 @@ function updateSummary() {
     );
 
 
+    /* =====================================================
+       ACTUALIZAR WHATSAPP
+    ===================================================== */
+
+    setText(
+        "totalWhatsApp",
+        totalWhatsApp
+    );
+
+
+    setText(
+        "sentWhatsApp",
+        sentWhatsApp
+    );
+
+
+    setText(
+        "pendingWhatsApp",
+        pendingWhatsApp
+    );
+
+
     console.log(
         "📊 RESUMEN",
         {
@@ -399,11 +453,16 @@ function updateSummary() {
             pendingInvitations,
             totalGuests,
             attendingGuests,
-            declinedGuests
+            declinedGuests,
+            totalWhatsApp,
+            sentWhatsApp,
+            pendingWhatsApp
         }
     );
 
 }
+
+
 
 
 /* =========================================================
@@ -496,20 +555,28 @@ function applyCurrentFilter() {
     ===================================================== */
 
     if (
-        currentFilter ===
-            "all-invitations" ||
+    currentFilter ===
+        "all-invitations" ||
 
-        currentFilter ===
-            "responded-invitations" ||
+    currentFilter ===
+        "responded-invitations" ||
 
-        currentFilter ===
-            "pending-invitations"
-    ) {
+    currentFilter ===
+        "pending-invitations" ||
 
+    currentFilter ===
+        "all-whatsapp" ||
+
+    currentFilter ===
+        "sent-whatsapp" ||
+
+    currentFilter ===
+        "pending-whatsapp"
+) {
         records =
-            getFilteredInvitations(
-                currentFilter
-            );
+    getFilteredInvitations(
+        currentFilter
+    );
 
 
         if (search) {
@@ -631,6 +698,10 @@ function getFilteredInvitations(
     filter
 ) {
 
+    /* =====================================================
+       TODAS LAS INVITACIONES
+    ===================================================== */
+
     if (
         filter ===
         "all-invitations"
@@ -643,45 +714,104 @@ function getFilteredInvitations(
     }
 
 
-    return invitations.filter(
-        invitation => {
+    /* =====================================================
+       INVITACIONES RESPONDIDAS / PENDIENTES
+    ===================================================== */
 
-            const invitationGuests =
-                getInvitationGuests(
-                    invitation.id
-                );
+    if (
+        filter ===
+        "responded-invitations" ||
 
+        filter ===
+        "pending-invitations"
+    ) {
 
-            const responded =
-                isInvitationResponded(
-                    invitationGuests
-                );
+        return invitations.filter(
+            invitation => {
 
-
-            if (
-                filter ===
-                "responded-invitations"
-            ) {
-
-                return responded;
-
-            }
+                const invitationGuests =
+                    getInvitationGuests(
+                        invitation.id
+                    );
 
 
-            if (
-                filter ===
-                "pending-invitations"
-            ) {
+                const responded =
+                    isInvitationResponded(
+                        invitationGuests
+                    );
+
+
+                if (
+                    filter ===
+                    "responded-invitations"
+                ) {
+
+                    return responded;
+
+                }
+
 
                 return !responded;
 
             }
+        );
+
+    }
 
 
-            return true;
+    /* =====================================================
+       WHATSAPP - TODAS
+    ===================================================== */
 
-        }
-    );
+    if (
+        filter ===
+        "all-whatsapp"
+    ) {
+
+        return [
+            ...invitations
+        ];
+
+    }
+
+
+    /* =====================================================
+       WHATSAPP - ENVIADAS
+    ===================================================== */
+
+    if (
+        filter ===
+        "sent-whatsapp"
+    ) {
+
+        return invitations.filter(
+            invitation =>
+                Boolean(
+                    invitation.whatsapp_enviado_at
+                )
+        );
+
+    }
+
+
+    /* =====================================================
+       WHATSAPP - PENDIENTES
+    ===================================================== */
+
+    if (
+        filter ===
+        "pending-whatsapp"
+    ) {
+
+        return invitations.filter(
+            invitation =>
+                !invitation.whatsapp_enviado_at
+        );
+
+    }
+
+
+    return [];
 
 }
 
@@ -1442,6 +1572,41 @@ function updateListHeader() {
                 "Invitaciones donde todavía falta alguna respuesta."
 
         },
+
+"all-whatsapp": {
+
+    eyebrow: "WHATSAPP",
+
+    title: "Todas las invitaciones",
+
+    description:
+        "Listado completo de invitaciones y estado de envío por WhatsApp."
+
+},
+
+"sent-whatsapp": {
+
+    eyebrow: "WHATSAPP",
+
+    title: "Invitaciones enviadas",
+
+    description:
+        "Invitaciones cuyo mensaje ya fue enviado por WhatsApp."
+
+},
+
+"pending-whatsapp": {
+
+    eyebrow: "WHATSAPP",
+
+    title: "Invitaciones pendientes de envío",
+
+    description:
+        "Invitaciones que todavía no han sido enviadas por WhatsApp."
+
+},
+
+
 
         "all-guests": {
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -58,353 +59,469 @@
          RESUMEN
     ====================================================== -->
 
-    <section class="summary-grid">
+<section class="summary-grid">
 
 
-        <!-- =================================================
-             INVITACIONES
-        ================================================== -->
+    <!-- =================================================
+         INVITACIONES
+    ================================================== -->
 
-        <article class="summary-panel invitations-summary">
+    <article class="summary-panel invitations-summary">
 
-            <div class="summary-panel-header">
-
-                <div>
-
-                    <p class="summary-eyebrow">
-                        INVITACIONES
-                    </p>
-
-                    <h2>
-                        Estado de invitaciones
-                    </h2>
-
-                </div>
-
-                <span class="summary-symbol">
-                    ✉
-                </span>
-
-            </div>
-
-
-            <div class="summary-cards">
-
-
-                <!-- TOTAL -->
-
-                <button
-                    type="button"
-                    class="summary-card active"
-                    data-filter="all-invitations"
-                >
-
-                    <span class="summary-card-label">
-                        Total
-                    </span>
-
-                    <strong
-                        id="totalInvitations"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitaciones
-                    </small>
-
-                </button>
-
-
-                <!-- RESPONDIDAS -->
-
-                <button
-                    type="button"
-                    class="summary-card"
-                    data-filter="responded-invitations"
-                >
-
-                    <span class="summary-card-label">
-                        Respondidas
-                    </span>
-
-                    <strong
-                        id="respondedInvitations"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitaciones
-                    </small>
-
-                </button>
-
-
-                <!-- PENDIENTES -->
-
-                <button
-                    type="button"
-                    class="summary-card"
-                    data-filter="pending-invitations"
-                >
-
-                    <span class="summary-card-label">
-                        Pendientes
-                    </span>
-
-                    <strong
-                        id="pendingInvitations"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitaciones
-                    </small>
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =================================================
-             INVITADOS
-        ================================================== -->
-
-        <article class="summary-panel guests-summary">
-
-            <div class="summary-panel-header">
-
-                <div>
-
-                    <p class="summary-eyebrow">
-                        INVITADOS
-                    </p>
-
-                    <h2>
-                        Estado de invitados
-                    </h2>
-
-                </div>
-
-                <span class="summary-symbol">
-                    ♡
-                </span>
-
-            </div>
-
-
-            <div class="summary-cards">
-
-
-                <!-- TOTAL -->
-
-                <button
-                    type="button"
-                    class="summary-card active"
-                    data-filter="all-guests"
-                >
-
-                    <span class="summary-card-label">
-                        Total
-                    </span>
-
-                    <strong
-                        id="totalGuests"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitados
-                    </small>
-
-                </button>
-
-
-                <!-- ASISTIRÁN -->
-
-                <button
-                    type="button"
-                    class="summary-card"
-                    data-filter="attending-guests"
-                >
-
-                    <span class="summary-card-label">
-                        Asistirán
-                    </span>
-
-                    <strong
-                        id="attendingGuests"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitados
-                    </small>
-
-                </button>
-
-
-                <!-- NO ASISTIRÁN -->
-
-                <button
-                    type="button"
-                    class="summary-card"
-                    data-filter="declined-guests"
-                >
-
-                    <span class="summary-card-label">
-                        No asistirán
-                    </span>
-
-                    <strong
-                        id="declinedGuests"
-                        class="summary-card-number"
-                    >
-                        0
-                    </strong>
-
-                    <small>
-                        invitados
-                    </small>
-
-                </button>
-
-            </div>
-
-        </article>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         LISTADO
-    ====================================================== -->
-
-    <section
-        class="panel invitations-panel"
-        id="listado"
-    >
-
-
-        <!-- =================================================
-             CABECERA
-        ================================================== -->
-
-        <div class="panel-header">
+        <div class="summary-panel-header">
 
             <div>
 
-                <p
-                    class="panel-eyebrow"
-                    id="listEyebrow"
-                >
+                <p class="summary-eyebrow">
                     INVITACIONES
                 </p>
 
-                <h2 id="listTitle">
-                    Todas las invitaciones
+                <h2>
+                    Estado de invitaciones
                 </h2>
 
-                <p
-                    class="list-description"
-                    id="listDescription"
-                >
-                    Listado completo de invitaciones registradas.
-                </p>
-
             </div>
 
-
-            <!-- BUSCADOR -->
-
-            <div class="table-tools">
-
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Buscar..."
-                    aria-label="Buscar"
-                >
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             TABLA
-        ================================================== -->
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead id="tableHead">
-
-                    <tr>
-
-                        <th>
-                            Invitación
-                        </th>
-
-                        <th>
-                            Teléfono
-                        </th>
-
-                        <th>
-                            Personas
-                        </th>
-
-                        <th>
-                            Estado
-                        </th>
-
-                        <th>
-                            Acción
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="tableBody">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-
-        <!-- =================================================
-             FOOTER
-        ================================================== -->
-
-        <div class="table-footer">
-
-            <span id="tableFooterText">
-                Mostrando 0 registros
+            <span class="summary-symbol">
+                ✉
             </span>
 
         </div>
 
-    </section>
+
+        <div class="summary-cards">
+
+
+            <!-- TOTAL -->
+
+            <button
+                type="button"
+                class="summary-card active"
+                data-filter="all-invitations"
+            >
+
+                <span class="summary-card-label">
+                    Total
+                </span>
+
+                <strong
+                    id="totalInvitations"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitaciones
+                </small>
+
+            </button>
+
+
+            <!-- RESPONDIDAS -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="responded-invitations"
+            >
+
+                <span class="summary-card-label">
+                    Respondidas
+                </span>
+
+                <strong
+                    id="respondedInvitations"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitaciones
+                </small>
+
+            </button>
+
+
+            <!-- PENDIENTES -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="pending-invitations"
+            >
+
+                <span class="summary-card-label">
+                    Pendientes
+                </span>
+
+                <strong
+                    id="pendingInvitations"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitaciones
+                </small>
+
+            </button>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =================================================
+         ESTADO WHATSAPP
+    ================================================== -->
+
+    <article class="summary-panel whatsapp-summary">
+
+        <div class="summary-panel-header">
+
+            <div>
+
+                <p class="summary-eyebrow">
+                    WHATSAPP
+                </p>
+
+                <h2>
+                    Estado de envíos
+                </h2>
+
+            </div>
+
+            <span class="summary-symbol">
+                ◉
+            </span>
+
+        </div>
+
+
+        <div class="summary-cards">
+
+
+            <!-- TOTAL WHATSAPP -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="all-whatsapp"
+            >
+
+                <span class="summary-card-label">
+                    Total
+                </span>
+
+                <strong
+                    id="totalWhatsApp"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitaciones
+                </small>
+
+            </button>
+
+
+            <!-- ENVIADAS WHATSAPP -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="sent-whatsapp"
+            >
+
+                <span class="summary-card-label">
+                    Enviadas
+                </span>
+
+                <strong
+                    id="sentWhatsApp"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    por WhatsApp
+                </small>
+
+            </button>
+
+
+            <!-- PENDIENTES WHATSAPP -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="pending-whatsapp"
+            >
+
+                <span class="summary-card-label">
+                    Pendientes
+                </span>
+
+                <strong
+                    id="pendingWhatsApp"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    por enviar
+                </small>
+
+            </button>
+
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =================================================
+         INVITADOS
+    ================================================== -->
+
+    <article class="summary-panel guests-summary">
+
+        <div class="summary-panel-header">
+
+            <div>
+
+                <p class="summary-eyebrow">
+                    INVITADOS
+                </p>
+
+                <h2>
+                    Estado de invitados
+                </h2>
+
+            </div>
+
+            <span class="summary-symbol">
+                ♡
+            </span>
+
+        </div>
+
+
+        <div class="summary-cards">
+
+
+            <!-- TOTAL -->
+
+            <button
+                type="button"
+                class="summary-card active"
+                data-filter="all-guests"
+            >
+
+                <span class="summary-card-label">
+                    Total
+                </span>
+
+                <strong
+                    id="totalGuests"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitados
+                </small>
+
+            </button>
+
+
+            <!-- ASISTIRÁN -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="attending-guests"
+            >
+
+                <span class="summary-card-label">
+                    Asistirán
+                </span>
+
+                <strong
+                    id="attendingGuests"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitados
+                </small>
+
+            </button>
+
+
+            <!-- NO ASISTIRÁN -->
+
+            <button
+                type="button"
+                class="summary-card"
+                data-filter="declined-guests"
+            >
+
+                <span class="summary-card-label">
+                    No asistirán
+                </span>
+
+                <strong
+                    id="declinedGuests"
+                    class="summary-card-number"
+                >
+                    0
+                </strong>
+
+                <small>
+                    invitados
+                </small>
+
+            </button>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+
+
+
+<!-- =====================================================
+     LISTADO
+===================================================== -->
+
+<section
+    class="panel invitations-panel"
+    id="listado"
+>
+
+
+    <!-- =================================================
+         CABECERA
+    ================================================== -->
+
+    <div class="panel-header">
+
+        <div>
+
+            <p
+                class="panel-eyebrow"
+                id="listEyebrow"
+            >
+                INVITACIONES
+            </p>
+
+            <h2 id="listTitle">
+                Todas las invitaciones
+            </h2>
+
+            <p
+                class="list-description"
+                id="listDescription"
+            >
+                Listado completo de invitaciones registradas.
+            </p>
+
+        </div>
+
+
+        <!-- BUSCADOR -->
+
+        <div class="table-tools">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Buscar..."
+                aria-label="Buscar"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         TABLA
+    ================================================== -->
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead id="tableHead">
+
+                <tr>
+
+                    <th>
+                        Invitación
+                    </th>
+
+                    <th>
+                        Teléfono
+                    </th>
+
+                    <th>
+                        Personas
+                    </th>
+
+                    <th>
+                        Estado
+                    </th>
+
+                    <th>
+                        Acción
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <div class="table-footer">
+
+        <span id="tableFooterText">
+            Mostrando 0 registros
+        </span>
+
+    </div>
+
+</section>
 
 </main>
 
