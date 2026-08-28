@@ -118,7 +118,7 @@ body {
         var(--gold);
 
     font-size:
-        9px;
+        15px;
 
     font-weight:
         700;
@@ -142,7 +142,7 @@ body {
         serif;
 
     font-size:
-        27px;
+        18px;
 
     font-weight:
         400;
@@ -401,7 +401,7 @@ body {
         var(--muted);
 
     font-size:
-        9px;
+        12px;
 
     font-weight:
         600;
@@ -430,7 +430,7 @@ body {
         var(--dark);
 
     font-size:
-        22px;
+        24px;
 
     line-height:
         1;
@@ -456,7 +456,7 @@ body {
         var(--muted);
 
     font-size:
-        8px;
+        12px;
 
     text-align:
         center;
@@ -812,7 +812,7 @@ body {
         var(--muted);
 
     font-size:
-        9px;
+        11px;
 
 }
 
@@ -955,7 +955,7 @@ td {
         var(--text);
 
     font-size:
-        11px;
+        13px;
 
     border-bottom:
         1px solid #E4E8E0;
@@ -1101,7 +1101,7 @@ td strong {
         pointer;
 
     font-size:
-        8px;
+        12px;
 
     transition:
         .15s ease;
@@ -1972,7 +1972,7 @@ td strong {
     .summary-card-label {
 
         font-size:
-            8px;
+            10px;
 
     }
 
@@ -1980,7 +1980,7 @@ td strong {
     .summary-card small {
 
         font-size:
-            7px;
+            10px;
 
     }
 
@@ -2145,7 +2145,7 @@ td strong {
             1px solid #EDF0EA;
 
         font-size:
-            10px;
+            12px;
 
         text-align:
             right;
@@ -2260,7 +2260,7 @@ td strong {
             3px;
 
         font-size:
-            7px;
+            11px;
 
         color:
             var(--gold);
@@ -2292,7 +2292,7 @@ td strong {
             3px;
 
         font-size:
-            8px;
+            10px;
 
     }
 
@@ -2307,7 +2307,7 @@ td strong {
             auto;
 
         font-size:
-            8px;
+            12px;
 
     }
 
@@ -2341,7 +2341,7 @@ td strong {
             6px 10px;
 
         font-size:
-            8px;
+            12px;
 
     }
 
@@ -2469,7 +2469,7 @@ td strong {
     .summary-card-label {
 
         font-size:
-            7px;
+            11px;
 
     }
 
@@ -2500,7 +2500,7 @@ td strong {
     tbody td {
 
         font-size:
-            9px;
+            12px;
 
     }
 
@@ -2508,7 +2508,7 @@ td strong {
     tbody td::before {
 
         font-size:
-            7px;
+            10px;
 
     }
 
@@ -2516,7 +2516,7 @@ td strong {
     tbody td:first-child strong {
 
         font-size:
-            11px;
+            12px;
 
     }
 
