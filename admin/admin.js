@@ -215,7 +215,8 @@ async function loadAdminData() {
                 telefono,
                 tipo,
                 created_at,
-                respondido_at
+                respondido_at,
+                whatsapp_enviado_at
             `)
             .order(
                 "id",
@@ -851,11 +852,6 @@ function getInvitationStatus(
             );
 
 
-        /*
-         * Aunque todos vayan o todos no vayan,
-         * para INVITACIONES el estado es respondida.
-         */
-
         if (allAttend) {
 
             return {
@@ -893,31 +889,77 @@ function getInvitationStatus(
 
 
 /* =========================================================
-   FORMATEAR FECHA DE CONFIRMACIÓN
+   WHATSAPP - ESTADO
 ========================================================= */
 
-function formatConfirmationDate(
-    date
+function getWhatsAppStatus(
+    invitation
 ) {
 
-    if (!date) {
+    if (
+        invitation.whatsapp_enviado_at
+    ) {
 
-        return "—";
+        return {
+
+            className:
+                "confirmed",
+
+            text:
+                "Enviada",
+
+            date:
+                formatDateTime(
+                    invitation.whatsapp_enviado_at
+                )
+
+        };
 
     }
 
 
-    const value =
-        new Date(date);
+    return {
+
+        className:
+            "pending",
+
+        text:
+            "No enviada",
+
+        date:
+            ""
+
+    };
+
+}
+
+
+/* =========================================================
+   FORMATEAR FECHA Y HORA
+========================================================= */
+
+function formatDateTime(
+    value
+) {
+
+    if (!value) {
+        return "";
+    }
+
+
+    const date =
+        new Date(
+            value
+        );
 
 
     if (
         Number.isNaN(
-            value.getTime()
+            date.getTime()
         )
     ) {
 
-        return "—";
+        return "";
 
     }
 
@@ -931,7 +973,9 @@ function formatConfirmationDate(
             hour: "2-digit",
             minute: "2-digit"
         }
-    ).format(value);
+    ).format(
+        date
+    );
 
 }
 
@@ -961,11 +1005,11 @@ function renderInvitationTable(
             </th>
 
             <th>
-                Estado
+                WhatsApp
             </th>
 
             <th>
-                Confirmada
+                Estado
             </th>
 
             <th>
@@ -1047,6 +1091,12 @@ function createInvitationRow(
         );
 
 
+    const whatsappStatus =
+        getWhatsAppStatus(
+            invitation
+        );
+
+
     return `
 
         <tr>
@@ -1087,20 +1137,38 @@ function createInvitationRow(
 
             <td>
 
-                <span
-                    class="status ${status.className}"
-                >
-                    ${status.text}
-                </span>
+                <div class="whatsapp-status">
+
+                    <span
+                        class="status ${whatsappStatus.className}"
+                    >
+                        ${whatsappStatus.text}
+                    </span>
+
+                    ${
+                        whatsappStatus.date
+                            ? `
+                                <small class="whatsapp-date">
+                                    ${escapeHTML(
+                                        whatsappStatus.date
+                                    )}
+                                </small>
+                              `
+                            : ""
+                    }
+
+                </div>
 
             </td>
 
 
             <td>
 
-                ${formatConfirmationDate(
-                    invitation.respondido_at
-                )}
+                <span
+                    class="status ${status.className}"
+                >
+                    ${status.text}
+                </span>
 
             </td>
 
@@ -1177,10 +1245,6 @@ function renderGuestTable(
                 Asistencia
             </th>
 
-            <th>
-                Fecha de confirmación
-            </th>
-
         </tr>
 
     `;
@@ -1195,7 +1259,7 @@ function renderGuestTable(
             <tr>
 
                 <td
-                    colspan="5"
+                    colspan="4"
                     class="empty-row"
                 >
                     No hay invitados que mostrar.
@@ -1328,15 +1392,6 @@ function createGuestRow(
                 >
                     ${statusText}
                 </span>
-
-            </td>
-
-
-            <td>
-
-                ${formatConfirmationDate(
-                    invitation?.respondido_at
-                )}
 
             </td>
 
@@ -1591,11 +1646,12 @@ function openInvitation(
 
 
 
+
 /* =========================================================
    WHATSAPP
 ========================================================= */
 
-function openWhatsApp(
+async function openWhatsApp(
     invitationId
 ) {
 
@@ -1642,8 +1698,11 @@ function openWhatsApp(
 
 
     /*
-     * Emojis generados directamente desde
-     * sus códigos Unicode.
+     * Mensaje de WhatsApp.
+     *
+     * Los emojis se generan directamente
+     * mediante Unicode para evitar problemas
+     * de codificación del archivo.
      */
 
     const wavingHand =
@@ -1656,10 +1715,6 @@ function openWhatsApp(
         String.fromCodePoint(0x1F609);
 
 
-    /*
-     * MENSAJE
-     */
-
     const message =
         `¡Hola, ${firstName}! ${wavingHand}\n\n` +
         `Pasaba por aquí a dejarte un saludito y algo más...\n\n` +
@@ -1670,7 +1725,7 @@ function openWhatsApp(
 
 
     /*
-     * DEBUG
+     * Verificación en consola.
      */
 
     console.log(
@@ -1686,22 +1741,25 @@ function openWhatsApp(
         "📱 CÓDIGOS UNICODE:"
     );
 
-    console.log(
-        [...message]
-            .filter(
-                character =>
-                    character.codePointAt(0) > 127
-            )
-            .map(
-                character =>
-                    `${character} = U+${character.codePointAt(0).toString(16).toUpperCase()}`
-            )
-            .join("\n")
-    );
+    for (
+        const character of message
+    ) {
+
+        console.log(
+            character,
+            "=",
+            "U+" +
+            character
+                .codePointAt(0)
+                .toString(16)
+                .toUpperCase()
+        );
+
+    }
 
 
     /*
-     * CODIFICAR MENSAJE PARA WHATSAPP
+     * Codificar el mensaje completo.
      */
 
     const encodedMessage =
@@ -1710,34 +1768,120 @@ function openWhatsApp(
         );
 
 
-    console.log(
-        "📱 MENSAJE CODIFICADO:"
-    );
-
-    console.log(
-        encodedMessage
-    );
+    const url =
+        `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
 
 
     /*
-     * URL DE WHATSAPP
+     * =====================================================
+     * GUARDAR FECHA DE ENVÍO
+     * =====================================================
      */
 
-    const url =
-        `https://api.whatsapp.com/send/?phone=${phone}` +
-        `&text=${encodedMessage}` +
-        `&type=phone_number` +
-        `&app_absent=0`;
+    if (
+        !invitation.whatsapp_enviado_at
+    ) {
+
+        const sentAt =
+            new Date().toISOString();
 
 
-    console.log(
-        "📱 URL WHATSAPP:"
-    );
+        console.log(
+            "⏳ Guardando envío de WhatsApp..."
+        );
 
-    console.log(
-        url
-    );
+        console.log(
+            "ID:",
+            invitation.id
+        );
 
+        console.log(
+            "Fecha:",
+            sentAt
+        );
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("invitaciones")
+                .update({
+
+                    whatsapp_enviado_at:
+                        sentAt
+
+                })
+                .eq(
+                    "id",
+                    invitation.id
+                );
+
+
+        if (error) {
+
+            console.error(
+                "❌ ERROR AL GUARDAR WHATSAPP:",
+                error
+            );
+
+
+            alert(
+                "No se pudo registrar el envío de WhatsApp."
+            );
+
+
+            return;
+
+        }
+
+
+        console.log(
+            "✓ UPDATE DE WHATSAPP REALIZADO"
+        );
+
+
+        /*
+         * Actualizar el registro local.
+         */
+
+        const index =
+            invitations.findIndex(
+                item =>
+                    Number(
+                        item.id
+                    ) ===
+                    Number(
+                        invitation.id
+                    )
+            );
+
+
+        if (
+            index !== -1
+        ) {
+
+            invitations[index].whatsapp_enviado_at =
+                sentAt;
+
+        }
+
+
+        /*
+         * Actualizar la tabla
+         * inmediatamente.
+         */
+
+        applyCurrentFilter();
+
+    }
+
+
+    /*
+     * =====================================================
+     * ABRIR WHATSAPP
+     * =====================================================
+     */
 
     window.open(
         url,
@@ -1745,6 +1889,7 @@ function openWhatsApp(
     );
 
 }
+
 
 
 
@@ -2918,10 +3063,24 @@ async function saveEditedInvitation(
             invitationIndex !== -1
         ) {
 
+            /*
+             * Conservamos también
+             * whatsapp_enviado_at.
+             */
+
             invitations[
                 invitationIndex
-            ] =
-                updatedInvitation;
+            ] = {
+
+                ...updatedInvitation,
+
+                whatsapp_enviado_at:
+                    updatedInvitation.whatsapp_enviado_at ??
+                    invitations[
+                        invitationIndex
+                    ].whatsapp_enviado_at
+
+            };
 
         }
 
